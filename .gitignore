@@ -1,11 +1,4 @@
 
 
-*.apk
+**/bin
 
-bin/**
-
-*/bin/**
-
-*/bin
-
-AAFlappyChicken

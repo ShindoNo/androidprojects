@@ -1,5 +1,0 @@
-package gen.entertainments.gentv.dataservices;
-
-public class SpecialChannelService {
-	public static final String link = "link";
-}

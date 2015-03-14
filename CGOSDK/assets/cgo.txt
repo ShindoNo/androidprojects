@@ -1,5 +1,0 @@
-{
-"clientname" : "d1f853ce63e1e35d5c3682a76a199d0b",
-"subclient" : "",
-"app_id" : "cfaf1ef7d3bd1247fc38456765277397"
-}

@@ -1,8 +1,0 @@
-package gen.entertainments.gentv.dataservices;
-
-public class CategoriesChannelService {
-	public static final String catid = "catid";
-	public static final String name = "name";
-	public static final String description = "description";
-	public static final String date_create = "date_create";
-}
