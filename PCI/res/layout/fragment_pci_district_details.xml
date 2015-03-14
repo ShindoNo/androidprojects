@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_summary"
+    android:orientation="vertical" >
+    
+	<include layout="@layout/row_pci_result"/>
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:weightSum="6" 
+	    android:padding="10dp"
+	    android:background="#0067a8"
+	    android:orientation="horizontal"
+	    >
+	    
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="4"
+	        android:text="@string/index"
+	        android:textColor="#FFF" 
+	        android:id="@+id/tv_index_name"
+	        />
+	    
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:text=""
+	        android:textColor="#FFF"
+	        android:gravity="center" 
+	        android:id="@+id/tv_index_current_year"
+	        />
+	    
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:text=""
+	        android:gravity="center"
+	        android:textColor="#FFF" 
+	        android:id="@+id/tv_index_previous_year"
+	        />
+	</LinearLayout>
+	
+	<ScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" 
+	    >
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:id="@+id/ll_index_container"
+	        android:orientation="vertical" 
+	        >
+	        
+	    </LinearLayout>
+	    
+	</ScrollView>
+	
+
+</LinearLayout>

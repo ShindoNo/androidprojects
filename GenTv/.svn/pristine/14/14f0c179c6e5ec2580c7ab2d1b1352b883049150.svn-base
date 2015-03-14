@@ -1,0 +1,398 @@
+package gen.entertainments.gentv;
+
+import gen.entertainments.gentv.database.DatabaseDAO;
+import gen.entertainments.gentv.dataservices.ListChannelsServices;
+import gen.entertainments.gentv.adapter.ChannelsAdapter;
+import io.vov.vitamio.MediaPlayer;
+import io.vov.vitamio.MediaPlayer.OnCompletionListener;
+import io.vov.vitamio.widget.MediaController;
+import io.vov.vitamio.widget.VideoView;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Rect;
+import android.media.AudioManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.view.Display;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+public class FragmentPlay extends Fragment implements OnCompletionListener {
+	Activity mActivity;
+	View mainLayout;
+	
+	ListView mListView;
+	ChannelsAdapter mAdapter;
+	
+	ImageLoader mImageLoader;
+	JSONArray mListChannelsData;
+	
+	private DatabaseDAO mDatabaseDAO;
+	private int mCurrentPosition;
+	
+	/** Video view **/
+	private String mPath;
+	private String mTitle;
+	private VideoView mVideoView;
+	private View mVolumeBrightnessLayout;
+	private ImageView mOperationBg;
+	private ImageView mOperationPercent;
+	private AudioManager mAudioManager;
+	private int mMaxVolume;
+	private int mVolume = -1;
+	private float mBrightness = -1f;
+	private int mLayout = VideoView.VIDEO_LAYOUT_ZOOM;
+	private GestureDetector mGestureDetector;
+	private MediaController mMediaController;
+	
+	
+	public static FragmentPlay getIntance(ImageLoader imageLoader) {
+		FragmentPlay fragmentPlay = new FragmentPlay();
+		fragmentPlay.setDat(imageLoader);
+		return fragmentPlay;
+	}
+	
+	public void setDat(ImageLoader imageLoader) {
+		mImageLoader = imageLoader;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		mActivity = activity;
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		mainLayout = inflater.inflate(R.layout.fragment_play, container, false);
+		return mainLayout;
+	}
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		initUI();
+		super.onViewCreated(view, savedInstanceState);
+	}
+	
+	public void initUI() {
+		if (!io.vov.vitamio.LibsChecker.checkVitamioLibs(getActivity()))
+			return;
+		
+		mDatabaseDAO = new DatabaseDAO(mActivity);
+		mListView = (ListView) mainLayout.findViewById(R.id.lv_channels_small);
+		mAdapter = new ChannelsAdapter(mActivity, mImageLoader);
+		mAdapter.isSmallList = true;
+		mListView.setAdapter(mAdapter);	
+		mListView.setOnItemClickListener(mOnPlayChannel);
+		
+		//
+		mVideoView = (VideoView)  mainLayout.findViewById(R.id.surface_view);
+		mVolumeBrightnessLayout = mainLayout.findViewById(R.id.operation_volume_brightness);
+		mOperationBg = (ImageView) mainLayout.findViewById(R.id.operation_bg);
+		mOperationPercent = (ImageView) mainLayout.findViewById(R.id.operation_percent);
+
+		mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+		mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		mVideoView.setOnCompletionListener(this);
+
+		mMediaController = (MediaController) mainLayout.findViewById(R.id.media_controller_custom);// new MediaController(this);
+		mMediaController.setIsPlayLiveStream(true);
+		mMediaController.setFileName(mTitle);
+		mVideoView.setMediaController(mMediaController);
+		
+		mGestureDetector = new GestureDetector(getActivity(), new MyGestureListener());
+//		mPath = "/mnt/sdcard/21.flv";
+//		if(mPath.equals("")) {
+//		}
+	}
+	public void startPlayStream(String streamUrl) {
+		if(streamUrl.trim().equals(""))
+			return;
+		try {
+//			if (mPath.startsWith("http:"))
+				mVideoView.setVideoURI(Uri.parse(streamUrl));
+//			else
+//				mVideoView.setVideoPath(mPath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (mVideoView != null)
+			mVideoView.pause();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		try {
+			if (mVideoView != null)
+				mVideoView.resume();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (mVideoView != null)
+			mVideoView.stopPlayback();
+		
+		mDatabaseDAO.close();
+	}
+	
+	/*
+	 * This function called from MainActivity OnPlayListener
+	 */
+	public void playChannel(JSONArray listChannelsData, int position) {
+		mListChannelsData = listChannelsData;
+		mAdapter.setData(listChannelsData);
+		mAdapter.notifyDataSetChanged();
+		mListView.smoothScrollToPosition(0);
+		playChannel(position);
+	}
+	
+	OnItemClickListener mOnPlayChannel = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			playChannel(position);
+		}
+	};
+	
+	/* Interface between MainActivity and FragmentPlay here */
+	/* Interface between MainActivity and FragmentPlay here */
+	/* Interface between MainActivity and FragmentPlay here */
+	
+	public void onClickLike() {
+		try {
+			JSONObject mChannelData = mListChannelsData.getJSONObject(mCurrentPosition);
+			String channelId = mChannelData.getString(ListChannelsServices.channelid);
+			if (mDatabaseDAO.checkFavouriteChannelExist(channelId)) {
+				mDatabaseDAO.deleteFavouriteChannel(channelId);
+				((ImageView)mActivity.findViewById(R.id.img_like)).setImageResource(R.drawable.ic_like);
+			} else {
+				mDatabaseDAO.insertFavouriteChannel(channelId, "", mChannelData.toString());
+				((ImageView)mActivity.findViewById(R.id.img_like)).setImageResource(R.drawable.ic_like_yes);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Stop playing when return main screen
+	 */
+	public void onReturnMainScreen() {
+		
+	}
+	
+	public void hideActionBar() {
+		mActivity.findViewById(R.id.mainTop).setVisibility(View.GONE);
+	}
+	
+	public void showActionBar() {
+		mActivity.findViewById(R.id.mainTop).setVisibility(View.VISIBLE);
+	}
+	
+	/* Code for ViewdeoView here */
+	/* Code for ViewdeoView here */
+	/* Code for ViewdeoView here */
+	
+	public void playChannel(int position) {
+		mCurrentPosition = position;
+		try {		
+	    	JSONObject channelData = mListChannelsData.optJSONObject(position);
+	    	TextView tvChannelName = (TextView) mActivity.findViewById(R.id.tv_channel);
+	    	tvChannelName.setText(channelData.optString(ListChannelsServices.channelname, ""));
+	    	String channelId = channelData.getString(ListChannelsServices.channelid);
+	    	if (mDatabaseDAO.checkFavouriteChannelExist(channelId)) {
+	    		((ImageView)mActivity.findViewById(R.id.img_like)).setImageResource(R.drawable.ic_like_yes);
+	    	} else {
+	    		((ImageView)mActivity.findViewById(R.id.img_like)).setImageResource(R.drawable.ic_like);
+	    	}
+			
+			startPlayStream(channelData.getJSONArray(ListChannelsServices.stream).getJSONObject(0).getString(ListChannelsServices.url));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void endGesture() {
+		mVolume = -1;
+		mBrightness = -1f;
+
+		mDismissHandler.removeMessages(0);
+		mDismissHandler.sendEmptyMessageDelayed(0, 500);
+	}
+	
+	private class MyGestureListener extends SimpleOnGestureListener {
+		private boolean downInAreaVideoView = false;
+		@Override
+		public boolean onSingleTapUp(MotionEvent e) {
+			if(downInAreaVideoView) 
+				mVideoView.toggleControl();
+			return super.onSingleTapUp(e);
+		}
+		
+		@Override
+		public boolean onDoubleTap(MotionEvent e) {
+			if(downInAreaVideoView)  
+				taskOnDoubleTap();
+			return true;
+		}
+		
+		@Override
+		public boolean onDown(MotionEvent e) {
+			Rect mRect = new Rect();
+			mVideoView.getHitRect(mRect);
+			if(mRect.contains((int) e.getX(), (int) e.getY())) {
+				downInAreaVideoView = true;
+			} else {
+				downInAreaVideoView = false;
+			}
+			return super.onDown(e);
+		}
+		
+		@Override
+		public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+			if(downInAreaVideoView) 
+				taskSlide(e1, e2);
+			return super.onScroll(e1, e2, distanceX, distanceY);
+		}
+		
+	}
+	
+	public void taskOnDoubleTap() {
+		if (mLayout == VideoView.VIDEO_LAYOUT_ZOOM)
+			mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
+		else
+			mLayout++;
+		if (mVideoView != null)
+			mVideoView.setVideoLayout(mLayout, 0);
+	}
+	
+	public void taskSlide(MotionEvent e1, MotionEvent e2) {
+		if(e1 == null || e2 == null) {
+			return ;
+		}
+		float mOldX = e1.getX(), mOldY = e1.getY();
+		int y = (int) e2.getRawY();
+		Display disp = getActivity().getWindowManager().getDefaultDisplay();
+		int windowWidth = disp.getWidth();
+		int windowHeight = disp.getHeight();
+
+		if (mOldX > windowWidth * 4.0 / 5)//
+			onVolumeSlide((mOldY - y) / windowHeight);
+		else if (mOldX < windowWidth / 5.0)//
+			onBrightnessSlide((mOldY - y) / windowHeight);
+	}
+	
+	private Handler mDismissHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			mVolumeBrightnessLayout.setVisibility(View.GONE);
+		}
+	};
+
+	/**
+	 * 
+	 * @param percent
+	 */
+	private void onVolumeSlide(float percent) {
+		if (mVolume == -1) {
+			mVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+			if (mVolume < 0)
+				mVolume = 0;
+
+			mOperationBg.setImageResource(R.drawable.video_volumn_bg);
+			mVolumeBrightnessLayout.setVisibility(View.VISIBLE);
+		}
+
+		int index = (int) (percent * mMaxVolume) + mVolume;
+		if (index > mMaxVolume)
+			index = mMaxVolume;
+		else if (index < 0)
+			index = 0;
+
+		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, index, 0);
+
+		ViewGroup.LayoutParams lp = mOperationPercent.getLayoutParams();
+		lp.width = mainLayout.findViewById(R.id.operation_full).getLayoutParams().width * index / mMaxVolume;
+		mOperationPercent.setLayoutParams(lp);
+	}
+
+	/**
+	 * 
+	 * @param percent
+	 */
+	private void onBrightnessSlide(float percent) {
+		if (mBrightness < 0) {
+			mBrightness = getActivity().getWindow().getAttributes().screenBrightness;
+			if (mBrightness <= 0.00f)
+				mBrightness = 0.50f;
+			if (mBrightness < 0.01f)
+				mBrightness = 0.01f;
+
+			mOperationBg.setImageResource(R.drawable.video_brightness_bg);
+			mVolumeBrightnessLayout.setVisibility(View.VISIBLE);
+		}
+		WindowManager.LayoutParams lpa = getActivity().getWindow().getAttributes();
+		lpa.screenBrightness = mBrightness + percent;
+		if (lpa.screenBrightness > 1.0f)
+			lpa.screenBrightness = 1.0f;
+		else if (lpa.screenBrightness < 0.01f)
+			lpa.screenBrightness = 0.01f;
+		getActivity().getWindow().setAttributes(lpa);
+
+		ViewGroup.LayoutParams lp = mOperationPercent.getLayoutParams();
+		lp.width = (int) (mainLayout.findViewById(R.id.operation_full).getLayoutParams().width * lpa.screenBrightness);
+		mOperationPercent.setLayoutParams(lp);
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		if (mVideoView != null)
+			mVideoView.setVideoLayout(mVideoView.getVideoLayout(), 0);
+		super.onConfigurationChanged(newConfig);
+	}
+	
+	@Override
+	public void onCompletion(MediaPlayer arg0) {
+		// TODO Khi chay xong 1 bai
+		
+	}
+	
+	
+}

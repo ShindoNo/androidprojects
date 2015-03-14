@@ -1,0 +1,106 @@
+package linetv.vietnam.http;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.util.zip.GZIPInputStream;
+
+import linetv.vietnam.utils.Logger;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.params.ConnManagerPNames;
+import org.apache.http.conn.params.ConnPerRouteBean;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.SingleClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+
+
+
+public class HTTPServer {
+	public static long lastTimeGet = 0;
+	public static long lastTimeFirstGet = 0;
+	public static String KEY_SEC = "gomupistol.com";
+	
+	/**
+	 * Get response from URL (string)
+	 * @param url : link to get response
+	 * @param gzip : mode compress <br/>
+	 *               True: gzip is on
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getResponse(String url, boolean gzip) throws Exception { 
+		InputStream inputStream = null;
+		String jsonString = "";
+		Logger.d("HTTP", url);
+		try {
+			SchemeRegistry schemeRegistry = new SchemeRegistry();
+			schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+			schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+			 
+			HttpParams params = new BasicHttpParams();
+			params.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+			params.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+			params.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+			HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+			 
+			ClientConnectionManager cm = new SingleClientConnManager(params, schemeRegistry);
+			DefaultHttpClient httpClient = new DefaultHttpClient(cm, params);
+			
+			HttpGet method = new HttpGet(url);
+			HttpResponse response = httpClient.execute(method);
+			HttpEntity entity = response.getEntity();
+			inputStream = entity.getContent();
+			if(gzip) {
+				inputStream = new GZIPInputStream(inputStream);
+			}
+		    BufferedReader reader = new BufferedReader(
+		    	new InputStreamReader(inputStream, "UTF-8"), 8);
+		    StringBuilder sb = new StringBuilder();
+		    String line = null;
+		    while ((line = reader.readLine()) != null) {
+		        sb.append(line + "\n");
+		    }
+		    jsonString = sb.toString();
+		} catch(IOException ioException){
+			ioException.printStackTrace();
+		} catch(Exception exception){ 
+			exception.printStackTrace();
+		} finally {
+			if(inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (Exception closeException) {
+					closeException.printStackTrace();
+				}
+			}
+		}
+	    return jsonString;
+	}
+	public String md5(String str) throws Exception
+	{
+		StringBuilder sb = new StringBuilder();
+		for (byte b : md5(str.getBytes()))
+			sb.append(Integer.toHexString(0x100 + (b & 0xff)).substring(1));
+		return sb.toString();
+	}
+	public byte[] md5(byte[] data) throws Exception
+	{
+		MessageDigest md5 = MessageDigest.getInstance("MD5");
+		md5.update(data);
+		return md5.digest();
+	}
+	
+}

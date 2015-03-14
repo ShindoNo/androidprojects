@@ -1,0 +1,15 @@
+package gen.entertainments.gentv.dataservices;
+
+public class UpdateDataService {
+	
+	
+	public static void updateCategory() {
+		
+	}
+	
+	public static void updateListChannels() {
+		
+	}
+	
+	
+}

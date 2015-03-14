@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" 
+    >
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_left"
+        >
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_circle" 
+            android:layout_centerInParent="true"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFF"
+            android:textSize="20dp"
+            android:text="1" 
+            android:id="@+id/tv_rank"
+            />
+    </RelativeLayout>
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_arrow"
+        android:id="@+id/img_arrow"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/layout_left"
+        android:layout_toLeftOf="@+id/img_arrow"
+        android:orientation="vertical" 
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#0067a8"
+            android:text="Đồng Tháp"
+            android:textSize="16dp"
+            android:id="@+id/tv_district_name"
+            />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2" 
+            >
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" 
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/group"
+                    android:textColor="#6d6d6d" 
+                    />
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tốt"
+                    android:textColor="#e46161" 
+                    android:id="@+id/tv_group"
+                    />
+                
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" 
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PCI : "
+                    android:textColor="#6d6d6d" 
+                    />
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="63,79"
+                    android:textColor="#e46161"
+                    android:id="@+id/tv_pci"
+                    />
+                
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</RelativeLayout>

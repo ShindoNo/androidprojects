@@ -1,0 +1,16 @@
+package gen.entertainments.gentv.utils;
+
+public class NameSpace {
+	public static final String CATID_FAVOURITE_CHANNEL = "favourite_channels";
+	
+	public static final String SHARED_PREF_CONFIG = "config";
+	public static final String SHARED_PREF_LAST_CAT_ID = "last_cat_id";
+	
+	public static final String VERSION_API_MENU = "v1.0";
+	public static final String VERSION_API_LIST_CHANNELS = "v2.0";
+	public static final String DEFAULT_CATEGORY_ID = "13";
+	
+	public static final String API_MENU = "http://localhost/TV/api/android/%s/category.json";
+	public static final String API_LIST_CHANNELS = "http://localhost/TV/api/android/%s/channels.json?catid=%s";
+	public static final String BASE_URL = "http://tivi.gomupistol.com/";
+}

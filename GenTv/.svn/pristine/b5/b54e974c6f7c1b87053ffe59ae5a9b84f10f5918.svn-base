@@ -1,0 +1,323 @@
+package gen.entertainments.gentv;
+
+import java.util.Random;
+
+import org.json.JSONArray;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.slidingmenu.lib.SlidingMenu;
+import gen.entertainments.gentv.FragmentMenu.OnMenuCategorySelection;
+import gen.entertainments.gentv.FragmentListChannels.OnPlayChannel;
+import gen.entertainments.gentv.utils.NameSpace;
+import android.content.Context;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+
+
+public class MainActivity extends FragmentActivity {
+	FragmentManager mFragmentManager;
+	FragmentMenu mFragmentMenu;
+	FragmentListChannels mFragmentListChannels;
+	FragmentPlay mFragmentPlay;
+	
+	SlidingMenu mSlidingMenu;
+	ImageLoader mImageLoader;
+	boolean isShowingSoftKeyboard = false;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		NameSpace.initEncrypt();
+		
+		initUI();
+		initTopButtons();
+		initFragment();
+		
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				initAdView("a15132348a65efd");
+			}
+		}, 5000);
+		
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+//		super.onSaveInstanceState(outState);
+	}
+
+	private void initUI() {
+		if(mImageLoader == null) {
+//			 Initialize universal image loader
+			ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+//				.threadPoolSize(3)
+				.threadPriority(Thread.NORM_PRIORITY - 2)
+				.memoryCacheSize(2 * 1024 * 1024) // 2.0 Mb
+				.memoryCache(new WeakMemoryCache())
+				.denyCacheImageMultipleSizesInMemory()
+				.discCacheFileNameGenerator(new Md5FileNameGenerator())
+//				.enableLogging() // Not necessary in common
+				.tasksProcessingOrder(QueueProcessingType.FIFO)
+				.build();
+				com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(config);
+				mImageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
+		}
+		
+		mSlidingMenu = (SlidingMenu) findViewById(R.id.sliding_menu);
+		
+		final View mainLayout = findViewById(android.R.id.content);
+		if (mainLayout.getViewTreeObserver().isAlive()) {
+			mainLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					// TODO Auto-generated method stub
+					Rect visibleView = new Rect();
+					mainLayout.getWindowVisibleDisplayFrame(visibleView);
+					int heightDiff = mainLayout.getHeight() - visibleView.height();
+
+					if (heightDiff != 0) {
+						mainLayout.getLayoutParams().height = visibleView.height();
+						mainLayout.requestLayout();
+
+						if (heightDiff > 0) {
+							isShowingSoftKeyboard = true;
+						} else {
+							isShowingSoftKeyboard = false;
+							if (findViewById(R.id.view_search).getVisibility() == View.VISIBLE) {
+								findViewById(R.id.view_search).setVisibility(View.GONE);
+								findViewById(R.id.view_top_buttons).setVisibility(View.VISIBLE);
+								((EditText)findViewById(R.id.et_search)).setText("");
+							}
+						}
+					}
+				}
+			});
+		}
+	}
+	
+	private void initTopButtons() {
+		findViewById(R.id.img_logo).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (mFragmentPlay.isVisible()) {
+			    	mFragmentManager.beginTransaction()
+					.setCustomAnimations(R.anim.right_to_left_in, R.anim.right_to_left_out,R.anim.left_to_right_in, R.anim.left_to_right_out)
+					.hide(mFragmentPlay)
+		  			.show(mFragmentListChannels)
+		  			.addToBackStack(null)
+		  			.commit();						
+				} else {
+					mSlidingMenu.showBehind();
+				}
+			}
+		});
+		
+		findViewById(R.id.img_like).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mFragmentPlay.onClickLike();
+			}
+		});
+		
+		findViewById(R.id.img_search).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				findViewById(R.id.view_top_buttons).setVisibility(View.GONE);
+				findViewById(R.id.view_search).setVisibility(View.VISIBLE);
+				findViewById(R.id.et_search).requestFocus();
+				((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).toggleSoftInput(0, 0);
+			}
+		});
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN && findViewById(R.id.view_search).getVisibility() == View.VISIBLE) {
+			findViewById(R.id.view_top_buttons).setVisibility(View.VISIBLE);
+			findViewById(R.id.view_search).setVisibility(View.GONE);
+			return true;
+		}
+		
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	private void initFragment() {
+		mFragmentManager = getSupportFragmentManager();
+		mFragmentMenu = FragmentMenu.getInstance(mOnMenuCategorySelection);
+		mFragmentManager.beginTransaction().add(R.id.fragment_menu_container, mFragmentMenu).commit();
+		
+		String lastCatId = getSharedPreferences(NameSpace.SHARED_PREF_CONFIG, Context.MODE_PRIVATE)
+				 		  .getString(NameSpace.SHARED_PREF_LAST_CAT_ID, NameSpace.CATID_DEFAULT);
+		
+		mFragmentListChannels = FragmentListChannels.getIntance(mImageLoader, lastCatId, mOnPlayChannel);
+		mFragmentManager.beginTransaction().add(R.id.fragment_main_container, mFragmentListChannels).commit();
+		
+		mFragmentPlay = FragmentPlay.getIntance(mImageLoader);
+		mFragmentManager.beginTransaction().add(R.id.fragment_main_container, mFragmentPlay).commit();
+		
+		mFragmentManager.beginTransaction().show(mFragmentListChannels).hide(mFragmentPlay).commit();
+		
+		mFragmentManager.addOnBackStackChangedListener(mOnBackStackChangedListener);
+	}
+	
+	public void initAdView(String adUnitId) {
+		AdView adView = (AdView) findViewById(R.id.adView);
+		adView.loadAd(new AdRequest());
+		
+		findViewById(R.id.img_close).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				hideAdView();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						showAdView();
+					}
+				}, 5 * 60 * 1000 + new Random().nextInt(5 * 60 * 1000));
+			}
+		});
+		
+		// create adview
+//		AdView adView = new AdView(this, AdSize.SMART_BANNER, adUnitId);
+//		adView.loadAd(new AdRequest());
+//		adView.setId(R.id.adView);
+//		FrameLayout.LayoutParams lpAdView = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+//		adView.setLayoutParams(lpAdView);
+//		
+//		// add to adview container
+//		FrameLayout adViewContainer = (FrameLayout) findViewById(R.id.adViewContainer);
+//		adViewContainer.addView(adView);
+		
+//		RelativeLayout.LayoutParams lpSlidingMenu = (LayoutParams) mSlidingMenu.getLayoutParams();
+//		lpSlidingMenu.addRule(RelativeLayout.ABOVE, R.id.adViewContainer);
+	}
+	
+	private void hideAdView() {
+		findViewById(R.id.img_close).setVisibility(View.GONE);
+		findViewById(R.id.adView).setVisibility(View.GONE);
+	}
+	
+	private void showAdView() {
+		findViewById(R.id.adView).setVisibility(View.VISIBLE);
+		findViewById(R.id.img_close).setVisibility(View.VISIBLE);
+		changeImageClosePosition();
+	}
+	
+	private void changeImageClosePosition() {
+		RelativeLayout.LayoutParams lpClose = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		lpClose.addRule(RelativeLayout.ABOVE, R.id.adView);
+		
+		Random random = new Random();
+		int position = random.nextInt(3);
+		if (position == 0) {
+			lpClose.addRule(RelativeLayout.ALIGN_LEFT, R.id.adView);	
+		} else if (position == 1) {
+			lpClose.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		} else if (position == 2) {
+			lpClose.addRule(RelativeLayout.ALIGN_RIGHT, R.id.adView);
+		}
+		
+		findViewById(R.id.img_close).setLayoutParams(lpClose);
+	}
+	
+	OnBackStackChangedListener mOnBackStackChangedListener = new OnBackStackChangedListener() {
+		@Override
+		public void onBackStackChanged() {
+			// TODO Auto-generated method stub
+			if (mFragmentListChannels.isVisible()) {
+				mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+				findViewById(R.id.img_like).setVisibility(View.GONE);
+				findViewById(R.id.img_server).setVisibility(View.GONE);
+				findViewById(R.id.tv_channel).setVisibility(View.GONE);
+				mFragmentPlay.onReturnMainScreen();
+			} else if (mFragmentPlay.isVisible()) {
+				mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+				findViewById(R.id.img_like).setVisibility(View.VISIBLE);
+				findViewById(R.id.img_server).setVisibility(View.VISIBLE);	
+				findViewById(R.id.tv_channel).setVisibility(View.VISIBLE);
+			}
+			
+//			if (isShowingSoftKeyboard) {
+//				((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(0, 0);
+//				if (findViewById(R.id.view_search).getVisibility() == View.VISIBLE) {
+//					findViewById(R.id.view_search).setVisibility(View.GONE);
+//					findViewById(R.id.view_top_buttons).setVisibility(View.VISIBLE);
+//					((EditText)findViewById(R.id.et_search)).setText("");
+//				}				
+//			}
+			
+		}
+	};
+	
+	OnPlayChannel mOnPlayChannel = new OnPlayChannel() {
+		@Override
+		public void playChannel(JSONArray listChannels, int position) {
+			// TODO Auto-generated method stub
+	    	mFragmentManager.beginTransaction()
+			.setCustomAnimations(R.anim.right_to_left_in, R.anim.right_to_left_out,R.anim.left_to_right_in, R.anim.left_to_right_out)
+			.hide(mFragmentListChannels)
+  			.show(mFragmentPlay)
+  			.addToBackStack(null)
+  			.commit();
+	    	
+			mFragmentPlay.playChannel(listChannels, position);
+		}
+	};
+	
+	OnMenuCategorySelection mOnMenuCategorySelection = new OnMenuCategorySelection() {
+		@Override
+		public void onSelect(String catId) {
+			// TODO Auto-generated method stub
+			mSlidingMenu.showAbove();
+			mFragmentListChannels.onSelectCatId(catId);
+		}
+	};
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		if(mFragmentPlay != null) {
+			if (mFragmentPlay.getGestureDetector().onTouchEvent(event))
+				return true;
+			
+			switch (event.getAction() & MotionEvent.ACTION_MASK) {
+			case MotionEvent.ACTION_UP:
+				mFragmentPlay.endGesture();
+				break;
+			}
+		}
+		return super.onTouchEvent(event);
+	}
+}

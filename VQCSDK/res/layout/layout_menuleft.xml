@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f0f0f0"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_home"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_home"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_fb_group"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_news"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_fb_group"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_addmoney"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_addmoney"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_addmoney"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_help"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_help"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_help"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_report"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_report"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_report"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_account"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_account"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:id="@+id/fl_update_account"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_update_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_update_account"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_update_account"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4" />
+
+        <TextView
+            android:id="@+id/tv_menu_inbox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_menu_inbox"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/dashboard_inbox"
+            android:textColor="#000"
+            android:textSize="14dp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/btn_logout_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:background="@drawable/bg_login_button"
+            android:padding="6dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#0000"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_menu_logout"
+                android:gravity="center"
+                android:text="@string/dashboard_logout"
+                android:textColor="#FFF"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

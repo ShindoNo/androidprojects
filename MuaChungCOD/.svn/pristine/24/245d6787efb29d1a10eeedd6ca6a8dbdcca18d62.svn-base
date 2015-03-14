@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_main_top"
+    android:padding="5dp" >
+
+    <RadioGroup
+        android:id="@+id/rg_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_top_radio"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/ic_search_big"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Tìm kiếm"
+            android:textColor="#FFF"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_reports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_top_radio"
+            android:button="@android:color/transparent"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_reports"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Thống kê"
+            android:textColor="#FFF"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_works_by_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_top_radio"
+            android:button="@android:color/transparent"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_worklist"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Danh sách"
+            android:textColor="#FFF"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_top_radio"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/ic_account"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Tài khoản"
+            android:textColor="#FFF"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+</LinearLayout>

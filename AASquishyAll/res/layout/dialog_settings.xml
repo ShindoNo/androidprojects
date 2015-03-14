@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5c5c5c" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5c5c5c"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/flyingcyrus_ground" />
+            
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/btn_back_big"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:id="@+id/img_back"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/txt_settings" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#262626"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:src="@drawable/txt_character" />
+        </FrameLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5c5c5c"
+            android:padding="10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                
+<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_superman"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:src="@drawable/superman_bird1" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Superman"
+                        android:textColor="#FFF" />
+                </LinearLayout>                
+                
+                
+				<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_iron_man"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:src="@drawable/ironman_bird1" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Iron Man"
+                        android:textColor="#FFF" />
+                </LinearLayout>                
+                
+			<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_gangnam_style"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:src="@drawable/gangnamstyle_bird1" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Gangnam Style"
+                        android:textColor="#FFF" />
+                </LinearLayout>                
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_chickflying"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:src="@drawable/chickflying_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Chick Flying"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+                
+<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_sloppy"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:src="@drawable/sloppybird_bird1" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Sloppy Bird"
+                        android:textColor="#FFF" />
+                </LinearLayout>                
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_citybird"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/citybird_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="City Bird"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center" 
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flappybird"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flappybird_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flappy Bird"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center" 
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flappywings"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flappywings_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flappy Wings"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flyingbieber"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flyingbieber_bird1" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flying Bieber"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center" 
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flyingcyrus"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flyingcyrus_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flying Cyrus"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center" 
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flyingdrizzy"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flyingdrizzy_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flying Drizzy"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_flyingnyan"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flyingnyan_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Flying Nyan"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                     >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img_bird_splashyfish"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/splashyfish_bird3" />
+
+                        <ImageView
+                            android:id="@+id/ic_checking"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/checking"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Splashy Bird"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#262626"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/txt_background" />
+        </FrameLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/img_bg_chickflying"
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/chickflying_background1" />
+
+                    <ImageView
+                        android:id="@+id/ic_checking"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/img_bg_citybird"
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/citybird_background1" />
+
+                    <ImageView
+                        android:id="@+id/ic_checking"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flappybird_background1"
+                        android:id="@+id/img_bg_flappybird" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flappywings_background1"
+                        android:id="@+id/img_bg_flappywings" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flyingbieber_background1"
+                        android:id="@+id/img_bg_flyingbieber" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flyingcyrus_background1"
+                        android:id="@+id/img_bg_flyingcyrus" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>                
+                
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flyingdrizzy_background1"
+                        android:id="@+id/img_bg_flyingdrizzy" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>                
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flyingnyan_background1"
+                        android:id="@+id/img_bg_flyingnyan" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>                
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/splashyfish_background1"
+                        android:id="@+id/img_bg_splashyfish" 
+                        />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/checking"
+                        android:id="@+id/ic_checking" 
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>                
+                
+                
+                
+                
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#262626"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/txt_more_app" />
+        </FrameLayout>
+        
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/btn_reload"
+            android:visibility="gone"
+            android:id="@+id/img_btn_reload"
+            />
+        
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/ll_more_app" 
+                >
+            </LinearLayout>
+            
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</ScrollView>

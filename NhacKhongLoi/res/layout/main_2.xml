@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rootView"
+    >
+    
+    <com.slidingmenu.lib.SlidingMenu
+        xmlns:sliding="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        sliding:viewAbove="@layout/sliding_content"
+        sliding:viewBehind="@layout/sliding_menu"
+        sliding:behindWidth="250dp"
+        sliding:aboveTouchMode="fullscreen"        
+        android:id="@+id/sliding"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        />    
+
+</RelativeLayout>

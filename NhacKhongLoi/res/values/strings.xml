@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Zii NKL</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Zii NKL</string>
+    <string name="app_id">331565426927805</string>
+    <string name="crash_toast_text">Đã xảy ra lỗi trong ứng dụng</string>
+    <string name="email">E: <u>ziiteam.gaylord@gmail.com</u></string>
+    <string name="website">W: <u>www.nhackhongloi.info</u></string>
+    <string name="facebook">FB: <u>facebook.com/nhackhongloi.info</u></string>
+    
+    <string name="exit">Thoát khỏi Zii Nhạc Không Lời?</string>
+    <string name="cant_send_sms">Không thể send qua SMS</string>
+    <string name="sharing">Chia sẻ album với nhackhongloi.info</string>
+    <string name="share_twitter">Share Twitter đang hoàn thiện</string>
+    <string name="share_facebook_dev">Share Facebook đang hoàn thiện</string>
+    <string name="share_facebook">Cùng chia sẻ qua nhackhongloi.info</string>
+    <string name="added_fav_album">Đã thêm vào album ưa thích</string>
+    <string name="removed_fav_album">Đã xóa khỏi album ưa thích</string>
+    <string name="end_of_list_albums">Đã hết Albums trong list này</string>
+    
+    <string name="extra_subject">Chia sẻ từ Zii Nhạc Không lời\n</string>
+    <string name="share_via">Chia sẻ qua</string>
+    <string name="tiny_url_app">tinyurl.com/zii-nkl</string>
+    
+    <string name="exit_ok">Thoát</string>
+    <string name="exit_cancel">Không</string>
+    
+    <!-- String for api2 -->
+    <string name="instrument">Nhạc cụ</string>
+    <string name="category">Thể loại</string>
+    <string name="zii">Zii</string>
+    <string name="top_albums">Top &amp; New</string>
+    <string name="favourite_albums">Albums ưa thích</string>
+    
+    <string name="most_viewed">Nghe nhiều</string>
+    <string name="newest">Mới nhất</string>
+    <string name="atoz">A-Z</string>
+    
+    <string name="added_to_fav_list">Đã thêm vào danh sách album ưa thích</string>
+    <string name="removed_from_fav_list">Đã xóa khỏi danh sách album ưa thích</string>
+    <string name="no_fav_album">Chưa có album ưa thích nào</string>
+    
+    <string name="album">Album</string>
+    <string name="artist">Nghệ sĩ</string>
+    <string name="song">Bản nhạc</string>
+    <string name="search_hint">Tìm kiếm mọi thứ...</string>
+    <string name="enter_at_least">Hãy nhập thông tin cần tìm kiếm</string>
+    <string name="exit_app_then_return">Hãy kiểm tra kết nối, thoát khỏi ứng dụng và thử lại</string>
+    
+</resources>

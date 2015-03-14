@@ -1,0 +1,41 @@
+package gen.entertainments.gentv.utils;
+
+import java.io.InputStream;
+
+import android.net.http.AndroidHttpClient;
+
+public class NameSpace {
+	public static String IV = "http://api.rubyngusi.biz";
+	public static String SECRET = "http://api.rubyngusi.biz/gentv";
+	
+	public static final String CATID_FAVOURITE_CHANNEL = "favourite_channels";
+	public static final String CATID_DEFAULT = "13";
+	
+	public static final String SHARED_PREF_CONFIG = "config";
+	public static final String SHARED_PREF_LAST_CAT_ID = "last_cat_id";
+	
+	public static final String API_MENU = "http://localhost/TV/api/android/v2.0/category.json";
+	public static final String API_LIST_CHANNELS = "http://localhost/TV/api/android/v2.0/channels.json?catid=%s";
+	public static final String BASE_URL = "http://api.rubyngusi.biz/";
+	
+	public static void initEncrypt() {
+		InputStream inputStream = null;
+		try {
+			AndroidHttpClient httpClient = AndroidHttpClient.newInstance("Mozilla/5.0 (Linux; U; Android 4.0.4; en-vn; HTC One X Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30");
+			httpClient.close();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (Exception closeException) {
+					closeException.printStackTrace();
+				}
+			}
+		}
+		
+		IV = ":invoke-virtual;";
+		SECRET = "lang/Exception;-";
+	}
+}

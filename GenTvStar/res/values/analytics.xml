@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- France -->
+  <!-- <string name="ga_trackingId">UA-41862808-3</string> -->
+  
+  <!-- Turkey -->
+  <!-- <string name="ga_trackingId">UA-41862808-7</string> -->
+  
+  <!-- China -->
+  <!-- <string name="ga_trackingId">UA-41225290-1</string> -->
+  
+  <!-- Arabic -->
+  <!-- <string name="ga_trackingId">UA-41862808-2</string> -->
+  
+  <!-- Malaysia -->
+  <!-- <string name="ga_trackingId">UA-41862808-14</string> -->    
+  
+  <!-- Greece -->
+  <!-- <string name="ga_trackingId">UA-41862808-4</string> -->  
+  
+  <!-- Italy -->
+  <!-- <string name="ga_trackingId">UA-41862808-5</string> -->  
+  
+  <!-- Spain -->
+  <!-- <string name="ga_trackingId">UA-41862808-10</string> -->    
+
+  <!-- India -->
+  <!-- <string name="ga_trackingId">UA-41301792-1</string>     -->
+  
+  <!-- Russia -->
+  <!-- <string name="ga_trackingId">UA-41862808-6</string>  --> 
+  
+  <!-- India -->
+  <!-- <string name="ga_trackingId">UA-41862808-15</string> -->
+
+  <!-- Indonesia -->
+  <string name="ga_trackingId">UA-41862808-9</string>
+  
+  <!-- Indo -->
+  <!-- <string name="ga_trackingId">UA-41862808-12</string> -->  
+  
+  <!-- Singapore -->
+  <!-- <string name="ga_trackingId">UA-41862808-13</string> -->  
+  
+  <!-- Thailand -->
+  <!-- <string name="ga_trackingId">UA-41862808-8</string> -->
+  
+  <!-- Philippines -->
+  <!-- <string name="ga_trackingId">UA-41862808-11</string> -->
+    
+  <!-- Vietnam -->
+  <!-- <string name="ga_trackingId">UA-42356714-4</string> -->
+  
+  <bool name="ga_autoActivityTracking">true</bool>
+  <bool name="ga_reportUncaughtExceptions">true</bool>
+</resources>

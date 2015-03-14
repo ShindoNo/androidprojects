@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_text" 
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#000" >
+
+        <ImageView
+            android:id="@+id/img_cover"
+            android:layout_width="102dp"
+            android:layout_height="58dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/img_cover_test" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/img_cover"
+            android:orientation="vertical"
+            android:paddingLeft="5dp" >
+
+            <TextView
+                android:id="@+id/tv_video_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Em yêu ảo lòi"
+                android:textColor="#02acd8"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_video_artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_artist"
+                android:drawablePadding="5dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:text="Yanbi"
+                android:textColor="#FFF"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tv_video_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_view"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="1234"
+                android:textColor="#FFF"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_btn_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_download_no" />
+
+        <ImageView
+            android:id="@+id/img_btn_now_playing_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/bg_now_playing_play_small"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_btn_popupmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/ic_popupmenu"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_downloading"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="5dp"
+        android:max="100"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:progressDrawable="@drawable/custom_seekbar"
+        android:thumb="@android:color/transparent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_downloading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tv_downloaded_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="2dp"
+            android:text="0/0 MB"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Speed : 0kbps"
+            android:textColor="#FFF" />
+    </LinearLayout>
+
+</LinearLayout>

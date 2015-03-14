@@ -1,0 +1,13 @@
+package gen.entertainments.gentv.dataservices;
+
+public class ListChannelsServices {
+	public static final String channelid = "channelid";
+	public static final String channelname = "channelname";
+	public static final String description = "description";
+	public static final String is_audio = "is_audio";
+	public static final String logo = "logo";
+	public static final String stream = "stream";
+	public static final String url = "url";
+	public static final String bitrate = "bitrate";
+	public static final String type = "type";
+}

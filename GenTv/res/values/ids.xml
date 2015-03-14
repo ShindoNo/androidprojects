@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="tag_id" type="id" />
+    <item name="tag_holder" type="id" />
+    <item name="tag_position" type="id" />
+    
+    <item name="adView" type="id" />
+    <item name="img_close" type="id" />
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textColor="#FFF"
+        android:background="#452a69"
+        android:text="Chào mừng bạn đã trở lại"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/logo_small"
+        android:drawablePadding="5dp"
+        android:padding="5dp"
+        android:textSize="16dp"
+        android:id="@+id/tv_hello"
+        />
+
+</LinearLayout>

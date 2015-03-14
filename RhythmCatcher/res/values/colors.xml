@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="text_cell_input">#FFFFFF</color>
+    <color name="cell_input">#AA000000</color>
+    <color name="cell_input_bg">#FF5419</color>
+    <color name="text_cell_guess">#000000</color>
+    <color name="cell_guess">#CCFFFFFF</color>
+    <color name="cell_guess_bg">#FFAC2A</color>
+    
+</resources>

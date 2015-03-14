@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="320dp"
+    android:orientation="vertical"
+    android:background="@drawable/btn_01"
+    android:padding="10dp" 
+    >
+	
+    <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="#FFF"
+         android:text="Enter number of coin :"
+         android:textSize="18dp"
+         android:paddingTop="5dp"
+         android:paddingRight="5dp"
+         android:paddingBottom="5dp"
+        />
+    
+    <EditText
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:inputType="number"
+        android:singleLine="true"
+        android:id="@+id/et_enter_number"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+        
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/btn_ok"
+            />
+        
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/btn_cancel"
+            />        
+        
+    </LinearLayout>
+
+</LinearLayout>

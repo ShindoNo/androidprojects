@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <gen.entertainments.gentv.customview.RobotoTextView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="Section"
+        android:textColor="#FFF"
+        android:textSize="16dp"
+        android:id="@+id/tv_section_title"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:drawableLeft="@drawable/ic_setting_white"
+        android:drawablePadding="5dp"
+        android:background="@drawable/bg_section_header"
+        />
+    
+</LinearLayout>

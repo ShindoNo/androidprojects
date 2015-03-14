@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_thong_ke"
+    android:orientation="vertical"
+    android:paddingBottom="1dp"
+    android:paddingLeft="1dp"
+    android:paddingRight="1dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_thong_ke"
+        android:padding="7dp"
+        android:text="Thống kê: 19-9-2012"
+        android:textColor="#000"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/line_horizontal_1" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Tổng hàng"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:drawableLeft="@drawable/ic_deal_good"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical" 
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#C3C3C3" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/tv_row_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Tổng phiếu"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp" 
+                android:drawableLeft="@drawable/ic_deal_ticket"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"                
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_tickets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#4C4C4C" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Hàng giao"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:drawableLeft="@drawable/ic_deal_good"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"                
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_shipped_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#C3C3C3" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Phiếu giao"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:drawableLeft="@drawable/ic_deal_ticket"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"                 
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_shipped_tickets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#4C4C4C" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Hàng hủy"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:drawableLeft="@drawable/ic_deal_good"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"                 
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_returned_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#C3C3C3" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Phiếu hủy"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:drawableLeft="@drawable/ic_deal_ticket"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"                 
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_returned_tickets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#4C4C4C" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:text="Tổng tiền"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:width="0dp"
+                android:gravity="center" 
+                />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#81929F" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="#D31603"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:width="0dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
