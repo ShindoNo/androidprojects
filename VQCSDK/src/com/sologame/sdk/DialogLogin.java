@@ -20,7 +20,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sologame.sdk.util.MyLog;
+
+import com.sologame.sdk.util.MyLog; 
 import com.sologame.sdk.util.NameSpace;
 import com.sologame.sdk.util.PushTools;
 import com.sologame.sdk.util.ServiceHelper;

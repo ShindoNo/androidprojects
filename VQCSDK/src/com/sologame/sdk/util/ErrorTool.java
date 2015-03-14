@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 public class ErrorTool {
 	
-	public static HashMap<Integer, String> sErrorMap = new HashMap<>();
+	public static HashMap<Integer, String> sErrorMap = new HashMap<Integer, String>();
 	
 	public static void init() {
-		sErrorMap = new HashMap<>();
+		sErrorMap = new HashMap<Integer, String>();
 		sErrorMap.put(46, "Kết nối tới game gặp sự cố, vui lòng thử lại sau");
 		sErrorMap.put(31, "Không có dữ liệu");
 		sErrorMap.put(21, "Không đủ tiền thực hiện");
