@@ -1,0 +1,27 @@
+# view AndroidManifest.xml #generated:56
+-keep class com.google.android.gms.ads.AdActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:77
+-keep class com.idroid.lib.support.GCMBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:69
+-keep class com.ironsource.mobilcore.InstallationTracker { <init>(...); }
+
+# view AndroidManifest.xml #generated:63
+-keep class com.ironsource.mobilcore.MobileCoreReport { <init>(...); }
+
+# view AndroidManifest.xml #generated:28
+-keep class com.shindo.francetv.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:34
+-keep class com.shindo.francetv.WelcomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class io.vov.vitamio.activity.InitActivity { <init>(...); }
+
+# view res/layout/activity_main.xml #generated:104
+-keep class io.vov.vitamio.widget.MediaController { <init>(...); }
+
+# view res/layout/activity_main.xml #generated:83
+-keep class io.vov.vitamio.widget.VideoView { <init>(...); }
+

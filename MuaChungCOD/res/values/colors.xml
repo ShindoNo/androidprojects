@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_deal_radio">#C7C7C7</color>
+    <color name="bg_deal_date_row_pressed">#CECECE</color>
+    <color name="bg_deal_date_row_normal">#FFFFFF</color>
+    
+    <color name="bg_search_normal">#E6E6E6</color>
+    <color name="bg_search_checked">#D0D0D0</color>
+    
+    <color name="bg_sms_note_normal">#EFEFEF</color>
+    <color name="bg_sms_note_pressed">#D0D0D0</color>
+    <color name="bg_sms_note_disable">#CCD0D0D0</color>
+    
+    
+</resources>

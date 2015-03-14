@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="tag_highlight_id"/>
+    <item type="id" name="tag_year"/>
+    <item type="id" name="tag_pci_district"/>
+    <item type="id" name="tag_index_position"/>
+    <item type="id" name="tag_content"/>
+</resources>

@@ -1,0 +1,7 @@
+package gen.entertainments.gentv.dataservices;
+
+public class CategoriesChannelService {
+	public static final String catid = "catid";
+	public static final String catname = "catname";
+	
+}

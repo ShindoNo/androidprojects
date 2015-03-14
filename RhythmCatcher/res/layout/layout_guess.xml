@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:padding="10dp"
+    android:background="@color/cell_guess_bg"
+    >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:gravity="center"
+        >
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_0"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_1"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_2"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_3"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_4"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_5"
+            android:textSize="@dimen/text_size"
+            />
+                
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_6"
+            android:textSize="@dimen/text_size"
+            />                
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:gravity="center"
+        >
+        
+<TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:visibility="invisible"
+            android:textSize="@dimen/text_size"
+            />        
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_7"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_8"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_9"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_10"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_11"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_12"
+            android:textSize="@dimen/text_size"
+            />
+                
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_guess_13"
+            android:textSize="@dimen/text_size"
+            />                
+            
+<TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_guess"
+            android:textColor="@color/text_cell_guess"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:visibility="invisible"
+            android:textSize="@dimen/text_size"
+            />        
+        
+    </LinearLayout>   
+
+</LinearLayout>

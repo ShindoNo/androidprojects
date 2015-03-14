@@ -1,0 +1,109 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
+
+        <Button
+            android:id="@+id/btn_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment" />
+        
+		<Button
+            android:id="@+id/btn_payment_with_listener"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment with listener" />        
+
+        <Button
+            android:id="@+id/btn_open_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Dashboard" />
+
+        <Button
+            android:id="@+id/btn_open_forum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Forum" />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Dashboard Button"
+            android:id="@+id/btn_show_dashboard_button" 
+            />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hide Dashboard Button"
+            android:id="@+id/btn_hide_dashboard_button" 
+            />        
+
+        <Button
+            android:id="@+id/btn_share_text_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share Text and Link" />
+
+        <Button
+            android:id="@+id/btn_share_text_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share Text and Image" />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_share_facebook_screenshot"
+            android:text="Share Facebook Screenshot"
+            />                
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_send_facebook_request"
+            android:text="Send Facebook Request"
+            />
+        
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test" />        
+            
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter text here to share Facebook"
+            android:id="@+id/et_text" 
+            />
+        
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter link or image file path on sdcard to share Facebook"
+            android:id="@+id/et_link_image" 
+            />        
+
+    </LinearLayout>
+
+</ScrollView>

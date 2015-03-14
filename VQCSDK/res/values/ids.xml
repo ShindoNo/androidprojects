@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <item type="id" name="tag_data_type" />
+    <item type="id" name="tag_news_content" />
+    <item type="id" name="tag_payment" />
+    <item type="id" name="tag_quantity_view" />
+    
+</resources>

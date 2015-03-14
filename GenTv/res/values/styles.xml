@@ -1,0 +1,34 @@
+<resources>
+    <style name="AppBaseTheme" parent="android:Theme.Light" />
+    <style name="AppTheme" parent="AppBaseTheme" />
+    
+    <style name="DialogAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnterAnimation">@anim/left_to_right_in</item>
+        <item name="android:windowExitAnimation">@anim/left_to_right_out</item>
+    </style>
+    
+    <style name="DialogAnimationSlideUp" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnterAnimation">@anim/slide_up_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_out</item>
+    </style>
+    
+    <style name="DialogAnimationPopUp" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
+    
+	<style name="SplashDialogAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowExitAnimation">@anim/splash_out</item>
+    </style> 
+    
+    <style name="NotifyDialogAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnterAnimation">@anim/tivi_open</item>
+        <item name="android:windowExitAnimation">@anim/tivi_close</item>
+    </style>	
+
+</resources>

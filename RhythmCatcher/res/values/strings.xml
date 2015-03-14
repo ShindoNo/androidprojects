@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Rhythm Catcher</string>
+    <string name="facebook_app_id">695375257213647</string>
+    
+
+	<string name="not_character">No more unnecessary character</string>
+	<string name="what_song">WHAT SONG is this?</string>
+	<string name="who_sing">WHO SING this song?</string>
+	<string name="downloading">Downloading</string>
+	<string name="unzipping">Unzipping</string>
+	<string name="updating">This CD will be soon update</string>
+	<string name="ask_fb_sample_1">Help me!! Cant remember what is this song : </string>
+	
+	<string name="ask_fb_intro_app">Playing Rhythm Catcher : https://play.google.com/store/apps/details?id=</string>
+	<string name="rate_app_1">Do you like this game show? Rate app 5***** to get more bonus</string>
+	<string name="rate_app_2">Do you like this game show? Rate app 5***** to encourage update more new songs ^_^</string>
+	
+	<string name="next">Next Song</string>
+	<string name="suggest">Stuck?\nYou can use other suppor items or ask your friends on Facebook</string>
+	<string name="help_facebook">Go to Facebook</string>
+	<string name="help_others">Use other items</string>
+	
+    <string name="played_all_option_message">Great! You passed this cd. Want to play other CD?</string>	
+    <string name="replay">Replay this CD</string>
+    <string name="play_next_cd">Next CD</string>
+    
+    <string name="replay_confirm">Do you really want to play this CD from start?</string>
+    <string name="no">No</string>
+    
+    <string name="exit_confirm">Exit gameshow?</string>
+    <string name="exit_positive">Exit &amp; Rate</string>
+    <string name="exit_negative">Exit</string>
+    
+    <string name="guide_positive">Close</string>
+    <string name="guide_negative">Not show again</string>
+    
+    <string name="loading">Unzipping...</string>
+    <string name="require_facebook_app_installed">You need to install Facebook app to post this song</string>
+	
+</resources>

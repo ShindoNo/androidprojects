@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CECECE"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_top" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#0D2E65" />
+
+    <ListView
+        android:id="@+id/lv_reports"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:divider="#CECECE"
+        android:dividerHeight="10dp"
+        android:fadingEdge="none"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#A1A1A1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EFEFEF"
+        android:padding="2dp"
+        android:gravity="center"
+        android:weightSum="3"
+        android:id="@+id/layout_filter_2" 
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/arrow_drop_down"
+            android:text="Giao"
+            android:id="@+id/btn_filter_ship" 
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/arrow_drop_down"
+            android:text="Loại"
+            android:id="@+id/btn_filter_type" 
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/arrow_drop_down"
+            android:text="Đường"
+            android:id="@+id/btn_filter_streets" 
+            />
+    </LinearLayout>
+    
+	<FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="#5E5E5E" />    
+
+    <LinearLayout
+        android:id="@+id/layout_filter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" 
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="#A1A1A1" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:orientation="horizontal"
+            android:padding="7dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="7dp"
+            android:weightSum="7" >
+
+            <Button
+                android:id="@+id/btn_ship_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Chưa giao"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:background="#ACABAB" />
+
+            <Button
+                android:id="@+id/btn_ship_yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Đã giao"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:background="#ACABAB" />
+
+            <Button
+                android:id="@+id/btn_filter_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Tất cả"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:background="#ACABAB" />
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Less"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- more filter here -->
+
+        <LinearLayout
+            android:id="@+id/layout_filter_more"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/btn_ticket"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Phiếu"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:background="#ACABAB" />
+
+            <Button
+                android:id="@+id/btn_good"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Hàng"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:background="#ACABAB" />
+
+            <Button
+                android:id="@+id/btn_solo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_filter"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Solo"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="#5E5E5E" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_works"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:divider="#CECECE"
+        android:dividerHeight="10dp"
+        android:fadingEdge="none"
+        android:orientation="vertical"
+        android:scrollbars="none" />
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg_main_rc"
+    android:orientation="vertical"
+    
+    >
+    
+<ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/img_cd_home"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_logo_stave"
+        android:visibility="gone" 
+        />    
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_logo_2"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />    
+    
+
+    <ImageView
+        android:id="@+id/img_cd_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/image_cd_home" />
+
+    <ImageView
+        android:id="@+id/ic_cd_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_cd1" />
+
+    <ImageView
+        android:id="@+id/img_cd_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/ic_cd_play"
+        android:padding="10dp"
+        android:src="@drawable/ic_arrow_left" />
+
+    <ImageView
+        android:id="@+id/img_cd_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ic_cd_play"
+        android:padding="10dp"
+        android:src="@drawable/ic_arrow_right" />
+
+    <TextView
+        android:id="@+id/tv_cd_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ic_cd_play"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:text="CD1"
+        android:textColor="#FFF"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_cd_home"
+        android:src="@drawable/ic_btn_play_now"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp" 
+        android:id="@+id/btn_play_now"
+        />
+
+    
+
+</RelativeLayout>

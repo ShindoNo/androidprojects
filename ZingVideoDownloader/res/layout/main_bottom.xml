@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/tv_downloaded_songs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_more"
+            android:drawableLeft="@drawable/ic_downloaded"
+            android:gravity="center"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="@string/downloaded"
+            android:textColor="#FFF" />
+
+        <FrameLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#02acd8" />
+
+        <TextView
+            android:id="@+id/tv_playlist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_more"
+            android:drawableLeft="@drawable/ic_playlist"
+            android:gravity="center"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="Playlist"
+            android:textColor="#FFF" />
+
+        <FrameLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#02acd8" />
+
+        <TextView
+            android:id="@+id/tv_loadmore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_more"
+            android:drawableLeft="@drawable/ic_search_more"
+            android:gravity="center"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="@string/more"
+            android:textColor="#FFF" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_menu_section_row"
+    >
+    
+    <View
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        />
+    
+	<info.nkl.customview.RobotoTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#FFF"
+        android:textSize="16dp"
+        android:text="Nhạc cụ dây"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:id="@+id/tv_row"
+        android:lines="1"
+        android:ellipsize="end"
+        />
+
+</LinearLayout>

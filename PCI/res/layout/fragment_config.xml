@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_summary" 
+    android:padding="10dp"
+    >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_year"
+        android:textColor="#000"
+        android:textSize="16dp" 
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2011"
+            android:textColor="#FFF"
+            android:padding="10dp" 
+            android:background="@drawable/bg_year"
+            android:id="@+id/tv_year_2011"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2012"
+            android:textColor="#000"
+            android:padding="10dp" 
+            android:id="@+id/tv_year_2012"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2013"
+            android:textColor="#000"
+            android:padding="10dp" 
+            android:id="@+id/tv_year_2013"
+            />        
+        
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_language"
+        android:textColor="#000"
+        android:textSize="16dp" 
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+    
+  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiếng Việt"
+            android:textColor="#FFF"
+            android:padding="10dp" 
+            android:background="@drawable/bg_year"
+            android:id="@+id/tv_language_vietnamese"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:textColor="#000"
+            android:padding="10dp"
+            android:id="@+id/tv_language_english" 
+            />
+    </LinearLayout>    
+    
+    
+    
+
+</LinearLayout>

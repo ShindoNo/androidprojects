@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center" 
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/img_mine"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#919294"
+            android:padding="2dp"
+            android:adjustViewBounds="true" 
+            />
+        
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="2 likes"
+        android:textColor="#919294"
+        android:textStyle="bold" />
+
+</LinearLayout>

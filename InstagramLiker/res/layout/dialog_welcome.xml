@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_welcome" >
+ 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:background="#9FFF"
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/layout_center"
+        >
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To get started, sign in with your \n Instagram account."
+            android:gravity="center"
+            />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in"
+            android:textColor="#FFF"
+            android:background="@drawable/btn_sign_in"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/btn_sign_in"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_center"
+        android:layout_centerHorizontal="true"
+        android:text="Real likes. Real users."
+        android:textColor="#FFF"
+        android:layout_marginTop="5dp" 
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_center"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="48dp"
+        android:text="InstaLiker"
+        />
+
+</RelativeLayout>

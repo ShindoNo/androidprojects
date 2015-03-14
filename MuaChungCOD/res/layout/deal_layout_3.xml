@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:id="@+id/layout_call"
+        android:background="@drawable/bg_tv_call"
+        >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_call" />
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0986090xxx"
+            android:textColor="#000"
+            android:textSize="16dp"
+            android:paddingRight="20dp"
+            />
+    </LinearLayout>    
+    
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_tag" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="X"
+                android:textColor="#000"
+                android:textSize="16dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Món quà Trung thu ý nghĩa"
+                android:textColor="#7F7F7F"
+                android:textSize="16dp"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:paddingRight="12dp"
+            android:src="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textColor="#18AEB5"
+            android:textSize="16dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_price" />
+
+        <TextView
+            android:id="@+id/tv_volume_and_price"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textColor="#000"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+</LinearLayout>

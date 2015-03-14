@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:weightSum="6" 
+    >
+    
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:text="Chỉ số xxx"
+        android:textColor="#000" 
+        android:id="@+id/tv_index_name"
+        />
+    
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/tv_index_current_year"
+        />
+    
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/tv_index_previous_year"
+        />    
+
+</LinearLayout>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#97c9ea" 
+    />
+
+</LinearLayout>

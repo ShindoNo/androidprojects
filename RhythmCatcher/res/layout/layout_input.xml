@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:padding="10dp"
+    android:background="@color/cell_input_bg"
+    >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:gravity="center"
+        >
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_0"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_1"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_2"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_3"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_4"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_5"
+            android:textSize="@dimen/text_size"
+            />
+                
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_6"
+            android:textSize="@dimen/text_size"
+            />                
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:gravity="center"
+        >
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_7"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_8"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_9"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_10"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_11"
+            android:textSize="@dimen/text_size"
+            />
+        
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_12"
+            android:textSize="@dimen/text_size"
+            />
+                
+        <TextView
+            android:layout_width="@dimen/cell_size"
+            android:layout_height="@dimen/cell_size"
+            android:background="@color/cell_input"
+            android:textColor="@color/text_cell_input"
+            android:text="" 
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:id="@+id/cell_input_13"
+            android:textSize="@dimen/text_size"
+            />                
+        
+    </LinearLayout>   
+
+</LinearLayout>

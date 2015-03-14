@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.music3"
+    xmlns:app1="http://schemas.android.com/apk/res/info.nkl.main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadingEdge="none"
+    android:scrollbars="none" >
+    
+    <!-- Song Instruments layout here -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#202020"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:id="@+id/ll_instruments"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="Nhạc cụ"
+                android:textColor="#6E6E6E"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6E6E6E" />
+        </LinearLayout>
+        
+        <!-- Song Types layout here -->
+
+        <LinearLayout
+            android:id="@+id/ll_types"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <info.nkl.customview.RobotoTextView
+                android:id="@+id/tv_types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Thể loại"
+                android:textColor="#6E6E6E"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6E6E6E" />
+
+            <LinearLayout
+                android:id="@+id/ll_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+        
+        <!-- Favourite Albums layout here -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Albums ưa thích"
+                android:textColor="#6E6E6E"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6E6E6E" />
+
+            <LinearLayout
+                android:id="@+id/layout_favourite_albums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+        
+        
+        <!-- Playlist layout here -->
+
+<!--         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Playlist ưa thích"
+                android:textColor="#6E6E6E"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6E6E6E" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout> -->
+        
+        <!-- Contact layout here -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Contact us"
+                android:textColor="#6E6E6E"
+                android:textSize="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6E6E6E" />
+
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="#FFF"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/tv_email"
+                />       
+			
+            <info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/website"
+                android:textColor="#FFF"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/tv_website"
+                />
+            
+			<info.nkl.customview.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/facebook"
+                android:textColor="#FFF"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/tv_facebook"
+                />            
+            
+        </LinearLayout>        
+        
+    </LinearLayout>
+    
+    
+
+</ScrollView>

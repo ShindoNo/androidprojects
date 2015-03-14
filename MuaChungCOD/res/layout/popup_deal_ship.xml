@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup_out"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp" 
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Cập nhật trạng thái"
+        android:textColor="#DEDEDE"
+        android:textSize="16dp"
+        android:textStyle="bold" 
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_popup_in_black_stroke"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp" 
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tổng số"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_volume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="1"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:gravity="center" 
+                />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Đã giao"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/et_ship_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/bg_popup_capnhattrangthai_row_1"
+                android:gravity="center"
+                android:inputType="number"
+                android:padding="10dp"
+                android:text="1"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hủy"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_return"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/bg_popup_capnhattrangthai_row_2"
+                android:padding="10dp"
+                />
+        </LinearLayout>        
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tiền thu"
+                android:textColor="#4C4C4C"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="380.000 đ"
+                android:textColor="#D11600"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/bg_popup_capnhattrangthai_row_2"
+                android:padding="10dp"
+                />
+        </LinearLayout>          
+        
+    </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/btn_update"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/bg_btn_cap_nhat_long"
+	    android:adjustViewBounds="true"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="5dp"
+	    />
+
+    
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" 
+        />
+    
+    <Button
+        android:id="@+id/btn_show_other_deal"
+        android:text="Có 2 deal khác của số điện thoại này"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:visibility="gone"
+        />
+    
+
+</LinearLayout>

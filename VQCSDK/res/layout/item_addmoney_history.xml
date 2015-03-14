@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:gravity="center_vertical" 
+        >
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12dp"
+            android:ellipsize="end"
+            android:textColor="#000"
+            android:gravity="center"
+            android:id="@+id/tv_date"
+            android:text="@string/tab_addmoney_history_date"
+            android:paddingLeft="3dp" 
+            android:maxLines="3"
+            />
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12dp"
+            android:ellipsize="end"
+            android:textColor="#d14129"
+            android:gravity="center"
+            android:id="@+id/tv_game"
+            android:text="@string/tab_addmoney_history_game"
+            android:textStyle="bold" 
+            android:maxLines="3"
+            />        
+            
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12dp"
+            android:ellipsize="end"
+            android:textColor="#000"
+            android:gravity="center"
+            android:id="@+id/tv_type"
+            android:text="@string/tab_addmoney_history_type"
+            android:maxLines="3"
+            />            
+            
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12dp"
+            android:textColor="#000"
+            android:gravity="center"
+            android:id="@+id/tv_description"
+            android:text="@string/tab_addmoney_history_description"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:padding="3dp"
+            />            
+            
+           
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dedede" />
+
+</LinearLayout>

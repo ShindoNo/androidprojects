@@ -1,0 +1,160 @@
+package gen.entertainments.gentv;
+
+import gen.entertainments.gentv.dataservices.ListChannelsServices;
+import gen.entertainments.gentv.imageloader.ImageLoader;
+import gen.entertainments.gentv.utils.NameSpace;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class FragmentPlay extends Fragment{
+	Activity mActivity;
+	View mainLayout;
+	
+	ListView mListView;
+	ChannelsAdapter mAdapter;
+	
+	ImageLoader mImageLoader;
+	JSONArray mListChannelsData;
+	
+	public static FragmentPlay getIntance(ImageLoader imageLoader) {
+		FragmentPlay fragmentPlay = new FragmentPlay();
+		fragmentPlay.setDat(imageLoader);
+		return fragmentPlay;
+	}
+	
+	public void setDat(ImageLoader imageLoader) {
+		mImageLoader = imageLoader;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		mActivity = activity;
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		mainLayout = inflater.inflate(R.layout.fragment_play, container, false);
+		initUI();
+		return mainLayout;
+	}
+	
+	public void initUI() {
+		mListView = (ListView) mainLayout.findViewById(R.id.lv_channels_small);
+		mAdapter = new ChannelsAdapter();
+		mListView.setAdapter(mAdapter);	
+		mListView.setOnItemClickListener(mOnPlayChannel);
+	}
+	
+	/*
+	 * This function called from MainActivity OnPlayListener
+	 */
+	public void playChannel(JSONArray listChannelsData, int position) {
+		mListChannelsData = listChannelsData;
+		mAdapter.notifyDataSetChanged();
+		mListView.smoothScrollToPosition(0);
+		
+		playChannel(position);
+	}
+	
+	OnItemClickListener mOnPlayChannel = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			playChannel(position);
+		}
+	};
+	
+	class ChannelsAdapter extends BaseAdapter {
+		String mCatId;
+		
+		public void setCatId(String catId) {
+			mCatId = catId;
+		}
+		
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			if (mListChannelsData == null) { 
+				return 0;
+			} else {
+				return mListChannelsData.length();
+			}
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			ViewHolder holder;
+			if (convertView == null) {
+				LayoutInflater inflater = LayoutInflater.from(mActivity);
+				convertView = inflater.inflate(R.layout.row_channel_small, null);
+				holder = new ViewHolder(convertView);
+				convertView.setTag(R.id.tag_holder, holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag(R.id.tag_holder);
+			}
+			
+			try {
+				JSONObject channel = mListChannelsData.getJSONObject(position);
+				mImageLoader.displayImage(NameSpace.BASE_URL + channel.getString(ListChannelsServices.logo), holder.imgChannel, 180);
+				holder.tvChannelName.setText(channel.getString(ListChannelsServices.channelname));
+				holder.tvChannelDescription.setText(channel.getString(ListChannelsServices.description));
+				convertView.setTag(R.id.tag_id, channel.getString(ListChannelsServices.channelid));
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			return convertView;
+		}
+	}
+	
+	class ViewHolder {
+		ImageView imgChannel;
+		TextView tvChannelName, tvChannelDescription;
+		
+		public ViewHolder(View rowLayout) {
+			// TODO Auto-generated constructor stub
+			imgChannel = (ImageView) rowLayout.findViewById(R.id.img_channel);
+			tvChannelName = (TextView) rowLayout.findViewById(R.id.tv_channel_name);
+			tvChannelDescription = (TextView) rowLayout.findViewById(R.id.tv_channel_description);
+		}
+	}	
+	
+	
+	/* Code for ViewdeoView here */
+	/* Code for ViewdeoView here */
+	/* Code for ViewdeoView here */
+	
+	public void playChannel(int position) {
+		Toast.makeText(mActivity, "Play channel at position " + position, Toast.LENGTH_SHORT).show();
+	}	
+}

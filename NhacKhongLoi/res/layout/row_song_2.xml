@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:orientation="vertical"
+    android:background="#f2f2f2" 
+    >
+    
+    <TextView
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:background="#dcdcdc"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:text="1"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/tv_position"
+        />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@+id/tv_position"
+        android:textColor="#000"
+        android:textSize="18dp"
+		android:gravity="center_vertical"
+		android:id="@+id/tv_song_name"
+		android:text="Tùy Hứng Lý Qua Cầu"
+		android:paddingLeft="5dp"
+		android:lines="1"
+		android:ellipsize="end"
+		android:background="@drawable/bg_song_2"
+        />
+
+</RelativeLayout>

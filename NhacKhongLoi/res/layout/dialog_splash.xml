@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_repeat"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_splash"
+        android:id="@+id/img_logo_splash" 
+        />
+
+    <info.nkl.customview.RobotoTextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version 1.0"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_below="@+id/img_logo_splash"
+        android:layout_alignRight="@+id/img_logo_splash"
+        />
+
+</RelativeLayout>

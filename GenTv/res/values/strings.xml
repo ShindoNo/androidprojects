@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Gen TV</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Menu section -->
+    <string name="section_title_channel">Channel</string>
+    <string name="section_title_personal_info">Your TV</string>
+    <string name="section_title_settings">Settings</string>
+    
+    <string name="favourite_channels">Kênh ưa thích</string>
+    <string name="contact_us">Contact us</string>
+
+    <!-- Toast -->
+    <string name="error_download">Lỗi tải dữ liệu</string>
+    <string name="disconnected_network">Mất kết nối</string>
+    <string name="crash_toast_text">Lỗi ứng dụng. Đang tắt ứng dụng. Vui lòng chờ...</string>
+    <string name="added_to_favourite_channel">Đã thêm vào kênh ưa thích</string>
+    <string name="removed_from_favourite_channel">Đã bỏ kênh ưa thích</string>
+    <string name="loading_please_wait">Đang load, vui lòng chờ...</string>
+    <string name="locking">Đang lock màn hình, click vào khóa để unlock</string>
+    
+    <!-- Other -->
+    <string name="select_server">Chọn khu vực phát sóng</string>
+    <string name="server">Khu vực</string>
+    <string name="version">Phiên bản</string>
+    
+    <string name="server_error">Server hiện tại phát sinh lỗi, vui lòng chọn khu vực phát sóng khác</string>
+
+    <string name="sologan">GenTV - Thế giới truyền hình</string>
+    <string name="exit">Tắt  GenTV ?</string>
+    
+    <string name="about">About</string>
+    <string name="about_title">About GenTV</string>
+    <string name="about_detail">GenTV là một sản phẩm của \n<b>Gen Entertainment</b></string>
+    
+    <string name="email">Email : gentv.providers@gmail.com</string>
+    
+    <string name="loading">Loading...</string>
+</resources>

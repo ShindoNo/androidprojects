@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0063a1" 
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/pci_result"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        android:id="@+id/tv_pci_result" 
+        android:drawableLeft="@drawable/ic_pci_results"
+        android:drawablePadding="5dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/pci_ranking"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_pci_ranking" 
+        android:drawableLeft="@drawable/ic_pci_rank"
+        android:drawablePadding="5dp"        
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/summary"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_summary"
+        android:drawableLeft="@drawable/ic_summary"
+        android:drawablePadding="5dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/report"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_report" 
+        android:drawableLeft="@drawable/ic_report"
+        android:drawablePadding="5dp"        
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/news"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_news" 
+        android:drawableLeft="@drawable/ic_news"
+        android:drawablePadding="5dp"        
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/about"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_about" 
+        android:visibility="gone"
+        android:drawableLeft="@drawable/ic_about"
+        android:drawablePadding="5dp"        
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/config"
+        android:textColor="#b8c8d9"
+        android:textSize="20dp"
+        android:id="@+id/tv_config"
+        android:drawableLeft="@drawable/ic_settings"
+        android:drawablePadding="5dp"        
+         />
+
+</LinearLayout>
