@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="Untitled.png" type="bitmap" width="1024" height="2048" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:bd7cec3c4eff1cf481149eada7b7e867:a3b2dd98d39c6b1df19656f3ac4c9509:917a644e17d95a30213e9869f4600403$ -->
+    <textureregion id="0" src="bg_day.png" x="2" y="2" width="480" height="800" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="480" srcheight="800"/>
+    <textureregion id="1" src="cup_1.png" x="624" y="484" width="165" height="172" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="165" srcheight="172"/>
+    <textureregion id="2" src="cup_2.png" x="804" y="336" width="165" height="172" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="165" srcheight="172"/>
+    <textureregion id="3" src="cup_3.png" x="804" y="169" width="165" height="172" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="165" srcheight="172"/>
+    <textureregion id="4" src="cup_4.png" x="804" y="2" width="165" height="172" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="165" srcheight="172"/>
+    <textureregion id="5" src="game_over.png" x="2" y="814" width="549" height="122" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="549" srcheight="122"/>
+    <textureregion id="6" src="get_ready.png" x="798" y="503" width="168" height="57" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="168" srcheight="57"/>
+    <textureregion id="7" src="land.png" x="2" y="938" width="480" height="120" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="480" srcheight="120"/>
+    <textureregion id="8" src="leaderboard.png" x="484" y="985" width="249" height="138" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="249" srcheight="138"/>
+    <textureregion id="9" src="mybird.png" x="978" y="2" width="37" height="78" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="37" srcheight="78"/>
+    <textureregion id="10" src="pipe_down.png" x="624" y="651" width="52" height="320" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="52" srcheight="320"/>
+    <textureregion id="11" src="pipe_up.png" x="968" y="503" width="52" height="320" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="52" srcheight="320"/>
+    <textureregion id="12" src="play.png" x="553" y="845" width="249" height="138" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="249" srcheight="138"/>
+    <textureregion id="13" src="rate.png" x="875" y="825" width="249" height="138" rotated="true" trimmed="false" srcx="0" srcy="0" srcwidth="249" srcheight="138"/>
+    <textureregion id="14" src="scoreboard.png" x="2" y="484" width="620" height="328" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="620" srcheight="328"/>
+    <textureregion id="15" src="share.png" x="624" y="705" width="249" height="138" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="249" srcheight="138"/>
+    <textureregion id="16" src="tap.png" x="798" y="562" width="114" height="60" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="114" srcheight="60"/>
+</texture>

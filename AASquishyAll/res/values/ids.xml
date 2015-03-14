@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+  <string name="app_id">743935484335</string>
+  <string name="achievement_prime">CgkIr8OKsNMVEAIQAg</string>
+  <string name="achievement_humble">CgkIr8OKsNMVEAIQAw</string>
+  <string name="achievement_dont_get_cocky_kid">CgkIr8OKsNMVEAIQBA</string>
+  <string name="achievement_omg_u_r_teh_uber_leet">CgkIr8OKsNMVEAIQBQ</string>
+  <string name="achievement_bored">CgkIr8OKsNMVEAIQBg</string>
+  <string name="achievement_really_really_bored">CgkIr8OKsNMVEAIQBw</string>
+  <string name="leaderboard_best_scores">CgkIr8OKsNMVEAIQAA</string>
+</resources>

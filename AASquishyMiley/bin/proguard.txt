@@ -1,0 +1,24 @@
+# view AndroidManifest.xml #generated:56
+-keep class com.facebook.LoginActivity { <init>(...); }
+
+# view res/layout/com_facebook_usersettingsfragment.xml #generated:48
+-keep class com.facebook.widget.LoginButton { <init>(...); }
+
+# view AndroidManifest.xml #generated:35
+-keep class com.google.ads.AdActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:67
+-keep class com.google.android.gms.ads.AdActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:71
+-keep class com.idroid.squishy.miley.LeaderboardActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:24
+-keep class com.idroid.squishy.miley.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class com.ironsource.mobilcore.InstallationTracker { <init>(...); }
+
+# view AndroidManifest.xml #generated:40
+-keep class com.ironsource.mobilcore.MobileCoreReport { <init>(...); }
+
