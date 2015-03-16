@@ -41,8 +41,8 @@ public class ErrorTool {
 		sErrorMap.put(27, "Thẻ không tồn tại");
 		sErrorMap.put(11, "Token không tồn tại");
 		sErrorMap.put(11, "Token không tồn tại");
-		sErrorMap.put(41, "Xin vui lòng đăng nhập lại");
-		sErrorMap.put(42, "Xin vui lòng đăng nhập lại");
+		sErrorMap.put(41, "Xin vui lòng đăng nhập lại để tiếp tục thực hiện");
+		sErrorMap.put(42, "Đã có thiết bị khác đăng nhập, vui lòng đăng nhập lại để tiếp tục thực hiện");
 	}
 
 }

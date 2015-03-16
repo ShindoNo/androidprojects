@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.sologame.sdk.util.MyLog; 
 import com.sologame.sdk.util.NameSpace;
 import com.sologame.sdk.util.PushTools;
@@ -129,11 +128,43 @@ public class DialogLogin {
 	 */
 	public void login() {
 		if (Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN) != null) {
-			showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
-			mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID));
+//			showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
+//			mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID));
+			getUserInfo();
 		} else {
 			mDialog.show();	
 		}
+	}
+	
+	/**
+	 * Get user info from saved access token since last login time
+	 */
+	public void getUserInfo() {
+//		mProgressDialog.show();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					JSONObject dataJSON = new JSONObject();
+					dataJSON.put("access_token", Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
+					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_GET_USER_INFO, dataJSON.toString());
+					final String response = ServiceHelper.get(apiUrl);
+					
+					mActivity.runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							checkLoginResponse(response);
+						}
+					});
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 
 	
@@ -283,23 +314,7 @@ public class DialogLogin {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	/**
-	 * Login with Google
-	 */
-	public void loginWithGoogle() {
-		Toast.makeText(mActivity, "Login with Google", Toast.LENGTH_SHORT).show();
-	}
-	
-	
 	
 	
 	
@@ -419,6 +434,7 @@ public class DialogLogin {
 				e.printStackTrace();
 			}
 		} else {
+			mDialog.show();
 			((EditText) mDialog.findViewById(R.id.et_username)).requestFocus();
 		}		
 	}

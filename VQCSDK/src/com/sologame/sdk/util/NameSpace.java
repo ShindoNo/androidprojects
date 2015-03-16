@@ -24,6 +24,7 @@ public class NameSpace {
 	public static final String COMMAND_GET_LIST_PRODUCT = "GET_LIST_PRODUCT";
 	public static final String COMMAND_PAYMENT_IN_GAME = "PAYMENT_IN_GAME";
 	public static final String COMMAND_UPDATE_INFO_FACEBOOK = "UPDATE_INFO_FACEBOOK";
+	public static final String COMMAND_GET_USER_INFO = "GET_USER_INFO";
 	
 	
 //	shared preferences

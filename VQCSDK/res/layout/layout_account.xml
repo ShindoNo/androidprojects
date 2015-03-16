@@ -41,51 +41,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-            
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content" 
-               android:gravity="center_vertical"
-               >
-               
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
                 <TextView
+                    android:id="@+id/tv_fpay_title"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:padding="10dp"
                     android:text="Fpay: "
                     android:textColor="#d14129"
-                    android:textStyle="bold"
-                    android:id="@+id/tv_fpay_title"
-                    />
-                
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/tv_fpay"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:layout_toRightOf="@+id/tv_fpay_title"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:layout_toRightOf="@+id/tv_fpay_title"
-                    android:id="@+id/tv_fpay"
-                    android:text="0.0"
-                    />
-                
-                
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:text="@string/tab_account_update"
-                android:layout_alignParentRight="true"
-                android:id="@+id/tv_update_user_info" 
-                android:textColor="#c8c8c8"
-                android:enabled="false"
-                android:textStyle="bold"
-                />                
-               
-           </RelativeLayout>
-           
+                    android:text="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_update_user_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/tab_account_update"
+                    android:textColor="#c8c8c8"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -114,10 +108,9 @@
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_username"
                     android:padding="10dp"
+                    android:singleLine="true"
                     android:textColor="#000"
-                    android:textSize="14dp"
-                    android:singleLine="true" 
-                    />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -144,14 +137,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#0000"
+                    android:drawableRight="@drawable/ic_editable"
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_email"
                     android:padding="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/ic_editable"
-                    />
+                    android:textColor="#000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -178,14 +170,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#0000"
+                    android:drawableRight="@drawable/ic_editable"
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_fullname"
                     android:padding="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/ic_editable"                     
-                    />
+                    android:textColor="#000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -212,14 +203,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#0000"
+                    android:drawableRight="@drawable/ic_editable"
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_birthday"
                     android:padding="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/ic_editable"                     
-                    />
+                    android:textColor="#000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -246,14 +236,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#0000"
+                    android:drawableRight="@drawable/ic_editable"
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_address"
                     android:padding="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/ic_editable"                     
-                    />
+                    android:textColor="#000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -280,15 +269,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#0000"
+                    android:drawableRight="@drawable/ic_editable"
                     android:gravity="center_vertical"
                     android:hint="@string/tab_account_cardno"
+                    android:inputType="number"
                     android:padding="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/ic_editable"
-                    android:inputType="number"                     
-                    />
+                    android:textColor="#000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <FrameLayout
@@ -389,7 +377,22 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
             </LinearLayout>
+            
+            <Button
+             	android:layout_width="wrap_content"
+             	android:layout_height="wrap_content"
+             	android:drawableLeft="@drawable/ic_refresh"
+             	android:background="@drawable/bg_login_button"
+             	android:text="@string/reload"
+             	android:padding="10dp"
+             	android:drawablePadding="10dp"
+             	android:textColor="#FFF"
+             	android:id="@+id/btn_reload"
+             	android:layout_margin="10dp"
+                />
+            
         </LinearLayout>
+        
     </ScrollView>
     <!-- Start of tab addmoney history -->
 

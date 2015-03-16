@@ -33,6 +33,7 @@ public class MainActivity extends Activity{
 		setContentView(R.layout.activity_main);
 		initUI();
 		mSoloSDK = new SoloSDK(this, APP_ID, SECRET_KEY, FACEBOOK_APP_ID);
+		mSoloSDK.login(mOnLoginListener);
 		MyLog.log("onCreateeeeeeeeee");		
 		// your code
 	}

@@ -289,6 +289,16 @@ public class DialogDashboard {
 			((LinearLayout)mDialog.findViewById(R.id.ll_container)).setLayoutTransition(layoutTransition);
 		}
 		
+		// refresh payment history
+		mDialog.findViewById(R.id.btn_reload).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				downloadAddMoneyHistory();
+			}
+		});
+		
+		
 	}
 	
 	
@@ -590,6 +600,7 @@ public class DialogDashboard {
 	public void displayPaymentHistory() {
 		LayoutInflater inflater = LayoutInflater.from(mActivity);
 		LinearLayout llPaymentHistoryContainer = (LinearLayout) mDialog.findViewById(R.id.ll_addmoney_history_list_container);
+		llPaymentHistoryContainer.removeAllViews();
 		try {
 			for (int i = 0; i < mDataAddMoneyHistory.length(); i++) {
 				JSONObject paymentHistory = mDataAddMoneyHistory.getJSONObject(i);
@@ -758,8 +769,6 @@ public class DialogDashboard {
 	}
 	
 	public void updateAccount() {
-		mProgressDialog.show();
-		
 		final String username = ((EditText)mDialog.findViewById(R.id.et_username_fb)).getText().toString().trim();
 		final String password = ((EditText)mDialog.findViewById(R.id.et_password_fb)).getText().toString().trim();
 		
@@ -778,12 +787,27 @@ public class DialogDashboard {
 			((EditText)mDialog.findViewById(R.id.et_username_fb)).requestFocus();
 			return;
 		}
+
+		if (username.length() > 30) {
+			Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_long), Toast.LENGTH_SHORT).show();
+			((EditText)mDialog.findViewById(R.id.et_username_fb)).requestFocus();
+			return;
+		}
+		
+		if (username.length() < 6) {
+			Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_short), Toast.LENGTH_SHORT).show();
+			((EditText)mDialog.findViewById(R.id.et_username_fb)).requestFocus();
+			return;
+		}		
+		
 		
 		if (password.contains(" ")) {
 			Toast.makeText(mActivity, mActivity.getString(R.string.password_contains_space), Toast.LENGTH_SHORT).show();
 			((EditText)mDialog.findViewById(R.id.et_password_fb)).requestFocus();
 			return;			
 		}
+		
+		mProgressDialog.show();
 		
 		new Thread(new Runnable() {
 			@Override
@@ -805,16 +829,6 @@ public class DialogDashboard {
 							mProgressDialog.dismiss();
 							
 							if (Utils.checkResponseError(mActivity, response) == false) {
-//								// save new username in userinfo json object								
-//								try {
-//									JSONObject userInfoJSON = new JSONObject(Utils.getString(mActivity, NameSpace.SAVED_USER_INFO));
-//									userInfoJSON.put("name", username);
-//									Utils.saveString(mActivity, NameSpace.SAVED_USER_INFO, userInfoJSON.toString());
-//								} catch (Exception e) {
-//									// TODO: handle exception
-//									e.printStackTrace();
-//								}
-								
 								// save new username in shared preference as account_fpay
 								Utils.saveString(mActivity, NameSpace.SAVED_ACCOUNT_FPAY, username);
 								
