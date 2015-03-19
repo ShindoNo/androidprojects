@@ -1,7 +1,7 @@
 package com.sologame.sdk.util;
 
 public class NameSpace {
-	public static final String SDK_VERSION = "1.0.1";
+	public static final String SDK_VERSION = "1.0.2";
 	
 	public static final String APP_ID = "17541234";
 	public static final String SECRET_KEY = "DF37A522-0264-FFAF-1994-HFGFTYJGRR";
@@ -24,7 +24,9 @@ public class NameSpace {
 	public static final String COMMAND_GET_LIST_PRODUCT = "GET_LIST_PRODUCT";
 	public static final String COMMAND_PAYMENT_IN_GAME = "PAYMENT_IN_GAME";
 	public static final String COMMAND_UPDATE_INFO_FACEBOOK = "UPDATE_INFO_FACEBOOK";
-	public static final String COMMAND_GET_USER_INFO = "GET_USER_INFO";
+//	public static final String COMMAND_GET_USER_INFO = "GET_USER_INFO";
+	public static final String COMMAND_CHECK_ACCESS_TOKEN = "CHECK_ACCESS_TOKEN";
+	
 	
 	
 //	shared preferences

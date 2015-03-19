@@ -57,6 +57,7 @@ public class DialogLogin {
 		mDialog = new Dialog(mActivity, android.R.style.Theme_Light_NoTitleBar);
 		mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mDialog.setContentView(R.layout.dialog_login);
+		mDialog.setCancelable(false);
 
 		mDialog.findViewById(R.id.tv_login_sologame).setOnClickListener(new OnClickListener() {
 			@Override
@@ -128,9 +129,7 @@ public class DialogLogin {
 	 */
 	public void login() {
 		if (Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN) != null) {
-//			showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
-//			mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID));
-			getUserInfo();
+			checkAccessToken();
 		} else {
 			mDialog.show();	
 		}
@@ -139,8 +138,7 @@ public class DialogLogin {
 	/**
 	 * Get user info from saved access token since last login time
 	 */
-	public void getUserInfo() {
-//		mProgressDialog.show();
+	public void checkAccessToken() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -148,17 +146,23 @@ public class DialogLogin {
 				try {
 					JSONObject dataJSON = new JSONObject();
 					dataJSON.put("access_token", Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
-					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_GET_USER_INFO, dataJSON.toString());
+					dataJSON.put("os_id", NameSpace.OS_ID);
+					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_CHECK_ACCESS_TOKEN, dataJSON.toString());
 					final String response = ServiceHelper.get(apiUrl);
 					
 					mActivity.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							checkLoginResponse(response);
+							if (Utils.checkResponseError(mActivity, response) == false) {
+								showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
+								mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID));								
+							} else {
+								mDialog.show();
+								((EditText) mDialog.findViewById(R.id.et_username)).requestFocus();
+							}
 						}
 					});
-					
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
