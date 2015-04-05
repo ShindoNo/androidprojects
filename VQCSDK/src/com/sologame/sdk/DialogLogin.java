@@ -156,7 +156,7 @@ public class DialogLogin {
 							// TODO Auto-generated method stub
 							if (Utils.checkResponseError(mActivity, response) == false) {
 								showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
-								mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID));								
+								mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID), Utils.getString(mActivity, NameSpace.SAVED_USERNAME), Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));								
 							} else {
 								mDialog.show();
 								((EditText) mDialog.findViewById(R.id.et_username)).requestFocus();
@@ -431,7 +431,7 @@ public class DialogLogin {
 				}
 				
 				showHelloDialog(username);
-				mOnLoginListener.onSuccessful(uid);
+				mOnLoginListener.onSuccessful(uid, username, access_token);
 				mDialog.dismiss();						
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -454,6 +454,8 @@ public class DialogLogin {
 	 * @param userName
 	 */
 	public void showHelloDialog(String userName) {
+		SoloSDK.isShowingHello = true;
+		
 		final ViewGroup rootView = (ViewGroup) (mActivity).findViewById(android.R.id.content);
 
 		final View helloView = LayoutInflater.from(mActivity).inflate(R.layout.layout_hello, null);
@@ -473,6 +475,7 @@ public class DialogLogin {
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
 				rootView.removeView(helloView);
+				SoloSDK.isShowingHello = false;
 				showingHelloDialog = false;
 			}
 		});
@@ -515,7 +518,7 @@ public class DialogLogin {
 	
 	
 	public interface OnLoginListener {
-		public void onSuccessful(String userId);
+		public void onSuccessful(String userId, String userName, String accessToken);
 	}
 
 }

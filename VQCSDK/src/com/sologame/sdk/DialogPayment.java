@@ -52,6 +52,14 @@ public class DialogPayment {
 		mDialog = new Dialog(mActivity, android.R.style.Theme_Light_NoTitleBar);	
 		mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mDialog.setContentView(R.layout.dialog_payment);
+		
+		mDialog.findViewById(R.id.tv_topup).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				new DialogTopup(mActivity).show();
+			}
+		});
 	}
 	
 	
@@ -77,7 +85,6 @@ public class DialogPayment {
 						}	
 					}
 				});
-				
 			}
 		}).start();
 	}
@@ -94,7 +101,7 @@ public class DialogPayment {
 				JSONObject payment = mListPayment.getJSONObject(i);
 				View rowPayment = inflater.inflate(R.layout.item_payment, null);
 				((TextView)rowPayment.findViewById(R.id.tv_product_name)).setText(payment.getString("product_name"));
-				((TextView)rowPayment.findViewById(R.id.tv_price)).setText(payment.getString("amount_fpay") + " fpay");
+				((TextView)rowPayment.findViewById(R.id.tv_price)).setText(payment.getString("amount_fpay") + " VNĐ");
 				
 				rowPayment.findViewById(R.id.btn_buy).setTag(R.id.tag_payment, payment);
 				rowPayment.findViewById(R.id.btn_buy).setTag(R.id.tag_quantity_view, rowPayment.findViewById(R.id.et_quantity));
@@ -202,7 +209,7 @@ public class DialogPayment {
 		}).start();
 	}
 	
-	
+		
 	public interface OnPayListener {
 		public void onpaySuccessful();
 	}

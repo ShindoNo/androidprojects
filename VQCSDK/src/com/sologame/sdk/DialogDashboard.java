@@ -215,7 +215,7 @@ public class DialogDashboard {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				payment();
+				topup();
 			}
 		});
 		
@@ -634,7 +634,7 @@ public class DialogDashboard {
 		mDialog.findViewById(R.id.layout_update_account).setVisibility(View.GONE);
 	}
 	
-	public void payment() {
+	public void topup() {
 		final String pin = ((EditText)mDialog.findViewById(R.id.tv_pin)).getText().toString().trim();
 		final String serial = ((EditText)mDialog.findViewById(R.id.tv_serial)).getText().toString().trim();
 		
@@ -652,8 +652,6 @@ public class DialogDashboard {
 				try {
 					JSONObject dataJSON = new JSONObject();
 					dataJSON.put("access_token", Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
-					MyLog.log("payment:access_token=" + Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
-					MyLog.log("dataJSON access_token=" + dataJSON.getString("access_token"));
 					dataJSON.put("telco", telcoTypeCode[mSelectedTelco]);
 					dataJSON.put("pin", pin);
 					dataJSON.put("serial", serial);
@@ -688,7 +686,7 @@ public class DialogDashboard {
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
-				}
+				}  
 			}
 		}).start();	
 	}

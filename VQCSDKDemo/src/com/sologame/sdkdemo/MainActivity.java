@@ -95,15 +95,31 @@ public class MainActivity extends Activity{
 			}
 		});
 		
+		findViewById(R.id.btn_show_dashboard_button).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SoloSDK.showDashboardButton(MainActivity.this, mOnLogoutListener);
+			}
+		});
+		
+		findViewById(R.id.btn_hide_dashboard_button).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SoloSDK.hideDashboardButton();
+			}
+		});
+		
 	}
 	
 	OnLoginListener mOnLoginListener = new OnLoginListener() {
 		@Override
-		public void onSuccessful(String userId) {
+		public void onSuccessful(String userId, String userName, String accessToken) {
 			// TODO Auto-generated method stub
 			mSoloSDK.setServerId(SERVER_ID);
 			mSoloSDK.setCharacterId(CHARACTER_ID);
-			Toast.makeText(getBaseContext(), "Login successful, user_id=" + userId, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), "Login successful, user_id=" + userId + "; username=" + userName + "; accesstoken=" + accessToken, Toast.LENGTH_SHORT).show();
 		}
 	};
 	

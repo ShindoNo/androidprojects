@@ -26,11 +26,11 @@
     <string name="username_contains_space">Username không được chứa dấu cách</string>
     <string name="password_contains_space">Mật khẩu không được chứa dấu cách</string>
     
-    <string name="welcome_back">Chào mừng bạn đã trở lại, </string>
+    <string name="welcome_back">Xin chào, </string>
     
     
     <!-- Dashboard -->
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard">Trung tâm hỗ trợ khách hàng</string>
     <string name="dashboard_home">Trang chủ</string>
     <string name="dashboard_fb_group">Cộng đồng</string>
     <string name="dashboard_help">Hướng dẫn</string>
@@ -42,13 +42,14 @@
     
     <string name="tab_account">Tài khoản cá nhân</string>
     <string name="tab_account_update">Cập nhập</string>
-    <string name="tab_account_username">Username</string>
+    <string name="tab_account_username">Tài khoản</string>
     <string name="tab_account_email">Email</string>
     <string name="tab_account_fullname">Họ tên</string>
     <string name="tab_account_birthday">Ngày sinh</string>
     <string name="tab_account_address">Địa chỉ</string>
     <string name="tab_account_cardno">Số CMT</string>
     <string name="tab_account_phonenumber">Số điện thoại</string>
+    <string name="tab_account_fpay">Ví tiền (VNĐ)</string>
     
     <string name="tab_account_password">Mật khẩu</string>
     
@@ -67,11 +68,13 @@
     
     
     <!-- Payment -->
-    <string name="payment">Payment</string>
+    <string name="payment">Ví tiền (VNĐ)</string>
     <string name="product_name">Sản phẩm</string>
     <string name="product_price">Giá</string>
     <string name="product_quantity">Số lượng</string>
     <string name="product_buy">Mua</string>
+    <string name="product_thanhtoan">Thanh toán</string>
+    <string name="product_naptien">Nạp tiền</string>
     
     <string name="buy_confirm">Bạn có muốn mua s0 sản phẩm s1 với giá s2/sản phẩm?</string>
     <string name="buy_confirm_yes">Mua</string>

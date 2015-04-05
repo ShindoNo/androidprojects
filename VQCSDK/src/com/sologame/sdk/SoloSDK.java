@@ -2,6 +2,8 @@ package com.sologame.sdk;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
+import android.view.View;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -22,6 +24,9 @@ public class SoloSDK {
 	
 	Activity mActivity;
 	SimpleFacebook mSimpleFacebook;
+	public static SupportButton sSupportButton;
+	public static boolean isShowingHello;
+	
 	
 	/**
 	 * SDK INIT Function
@@ -149,6 +154,30 @@ public class SoloSDK {
 	 */
 	public void setCharacterId(String characterId) {
 		Utils.saveString(mActivity, NameSpace.SAVED_CHARACTER_ID, characterId);
+	}
+	
+	public static void showDashboardButton(final Activity activity, final OnLogoutListener onLogoutListener) {
+		if (isShowingHello) {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					showDashboardButton(activity, onLogoutListener);
+				}
+			}, 200);
+			return;
+		}
+		
+		if (sSupportButton != null) {
+			sSupportButton.supportView.setVisibility(View.GONE); 
+		}
+		sSupportButton = new SupportButton(activity, onLogoutListener);
+	}
+	
+	public static void hideDashboardButton() {
+		if (sSupportButton != null) {
+			sSupportButton.supportView.setVisibility(View.GONE);
+		}
 	}
 	
 	/**
