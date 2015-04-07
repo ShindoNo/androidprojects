@@ -60,6 +60,15 @@ public class DialogPayment {
 				new DialogTopup(mActivity).show();
 			}
 		});
+		
+		// set money quantity
+		try {
+			JSONObject userInfoJSON = new JSONObject(Utils.getString(mActivity, NameSpace.SAVED_USER_INFO));
+			((TextView)mDialog.findViewById(R.id.tv_payment_title)).setText(mActivity.getString(R.string.payment).replace("?", userInfoJSON.getString("Fpay")));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	

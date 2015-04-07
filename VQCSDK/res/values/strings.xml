@@ -68,7 +68,7 @@
     
     
     <!-- Payment -->
-    <string name="payment">Ví tiền (VNĐ)</string>
+    <string name="payment">Ví tiền (? VNĐ)</string>
     <string name="product_name">Sản phẩm</string>
     <string name="product_price">Giá</string>
     <string name="product_quantity">Số lượng</string>

@@ -17,7 +17,9 @@
             android:text="@string/payment"
             android:textColor="#FFF"
             android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:id="@+id/tv_payment_title" 
+            />
 
         <TextView
             android:layout_width="wrap_content"
