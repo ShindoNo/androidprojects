@@ -1,7 +1,7 @@
 package com.sologame.sdk.util;
 
 public class NameSpace {
-	public static final String SDK_VERSION = "1.0.2";
+	public static final String SDK_VERSION = "1.0.3";
 	
 	public static final String APP_ID = "17541234";
 	public static final String SECRET_KEY = "DF37A522-0264-FFAF-1994-HFGFTYJGRR";
