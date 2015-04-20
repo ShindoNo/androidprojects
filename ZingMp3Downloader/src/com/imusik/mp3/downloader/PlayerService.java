@@ -87,7 +87,6 @@ public class PlayerService extends Service {
 
 		mHandler = new Handler();
 		initMediaPlayer();
-
 	}
 
 	@Override
@@ -272,6 +271,7 @@ public class PlayerService extends Service {
 	}
 
 	public void updateProgress() {
+		
 		if (mMediaPlayer.isPlaying()) {
 			int percent = (int) (mMediaPlayer.getCurrentPosition() * 1.0 / mMediaPlayer.getDuration() * 100);
 			Intent broadcastIntent = new Intent();
@@ -301,6 +301,8 @@ public class PlayerService extends Service {
 		if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
 			mMediaPlayer.stop();
 		}
+		
+		
 	}
 	
 	public void showNotify() {

@@ -190,16 +190,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
-		super.onResume();
-		
-//		new Handler().postDelayed(new Runnable() {
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				MobileCore.showOfferWall(MainActivity.this, null);		
-//			}
-//		}, 5*1000);
-		
+		super.onResume();		
 	}
 	
 	public void initUI() {
@@ -1341,6 +1332,7 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(MainActivity.this, PlayerService.class);
 			intent.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_COUNTDOWN_TIME);
 			intent.putExtra(PlayerService.EXTRA_COUNTDOWN_VALUE, countdownValue);
+			
 			startService(intent);
 		}
 	};

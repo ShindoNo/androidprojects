@@ -13,7 +13,6 @@
         android:background="@drawable/btn_01"
         android:gravity="center_vertical"
         android:id="@+id/layout_top"
-        android:layout_marginTop="50dp" 
         >
     
 	    <LinearLayout

@@ -13,7 +13,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />    
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- for support button -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     
     <!-- GCM Config-->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

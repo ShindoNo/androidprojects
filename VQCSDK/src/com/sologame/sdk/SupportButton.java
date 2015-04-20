@@ -1,168 +1,144 @@
 package com.sologame.sdk;
 
 import android.app.Activity;
-import android.view.LayoutInflater;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
+import android.graphics.PixelFormat;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.animation.Animation;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.Transformation;
-import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.sologame.sdk.SoloSDK.OnLogoutListener;
-import com.sologame.sdk.util.MyLog;
 
 public class SupportButton {
-	
+
 	Activity mActivity;
-	View supportView;
+	View supportButton;
 	long timeTouchDown;
-	
 	float buttonSize = 50;
-	int screenWidth, screenHeight;
-	float deltaX, deltaY;
-		
-	int mContentTop = 0;
-	
 	OnLogoutListener mOnLogoutListener;
-	
+	WindowManager.LayoutParams params;
+
+	boolean pendingShowSupportButton;
+	int lastX;
+	int lastY;
+
 	public SupportButton(Activity activity, OnLogoutListener onLogoutListener) {
 		// TODO Auto-generated constructor stub
 		mActivity = activity;
 		mOnLogoutListener = onLogoutListener;
 		buttonSize = buttonSize * mActivity.getResources().getDisplayMetrics().density;
-		screenWidth = mActivity.getResources().getDisplayMetrics().widthPixels;
-		screenHeight = mActivity.getResources().getDisplayMetrics().heightPixels;
-		initView();
-		attachView();
-		mContentTop = mActivity.findViewById(android.R.id.content).getTop();
-		MyLog.log("mContentTop=" + mContentTop);
+
+		supportButton = new ImageView(mActivity);
+		((ImageView) supportButton).setImageResource(R.drawable.ic_sologame);
+		supportButton.setOnTouchListener(mOnTouchListener);
+		supportButton.setVisibility(View.GONE);
+
+		attachToWindow(0, 0);
 	}
-	
-	public void initView() {
-		supportView = LayoutInflater.from(mActivity).inflate(R.layout.support_button, null);
-		supportView.setLayoutParams(new FrameLayout.LayoutParams((int)buttonSize, (int)buttonSize));
-		supportView.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					timeTouchDown = System.currentTimeMillis();
-					deltaX = event.getX();
-					deltaY = event.getY();
-				} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-					float marginLeft = event.getRawX() - deltaX;
-					float marginTop = event.getRawY() - deltaY;
-					
-					marginTop = marginTop - mContentTop;
-					
-					if (marginLeft < 0) {
-						marginLeft = 0;
-					}
-					if (marginLeft > screenWidth - buttonSize) {
-						marginLeft = screenWidth - buttonSize;
-					}
-					
-					if (marginTop < 0) {
-						marginTop = 0;
-					}
-					if (marginTop > screenHeight - buttonSize) {
-						marginTop = screenHeight - buttonSize;
-					}
-					
-					FrameLayout.LayoutParams lp = (LayoutParams) supportView.getLayoutParams();
-					lp.setMargins((int)marginLeft, (int)marginTop, 0, 0);
-					supportView.setLayoutParams(lp);
-					supportView.requestLayout();
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					if (System.currentTimeMillis() - timeTouchDown < 100) {
-						supportView.findViewById(R.id.tv_notify).setVisibility(View.GONE);
-						new DialogDashboard(mActivity, mOnLogoutListener);
-					}
-					
-					moveToEdge();
+
+	private void attachToWindow(int defaultX, int defaultY) {
+		try {
+			params = new WindowManager.LayoutParams();
+			params.width = (int) buttonSize;
+			params.height = (int) buttonSize;
+			params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+			params.format = PixelFormat.TRANSLUCENT;
+
+			params.gravity = Gravity.TOP | Gravity.LEFT;
+			params.x = defaultX;
+			params.y = defaultY;
+
+			((WindowManager) mActivity.getSystemService(Activity.WINDOW_SERVICE)).addView(supportButton, params);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void dettachFromWindow() {
+		try {
+			((WindowManager) mActivity.getSystemService(Activity.WINDOW_SERVICE)).removeView(supportButton);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	public void showButton() {
+		supportButton.setVisibility(View.VISIBLE);
+	}
+
+	public void hideButton() {
+		supportButton.setVisibility(View.GONE);
+	}
+
+	public void onPause() {
+		if (supportButton.getVisibility() == View.VISIBLE) {
+			pendingShowSupportButton = true;
+			supportButton.setVisibility(View.GONE);
+		}
+	}
+
+	public void onResume() {
+		if (pendingShowSupportButton) {
+			supportButton.setVisibility(View.VISIBLE);
+		}
+	}
+
+	public void onDestroy() {
+		dettachFromWindow();
+	}
+
+	OnTouchListener mOnTouchListener = new OnTouchListener() {
+		private int initialX;
+		private int initialY;
+		private float initialTouchX;
+		private float initialTouchY;
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			switch (event.getAction()) {
+			case MotionEvent.ACTION_DOWN:
+				timeTouchDown = System.currentTimeMillis();
+				initialX = params.x;
+				initialY = params.y;
+				initialTouchX = event.getRawX();
+				initialTouchY = event.getRawY();
+				return true;
+			case MotionEvent.ACTION_UP:
+				if (System.currentTimeMillis() - timeTouchDown < 100) {
+					supportButton.setVisibility(View.GONE);
+					// dettachFromWindow();
+
+					DialogDashboard dashboard = new DialogDashboard(mActivity, mOnLogoutListener);
+					dashboard.setOnDismissListener(new OnDismissListener() {
+						@Override
+						public void onDismiss(DialogInterface dialog) {
+							// TODO Auto-generated method stub
+							supportButton.setVisibility(View.VISIBLE);
+							// attachToWindow(lastX, lastY);
+						}
+					});
+				} else {
+					lastX = (int) event.getRawX();
+					lastY = (int) event.getRawY();
 				}
-				
+
+				return true;
+			case MotionEvent.ACTION_MOVE:
+				params.x = initialX + (int) (event.getRawX() - initialTouchX);
+				params.y = initialY + (int) (event.getRawY() - initialTouchY);
+				((WindowManager) mActivity.getSystemService(Activity.WINDOW_SERVICE)).updateViewLayout(supportButton,
+						params);
 				return true;
 			}
-		});
-		
-		
-	}
-	
-	public void attachView() {
-		((FrameLayout)mActivity.findViewById(android.R.id.content)).addView(supportView);
-	}
-	
-	public void moveToEdge() {
-		FrameLayout.LayoutParams lp = (LayoutParams) supportView.getLayoutParams();
-		int minMargin = lp.leftMargin;
-		if (minMargin > lp.topMargin) {
-			minMargin = lp.topMargin;
+			return false;
 		}
-		if (minMargin > screenWidth - lp.leftMargin - buttonSize) {
-			minMargin = (int) (screenWidth - lp.leftMargin - buttonSize);
-		}
-		if (minMargin > screenHeight - lp.topMargin - buttonSize) {
-			minMargin = (int) (screenHeight - lp.topMargin - buttonSize);
-		}
-		
-		final int finalMinMargin = minMargin;
-		Animation animation = null;
-		
-		if (finalMinMargin == lp.leftMargin) {
-			animation  = new Animation() {
-				@Override
-				protected void applyTransformation(float interpolatedTime, Transformation t) {
-					// TODO Auto-generated method stub
-					super.applyTransformation(interpolatedTime, t);
-					((FrameLayout.LayoutParams)supportView.getLayoutParams()).leftMargin = (int) (finalMinMargin * (1 - interpolatedTime));
-					supportView.requestLayout();
-				}
-			};
-		} else if (finalMinMargin == lp.topMargin) {
-			animation  = new Animation() {
-				@Override
-				protected void applyTransformation(float interpolatedTime, Transformation t) {
-					// TODO Auto-generated method stub
-					super.applyTransformation(interpolatedTime, t);
-					((FrameLayout.LayoutParams)supportView.getLayoutParams()).topMargin = (int) (finalMinMargin * (1 - interpolatedTime));
-					supportView.requestLayout();
-				}
-			};			
-		} else if (finalMinMargin == screenWidth - lp.leftMargin - buttonSize) {
-			animation  = new Animation() {
-				@Override
-				protected void applyTransformation(float interpolatedTime, Transformation t) {
-					// TODO Auto-generated method stub
-					super.applyTransformation(interpolatedTime, t);
-					((FrameLayout.LayoutParams)supportView.getLayoutParams()).leftMargin = (int) ((screenWidth - (buttonSize + finalMinMargin) + finalMinMargin * interpolatedTime));
-					supportView.requestLayout();
-				}
-			};			
-		} else if (minMargin == screenHeight - lp.topMargin - buttonSize) {
-			animation  = new Animation() {
-				@Override
-				protected void applyTransformation(float interpolatedTime, Transformation t) {
-					// TODO Auto-generated method stub
-					super.applyTransformation(interpolatedTime, t);
-					((FrameLayout.LayoutParams)supportView.getLayoutParams()).topMargin = (int) ((screenHeight - (buttonSize + mContentTop + finalMinMargin) + finalMinMargin * interpolatedTime));
-					supportView.requestLayout();
-				}
-			};			
-		}
-		
-		// start moving
-		animation.setDuration(200);
-		animation.setInterpolator(new OvershootInterpolator());
-		supportView.startAnimation(animation);
-	}
-	
-	
-	
-	
-	
-	
+	};
+
 }

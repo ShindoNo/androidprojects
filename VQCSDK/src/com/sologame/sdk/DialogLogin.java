@@ -20,15 +20,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sologame.sdk.util.MyLog; 
+import com.sologame.sdk.util.MyLog;
 import com.sologame.sdk.util.NameSpace;
 import com.sologame.sdk.util.PushTools;
 import com.sologame.sdk.util.ServiceHelper;
 import com.sologame.sdk.util.Utils;
-import com.sromku.simple.fb.Permission;
 import com.sromku.simple.fb.Permission.Type;
 import com.sromku.simple.fb.SimpleFacebook;
-import com.sromku.simple.fb.SimpleFacebookConfiguration;
 
 public class DialogLogin {
 
@@ -37,8 +35,6 @@ public class DialogLogin {
 	Dialog mDialog;
 	ProgressDialog mProgressDialog;
 
-	boolean showingHelloDialog;
-	
 	// facebook
 	SimpleFacebook mSimpleFacebook;
 	static boolean isPendingLoginfacebook = false;
@@ -114,7 +110,7 @@ public class DialogLogin {
 				mDialog.findViewById(R.id.layout_login_sologame).setVisibility(View.GONE);
 			}
 		});
-		
+
 		mDialog.findViewById(R.id.tv_forgot_password).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -131,10 +127,10 @@ public class DialogLogin {
 		if (Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN) != null) {
 			checkAccessToken();
 		} else {
-			mDialog.show();	
+			mDialog.show();
 		}
 	}
-	
+
 	/**
 	 * Get user info from saved access token since last login time
 	 */
@@ -147,16 +143,19 @@ public class DialogLogin {
 					JSONObject dataJSON = new JSONObject();
 					dataJSON.put("access_token", Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
 					dataJSON.put("os_id", NameSpace.OS_ID);
-					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_CHECK_ACCESS_TOKEN, dataJSON.toString());
+					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_CHECK_ACCESS_TOKEN,
+							dataJSON.toString());
 					final String response = ServiceHelper.get(apiUrl);
-					
+
 					mActivity.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
 							if (Utils.checkResponseError(mActivity, response) == false) {
 								showHelloDialog(Utils.getString(mActivity, NameSpace.SAVED_USERNAME));
-								mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID), Utils.getString(mActivity, NameSpace.SAVED_USERNAME), Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));								
+								mOnLoginListener.onSuccessful(Utils.getString(mActivity, NameSpace.SAVED_UID),
+										Utils.getString(mActivity, NameSpace.SAVED_USERNAME),
+										Utils.getString(mActivity, NameSpace.SAVED_ACCESS_TOKEN));
 							} else {
 								mDialog.show();
 								((EditText) mDialog.findViewById(R.id.et_username)).requestFocus();
@@ -171,15 +170,6 @@ public class DialogLogin {
 		}).start();
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Login with sologame
 	 */
@@ -209,7 +199,7 @@ public class DialogLogin {
 					dataJSON.put("password", password);
 					dataJSON.put("os_id", NameSpace.OS_ID);
 					String data = dataJSON.toString();
-					
+
 					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_LOGIN, data);
 					final String response = ServiceHelper.get(apiUrl);
 
@@ -230,33 +220,29 @@ public class DialogLogin {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Login with Facebook
 	 */
-	public void loginWithFacebook() {		
+	public void loginWithFacebook() {
 		com.sromku.simple.fb.listeners.OnLoginListener onLoginListener = new com.sromku.simple.fb.listeners.OnLoginListener() {
 			@Override
-			public void onFail(String arg0) {}
-			
+			public void onFail(String arg0) {
+			}
+
 			@Override
-			public void onException(Throwable arg0) {}
-			
+			public void onException(Throwable arg0) {
+			}
+
 			@Override
-			public void onThinking() {}
-			
+			public void onThinking() {
+			}
+
 			@Override
 			public void onNotAcceptingPermissions(Type arg0) {
 				// TODO Auto-generated method stub
 				MyLog.log("onNotAcceptingPermissions");
 			}
-			
+
 			@Override
 			public void onLogin() {
 				// TODO Auto-generated method stub
@@ -266,41 +252,42 @@ public class DialogLogin {
 				loginFacebookWithAccessToken();
 			}
 		};
-		
+
 		SimpleFacebook.getInstance(mActivity).login(onLoginListener);
 	}
-	
+
 	/**
 	 * Login after have active facebook access token
 	 */
 	public void loginFacebookWithAccessToken() {
 		mProgressDialog.show();
-		
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				try {					
+				try {
 					JSONObject dataJSON = new JSONObject();
 					dataJSON.put("access_token_facebook", com.facebook.Session.getActiveSession().getAccessToken());
 					dataJSON.put("os_id", NameSpace.OS_ID);
 					String data = dataJSON.toString();
 					String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_LOGIN_FACEBOOK, data);
-					
+
 					final String response = ServiceHelper.get(apiUrl);
-					
+
 					mActivity.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							// sometimes this dialog cause force close with unknown reason
+							// sometimes this dialog cause force close with
+							// unknown reason
 							try {
-								mProgressDialog.dismiss();	
+								mProgressDialog.dismiss();
 							} catch (Exception e) {
 								// TODO: handle exception
 								e.printStackTrace();
 							}
-							
+
 							checkLoginResponse(response);
 						}
 					});
@@ -308,59 +295,52 @@ public class DialogLogin {
 					// TODO: handle exception
 					e.printStackTrace();
 				}
-				
-				
+
 			}
 		}).start();
 	}
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
 	/**
 	 * Register new account
 	 */
 	public void registerAccount() {
-		final String username = ((EditText) mDialog.findViewById(R.id.et_register_username)).getText().toString().trim();
-		final String password = ((EditText) mDialog.findViewById(R.id.et_register_password)).getText().toString().trim();
+		final String username = ((EditText) mDialog.findViewById(R.id.et_register_username)).getText().toString()
+				.trim();
+		final String password = ((EditText) mDialog.findViewById(R.id.et_register_password)).getText().toString()
+				.trim();
 		String password2 = ((EditText) mDialog.findViewById(R.id.et_register_password_2)).getText().toString().trim();
 
 		if (username.equals("") || password.equals("") || password2.equals("")) {
 			Toast.makeText(mActivity, mActivity.getString(R.string.please_fill_up_info), Toast.LENGTH_SHORT).show();
 			if (username.equals("")) {
-				((EditText) mDialog.findViewById(R.id.et_register_username)).requestFocus();	
+				((EditText) mDialog.findViewById(R.id.et_register_username)).requestFocus();
 			} else if (password.equals("")) {
 				((EditText) mDialog.findViewById(R.id.et_register_password)).requestFocus();
 			} else if (password2.equals("")) {
 				((EditText) mDialog.findViewById(R.id.et_register_password_2)).requestFocus();
 			}
-			
+
 		} else if (!password.equals(password2)) {
 			Toast.makeText(mActivity, mActivity.getString(R.string.password_not_match), Toast.LENGTH_SHORT).show();
 		} else {
 			// check username validation
 			if (username.length() < 6) {
-				Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_short), Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_short), Toast.LENGTH_SHORT)
+						.show();
 				((EditText) mDialog.findViewById(R.id.et_register_username)).requestFocus();
 				return;
 			} else if (username.length() > 30) {
-				Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_long), Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, mActivity.getString(R.string.username_is_too_long), Toast.LENGTH_SHORT)
+						.show();
 				((EditText) mDialog.findViewById(R.id.et_register_username)).requestFocus();
 				return;
 			} else if (username.contains(" ")) {
-				Toast.makeText(mActivity, mActivity.getString(R.string.username_contains_space), Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, mActivity.getString(R.string.username_contains_space), Toast.LENGTH_SHORT)
+						.show();
 				((EditText) mDialog.findViewById(R.id.et_register_username)).requestFocus();
 				return;
 			}
-			
+
 			mProgressDialog.show();
 
 			new Thread(new Runnable() {
@@ -373,7 +353,7 @@ public class DialogLogin {
 						dataJSON.put("username", username);
 						dataJSON.put("password", password);
 						dataJSON.put("os_id", NameSpace.OS_ID);
-						String data = dataJSON.toString();						
+						String data = dataJSON.toString();
 						String apiUrl = Utils.createApiUrl(mActivity, NameSpace.COMMAND_REGISTER, data);
 
 						final String response = ServiceHelper.get(apiUrl);
@@ -394,11 +374,10 @@ public class DialogLogin {
 			}).start();
 		}
 	}
-	
-	
-	
+
 	/**
 	 * Check login response after logging in by solo/facebook or registering
+	 * 
 	 * @param response
 	 */
 	public void checkLoginResponse(String response) {
@@ -407,32 +386,32 @@ public class DialogLogin {
 				JSONObject responseJSON = new JSONObject(response);
 				JSONObject userInfoJSON = responseJSON.getJSONObject("data").getJSONObject("user_info");
 				Utils.saveString(mActivity, NameSpace.SAVED_USER_INFO, userInfoJSON.toString());
-				
+
 				String uid = responseJSON.getJSONObject("data").getJSONObject("user_info").getString("uid");
 				Utils.saveString(mActivity, NameSpace.SAVED_UID, uid);
-				
+
 				PushTools.logToken(mActivity);
-				
+
 				String username = responseJSON.getJSONObject("data").getJSONObject("user_info").getString("name");
-				Utils.saveString(mActivity, NameSpace.SAVED_USERNAME, username);				
-				
+				Utils.saveString(mActivity, NameSpace.SAVED_USERNAME, username);
+
 				String access_token = responseJSON.getJSONObject("data").getString("access_token");
 				Utils.saveString(mActivity, NameSpace.SAVED_ACCESS_TOKEN, access_token);
-				
+
 				if (responseJSON.getJSONObject("data").has("account_fpay")) {
 					String account_fpay = responseJSON.getJSONObject("data").getString("account_fpay");
 					if (!account_fpay.equals("null")) {
-						Utils.saveString(mActivity, NameSpace.SAVED_ACCOUNT_FPAY, account_fpay);	
+						Utils.saveString(mActivity, NameSpace.SAVED_ACCOUNT_FPAY, account_fpay);
 					} else {
 						Utils.saveString(mActivity, NameSpace.SAVED_ACCOUNT_FPAY, null);
 					}
 				} else {
 					Utils.saveString(mActivity, NameSpace.SAVED_ACCOUNT_FPAY, username);
 				}
-				
+
 				showHelloDialog(username);
 				mOnLoginListener.onSuccessful(uid, username, access_token);
-				mDialog.dismiss();						
+				mDialog.dismiss();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -440,26 +419,20 @@ public class DialogLogin {
 		} else {
 			mDialog.show();
 			((EditText) mDialog.findViewById(R.id.et_username)).requestFocus();
-		}		
+		}
 	}
 
-	
-	
-	
-	
-	
-	
 	/**
 	 * Show hello dialog to user after logging successfully
+	 * 
 	 * @param userName
 	 */
 	public void showHelloDialog(String userName) {
-		SoloSDK.isShowingHello = true;
-		
 		final ViewGroup rootView = (ViewGroup) (mActivity).findViewById(android.R.id.content);
 
 		final View helloView = LayoutInflater.from(mActivity).inflate(R.layout.layout_hello, null);
-		((TextView) helloView.findViewById(R.id.tv_hello)).setText(mActivity.getString(R.string.welcome_back) + " " + userName);
+		((TextView) helloView.findViewById(R.id.tv_hello)).setText(mActivity.getString(R.string.welcome_back) + " "
+				+ userName);
 
 		Animation animation = AnimationUtils.loadAnimation(mActivity, R.anim.top_in_then_out);
 		animation.setAnimationListener(new AnimationListener() {
@@ -475,17 +448,13 @@ public class DialogLogin {
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
 				rootView.removeView(helloView);
-				SoloSDK.isShowingHello = false;
-				showingHelloDialog = false;
 			}
 		});
 
 		helloView.startAnimation(animation);
 		rootView.addView(helloView);
-		showingHelloDialog = true;
 	}
-	
-	
+
 	/**
 	 * Show forgot password webview
 	 */
@@ -494,7 +463,7 @@ public class DialogLogin {
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_forgot_password);
 		dialog.show();
-		
+
 		WebView webView = (WebView) dialog.findViewById(R.id.webview_forgot_password);
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
@@ -503,7 +472,7 @@ public class DialogLogin {
 				super.onPageStarted(view, url, favicon);
 				dialog.findViewById(R.id.pb_loading).setVisibility(View.VISIBLE);
 			}
-			
+
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				// TODO Auto-generated method stub
@@ -511,12 +480,10 @@ public class DialogLogin {
 				dialog.findViewById(R.id.pb_loading).setVisibility(View.GONE);
 			}
 		});
-		
+
 		webView.loadUrl("https://fpay.vn/user/password");
 	}
-	
-	
-	
+
 	public interface OnLoginListener {
 		public void onSuccessful(String userId, String userName, String accessToken);
 	}
