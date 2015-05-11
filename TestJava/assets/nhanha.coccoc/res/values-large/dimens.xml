@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="abc_config_prefDialogWidth">440.0dip</dimen>
+    <dimen name="abc_search_view_text_min_width">192.0dip</dimen>
+    <item type="dimen" name="dialog_fixed_height_major">60.000004%</item>
+    <item type="dimen" name="dialog_fixed_height_minor">90.0%</item>
+    <item type="dimen" name="dialog_fixed_width_major">60.000004%</item>
+    <item type="dimen" name="dialog_fixed_width_minor">90.0%</item>
+    <dimen name="icon_size">64.0px</dimen>
+    <dimen name="map_poi_size">350.0dip</dimen>
+    <dimen name="margin_arrow_poi_info">-12.0dip</dimen>
+    <dimen name="margin_cc_logo">190.0dip</dimen>
+    <dimen name="margin_search_all_categories">72.0dip</dimen>
+    <dimen name="photo_poi_list_size">72.0dip</dimen>
+    <dimen name="poi_photo_size_height">320.0dip</dimen>
+    <dimen name="poi_photo_size_width">240.0dip</dimen>
+    <dimen name="ratingbar_size_big">64.0dip</dimen>
+</resources>

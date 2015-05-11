@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shjndo.instaliker"
+    package="com.instaliker.instafollower"
     android:versionCode="7"
     android:versionName="1.0" >
 
@@ -23,8 +23,8 @@
 	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	
-	<permission android:name="com.shjndo.instaliker.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	<uses-permission android:name="com.shjndo.instaliker.permission.C2D_MESSAGE"/>     
+	<permission android:name="com.instaliker.instafollower.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.instaliker.instafollower.permission.C2D_MESSAGE"/>     
 
     <application
         android:allowBackup="true"
@@ -32,7 +32,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
-            android:name="com.shjndo.instaliker.MainActivity"
+            android:name="com.instaliker.instafollower.MainActivity"
             android:label="@string/app_name"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:launchMode="singleInstance"
@@ -45,7 +45,9 @@
         </activity>
         
         <!-- Admob here -->
-        <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+        <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" 
+            />
         
         <!-- Mobile Core -->
 		<service android:name="com.ironsource.mobilcore.MobileCoreReport" android:enabled="true" android:exported="false" android:process=":mcServiceProcess"/> 

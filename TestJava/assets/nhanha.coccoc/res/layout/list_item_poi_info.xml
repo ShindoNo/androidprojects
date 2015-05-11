@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageButton android:id="@id/iv_direction_poi_info" android:background="@drawable/abs__btn_cab_done_default_holo_dark" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_direction" />
+    <TextView android:textColor="@color/body_text_1" android:gravity="center_vertical" android:id="@id/tv_name_poi_info" android:background="@drawable/abs__btn_cab_done_default_holo_dark" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/DrawerList.Child" />
+</LinearLayout>

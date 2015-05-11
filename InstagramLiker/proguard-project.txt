@@ -38,3 +38,9 @@ LineNumberTable, *Annotation*, EnclosingMethod
 }
 
 -keep class com.ironsource.mobilcore.*{ *; }
+
+-keep class * extends java.util.ListResourceBundle {
+    protected Object[][] getContents();
+}
+
+-dontwarn com.google.android.gms.**

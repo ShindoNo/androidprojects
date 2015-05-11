@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/pref_fb_title_login" android:key="pref_key_auth" android:summary="@string/pref_fb_sumary_login" />
+</PreferenceScreen>

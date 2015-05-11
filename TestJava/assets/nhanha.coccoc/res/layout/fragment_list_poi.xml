@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/list_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.itim.explorer.ui.widget.LoadMoreListView android:id="@id/lmlv_list_poi_fragment" android:background="@android:color/transparent" android:paddingLeft="@dimen/element_spacing_normal" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="@android:color/transparent" />
+    <TextView android:id="@id/hint_lv_poi_fragment" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/no_items" android:layout_centerInParent="true" style="@style/TextViewHint" />
+    <ProgressBar android:id="@id/pg_list_poi_framgent" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+    <RelativeLayout android:id="@id/hint_first_open" android:background="@color/body_text_2" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="@dimen/text_size_xlarge" android:textColor="@color/body_text_1_inverse" android:gravity="center" android:padding="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/swipe_to_delete" android:drawableTop="@drawable/swipe_gesture" android:drawablePadding="@dimen/element_spacing_normal" android:layout_centerInParent="true" />
+    </RelativeLayout>
+</RelativeLayout>

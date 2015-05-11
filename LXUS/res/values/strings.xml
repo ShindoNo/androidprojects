@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">LXUS</string>
+    
+    <string name="find_hotel">Tìm hotel</string>
+    <string name="checkin_or_add_hotel">Check-in</string>
+    <string name="view_type_map">Bản đồ</string>
+    <string name="view_type_list">Danh sách</string>
+    
+    <string name="deteting_location">Đang dò vị trí</string>
+    <string name="loading">Loading...</string>
+
+</resources>

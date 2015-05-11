@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@drawable/drawer_child_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/text_size_large" android:id="@id/tv_title_list_poi_dialog" android:background="@color/list_bg" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/dialog_gps_notify_title" android:drawablePadding="@dimen/element_spacing_normal" style="@style/DrawerList" />
+    <View android:id="@id/v_hr_gps_dialog" android:background="@drawable/ab_bg" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_below="@id/tv_title_list_poi_dialog" />
+    <TextView android:textColor="@color/body_text_1_inverse" android:id="@id/tv_content_dialog" android:padding="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/dialog_gps_notify_content" android:layout_below="@id/v_hr_gps_dialog" />
+    <CheckBox android:textColor="@color/body_text_1_inverse" android:id="@id/cb_show_again_gps_dialog" android:paddingTop="@dimen/element_spacing_normal" android:paddingBottom="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/element_spacing_normal" android:text="@string/dialog_dont_show" android:layout_below="@id/tv_content_dialog" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="2.0" android:layout_below="@id/cb_show_again_gps_dialog">
+        <Button android:textColor="@color/body_text_1" android:id="@id/bn_yes_dialog" android:background="@drawable/btn_bg" android:padding="@dimen/element_spacing_normal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:text="@string/action_settings" android:layout_weight="1.0" />
+        <Button android:textColor="@color/body_text_1" android:id="@id/bn_no_dialog" android:background="@drawable/btn_bg" android:padding="@dimen/element_spacing_normal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:text="@string/dismiss" android:layout_weight="1.0" />
+    </LinearLayout>
+</RelativeLayout>

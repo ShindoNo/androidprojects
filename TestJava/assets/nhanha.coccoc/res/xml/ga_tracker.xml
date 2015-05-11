@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <span style="line-height: 1.5; font-style: inherit; font-weight: inherit;">tools:ignore="TypographyDashes"></span>
+    <string name="ga_trackingId">UA-44837124-1</string>
+    <string name="ga_sampleFrequency">100.0</string>
+    <bool name="ga_autoActivityTracking">true</bool>
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+    <integer name="ga_sessionTimeout">-1</integer>
+    <screenName name="com.itim.explorer.ui.MainActivity">Main Activity</screenName>
+</resources>

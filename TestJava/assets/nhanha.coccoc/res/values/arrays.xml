@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="direction_by_items">
+        <item>Car</item>
+        <item>Walk</item>
+    </string-array>
+    <string-array name="drawer_group_items">
+        <item>CATEGORY</item>
+        <item>HISTORY</item>
+        <item>BOOKMARK</item>
+        <item>SETTING</item>
+        <item>ADD PLACE</item>
+        <item>TIẾNG VIỆT</item>
+        <item>ABOUT</item>
+        <item>SHARE MY LOCATION</item>
+    </string-array>
+    <string-array name="history_tabs">
+        <item>LOCATION</item>
+        <item>SEARCH</item>
+    </string-array>
+</resources>

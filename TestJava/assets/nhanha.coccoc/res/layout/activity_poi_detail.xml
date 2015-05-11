@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <include android:id="@id/l_poi_detail_top" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/poi_detail_top" />
+        <include android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_poi_detail_top" layout="@layout/poi_detail_bottom" />
+        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar android:id="@id/pgb_load_poi_detail" android:background="@color/green_base_1_light" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="4.0dip" android:indeterminate="true" app:spb_color="#ffffffff" app:spb_stroke_width="4.0dip" app:spb_stroke_separator_length="4.0dip" app:spb_sections_count="5" app:spb_speed="0.8" app:spb_reversed="false" app:spb_mirror_mode="false" />
+    </RelativeLayout>
+</ScrollView>

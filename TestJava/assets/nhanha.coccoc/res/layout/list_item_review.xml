@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.facebook.widget.ProfilePictureView android:id="@id/iv_avatar_review_item" android:paddingLeft="@dimen/element_spacing_normal" android:paddingTop="@dimen/element_padding_normal" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="@dimen/user_avatar_review" android:layout_height="@dimen/user_avatar_review" android:src="@drawable/ic_launcher" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_centerVertical="true" />
+        <TextView android:textColor="@color/body_text_1_inverse" android:id="@id/tv_name_review_item" android:paddingTop="@dimen/element_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/iv_avatar_review_item" android:layout_alignParentTop="true" />
+        <LinearLayout android:orientation="vertical" android:id="@id/l_block_rate_date_review_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/iv_avatar_review_item" android:layout_below="@id/tv_name_review_item">
+            <RatingBar android:layout_gravity="bottom|center" android:id="@id/rb_review_item" android:layout_width="wrap_content" android:layout_height="@dimen/ratingbar_size" android:progressDrawable="@drawable/rating_bar_small" android:numStars="5" android:isIndicator="true" />
+            <TextView android:textColor="@color/body_text_2_inverse" android:id="@id/tv_date_review_item" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/rb_review_item" android:layout_centerVertical="true" />
+        </LinearLayout>
+        <TextView android:textColor="@color/body_text_1_inverse" android:id="@id/tv_content_review_item" android:paddingBottom="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/iv_avatar_review_item" android:layout_below="@id/l_block_rate_date_review_item" />
+    </RelativeLayout>
+    <View android:id="@id/divider_review_item" android:background="@color/body_text_3" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+</LinearLayout>

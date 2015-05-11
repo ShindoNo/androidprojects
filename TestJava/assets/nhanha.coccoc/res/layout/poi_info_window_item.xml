@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/ll_info_poi" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <TextView android:textSize="@dimen/text_size_large" android:ellipsize="end" android:id="@id/tv_poi_name_poi_info" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+        <TextView android:ellipsize="end" android:id="@id/tv_poi_address_poi_info" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+        <TextView android:id="@id/tv_poi_rating_poi_info" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:drawableLeft="@drawable/star_on_small" android:drawablePadding="@dimen/element_padding_normal" />
+    </LinearLayout>
+    <View android:background="@color/body_text_3" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+    <ImageButton android:id="@id/btn_diretion_poi_info" android:background="@drawable/direction_button_poi_info_window_bg" android:paddingTop="@dimen/element_spacing_normal" android:paddingBottom="@dimen/element_spacing_normal" android:layout_width="46.0dip" android:layout_height="fill_parent" android:layout_marginLeft="1.0px" android:layout_marginTop="1.0px" android:layout_marginRight="1.0px" android:layout_marginBottom="1.0px" android:src="@drawable/ic_direction" />
+</LinearLayout>

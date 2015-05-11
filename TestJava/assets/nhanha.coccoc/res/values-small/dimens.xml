@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16.0dip</dimen>
+    <dimen name="activity_vertical_margin">16.0dip</dimen>
+    <dimen name="content_padding_normal">16.0dip</dimen>
+    <dimen name="element_padding_normal">4.0dip</dimen>
+    <dimen name="element_spacing_normal">8.0dip</dimen>
+    <dimen name="icon_size">32.0dip</dimen>
+    <dimen name="map_poi_size">100.0dip</dimen>
+    <dimen name="margin_arrow_poi_info">-6.0dip</dimen>
+    <dimen name="margin_cc_logo">110.0dip</dimen>
+    <dimen name="margin_search_all_categories">48.0dip</dimen>
+    <dimen name="photo_poi_list_size">64.0px</dimen>
+    <dimen name="poi_photo_size_height">160.0dip</dimen>
+    <dimen name="poi_photo_size_width">120.0dip</dimen>
+    <dimen name="ratingbar_size_big">30.0dip</dimen>
+    <dimen name="text_size_diff_large_small">6.0sp</dimen>
+    <dimen name="text_size_large">18.0sp</dimen>
+    <dimen name="text_size_medium">14.0sp</dimen>
+    <dimen name="text_size_small">12.0sp</dimen>
+    <dimen name="text_size_xlarge">18.0sp</dimen>
+    <dimen name="textview_padding_top">10.0dip</dimen>
+</resources>

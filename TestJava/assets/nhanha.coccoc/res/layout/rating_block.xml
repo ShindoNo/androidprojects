@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/l_rating_5_start" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/LayoutRatingStar">
+        <TextView android:id="@id/tv_rating_bock_5_star" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" android:drawableLeft="@drawable/star_off_small" />
+        <ProgressBar android:id="@id/pgb_poi_rating_5_star" android:layout_width="150.0dip" android:layout_height="@dimen/text_size_small" style="@style/ProgressBarStar" />
+        <TextView android:id="@id/tv_rating_bock_5_star_count" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="235" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/l_rating_4_start" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_rating_5_start" style="@style/LayoutRatingStar">
+        <TextView android:id="@id/tv_rating_bock_4_star" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" android:drawableLeft="@drawable/star_off_small" />
+        <ProgressBar android:id="@id/pgb_poi_rating_4_star" android:layout_width="150.0dip" android:layout_height="@dimen/text_size_small" style="@style/ProgressBarStar" />
+        <TextView android:id="@id/tv_rating_bock_4_star_count" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="235" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/l_rating_3_start" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_rating_4_start" style="@style/LayoutRatingStar">
+        <TextView android:id="@id/tv_rating_bock_3_star" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:drawableLeft="@drawable/star_off_small" />
+        <ProgressBar android:id="@id/pgb_poi_rating_3_star" android:layout_width="150.0dip" android:layout_height="@dimen/text_size_small" style="@style/ProgressBarStar" />
+        <TextView android:id="@id/tv_rating_bock_3_star_count" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="235" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/l_rating_2_start" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_rating_3_start" style="@style/LayoutRatingStar">
+        <TextView android:id="@id/tv_rating_bock_2_star" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" android:drawableLeft="@drawable/star_off_small" />
+        <ProgressBar android:id="@id/pgb_poi_rating_2_star" android:layout_width="150.0dip" android:layout_height="@dimen/text_size_small" android:max="100" android:progress="75" android:indeterminateOnly="false" android:progressDrawable="@drawable/progressbar_poi_star" style="@style/ProgressBarStar" />
+        <TextView android:id="@id/tv_rating_bock_2_star_count" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="235" android:maxEms="10" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/l_rating_1_start" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_rating_2_start" style="@style/LayoutRatingStar">
+        <TextView android:id="@id/tv_rating_bock_1_star" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" android:drawableLeft="@drawable/star_off_small" />
+        <ProgressBar android:id="@id/pgb_poi_rating_1_star" android:layout_width="150.0dip" android:layout_height="@dimen/text_size_small" style="@style/ProgressBarStar" />
+        <TextView android:id="@id/tv_rating_bock_1_star_count" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" android:maxEms="10" />
+    </LinearLayout>
+</RelativeLayout>

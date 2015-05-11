@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingBottom="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/l_map_poi_detail" android:layout_width="fill_parent" android:layout_height="@dimen/map_poi_size">
+        <fragment android:id="@id/googleMap_poi" android:layout_width="fill_parent" android:layout_height="@dimen/map_poi_size" class="com.google.android.gms.maps.SupportMapFragment" />
+        <View android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </RelativeLayout>
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/l_poi_action" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false" android:layout_below="@id/l_map_poi_detail">
+        <ImageButton android:id="@id/tv_poi_ac_call" android:background="@android:color/transparent" android:padding="@dimen/content_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/ic_poi_call_nomal" android:layout_weight="1.0" android:onClick="onPoiAction" />
+        <View android:background="@color/body_text_3" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+        <ImageButton android:id="@id/tv_poi_ac_bookmark" android:background="@android:color/transparent" android:padding="@dimen/content_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/ic_bookmark_active" android:layout_weight="1.0" android:onClick="onPoiAction" />
+        <View android:background="@color/body_text_3" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+        <ImageButton android:id="@id/tv_poi_ac_direction" android:background="@android:color/transparent" android:padding="@dimen/content_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/ic_direction" android:layout_weight="1.0" android:onClick="onPoiAction" />
+    </LinearLayout>
+    <View android:id="@id/hr_poi" android:background="@color/body_text_3" android:padding="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/l_poi_action" />
+    <RelativeLayout android:id="@id/l_review" android:padding="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/hr_poi">
+        <TextView android:textSize="@dimen/text_size_xlarge" android:gravity="left|center" android:id="@id/tv_poi_review_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/review" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:textAllCaps="true" />
+        <RatingBar android:id="@id/rb_poi_rating" android:layout_width="wrap_content" android:layout_height="wrap_content" android:max="5" android:numStars="5" android:stepSize="0.5" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/RatingBarBig" />
+    </RelativeLayout>
+    <View android:id="@id/hr_poi_1" android:background="@color/body_text_3" android:padding="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/l_review" />
+    <LinearLayout android:orientation="vertical" android:id="@id/l_list_reviews_poi_detail" android:paddingLeft="@dimen/element_padding_normal" android:paddingRight="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/l_review" />
+    <Button android:textSize="@dimen/text_size_medium" android:textColor="@color/body_text_1" android:id="@id/btn_report_problem_poi_detail" android:background="@drawable/btn_bg" android:paddingLeft="@dimen/content_padding_normal" android:paddingTop="@dimen/element_padding_normal" android:paddingRight="@dimen/content_padding_normal" android:paddingBottom="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:text="@string/report_problem" android:layout_below="@id/l_list_reviews_poi_detail" android:onClick="onReportProblem" />
+</RelativeLayout>

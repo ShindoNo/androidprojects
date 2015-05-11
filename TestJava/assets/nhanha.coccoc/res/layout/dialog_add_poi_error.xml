@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/drawer_child_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:background="@drawable/ab_bg" android:layout_width="fill_parent" android:layout_height="2.0dip" />
+    <TextView android:textSize="@dimen/text_size_medium" android:textColor="@color/body_text_1_inverse" android:id="@id/tv_add_place_error" android:padding="@dimen/content_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/add_place_error" />
+    <Button android:textSize="@dimen/text_size_medium" android:textColor="@color/body_text_1" android:id="@id/btn_ok_add_poi_error" android:background="@drawable/btn_bg" android:paddingLeft="@dimen/content_padding_normal" android:paddingTop="@dimen/element_padding_normal" android:paddingRight="@dimen/content_padding_normal" android:paddingBottom="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:text="@string/continue_" />
+</LinearLayout>

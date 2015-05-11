@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <span style="line-height: 1.5; font-style: inherit; font-weight: inherit;">tools:ignore="TypographyDashes"></span>
+    <string name="ga_logLevel">verbose</string>
+    <integer name="ga_dispatchPeriod">30</integer>
+    <bool name="ga_dryRun">false</bool>
+    <string name="com.itim.explorer.ui.MainMapActivity">Main Map Activity</string>
+    <string name="com.itim.explorer.ui.SplashActivity">Splash</string>
+    <string name="com.itim.explorer.ui.MainActivity">Main</string>
+    <string name="com.itim.explorer.ui.MapActivity">Map</string>
+    <string name="com.itim.explorer.ui.MapNavigationActivity">Map Navigation</string>
+    <string name="com.itim.explorer.ui.POIDetailActivity">POI Detail</string>
+    <string name="com.itim.explorer.ui.AboutActivity">About</string>
+    <string name="com.itim.explorer.ui.DirectionActivity">Direction</string>
+    <string name="com.itim.explorer.ui.ReviewActivity">Review</string>
+    <string name="com.itim.explorer.ui.POIPictureActivity">POI picture</string>
+    <string name="com.itim.explorer.ui.UserPOIsActivity">List of User POIs</string>
+    <string name="com.itim.explorer.ui.AddPOIActivity">Add POI</string>
+    <string name="com.itim.explorer.ui.ViewUsersPOIActivity">View users POI</string>
+    <string name="com.itim.explorer.ui.ChooseLocationActivity">Choose Location</string>
+</resources>

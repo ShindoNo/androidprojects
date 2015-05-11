@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/content_padding_normal" android:layout_marginRight="@dimen/content_padding_normal"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center" android:orientation="vertical" android:id="@id/ll_poi_info_wrap_item" android:background="@drawable/poi_info_window_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <ImageView android:gravity="center_horizontal" android:layout_gravity="center" android:background="@drawable/arrow_down" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginTop="-1.0dip" android:layout_marginBottom="@dimen/margin_arrow_poi_info" />
+</LinearLayout>

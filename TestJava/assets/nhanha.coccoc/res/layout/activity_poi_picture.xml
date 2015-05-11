@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:layout_gravity="center" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.itim.explorer.ui.widget.FadeInNetworkImageView android:id="@id/imv_poi_picture" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/poi_thumb" />
+    <ImageView android:padding="@dimen/content_padding_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_close_poi_picture" android:layout_alignParentRight="true" android:onClick="onClose" />
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/drawer_child_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/text_size_medium" android:id="@id/tv_title_list_city_dialog" android:background="@color/list_bg" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/choose_location" android:drawablePadding="@dimen/element_spacing_normal" style="@style/DrawerList" />
+    <View android:background="@drawable/ab_bg" android:layout_width="fill_parent" android:layout_height="2.0dip" />
+    <EditText android:textColor="@color/body_text_1_inverse" android:id="@id/et_choose_city" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/choose_location_city" android:ems="10" android:singleLine="true" android:inputType="text" />
+    <ListView android:id="@id/lmlv_list_city_dialog" android:background="@android:color/transparent" android:paddingLeft="@dimen/element_spacing_normal" android:paddingRight="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:cacheColorHint="@android:color/transparent" android:divider="@drawable/divider_drawer_dark" />
+</LinearLayout>

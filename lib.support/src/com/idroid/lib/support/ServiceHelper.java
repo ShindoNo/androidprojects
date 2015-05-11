@@ -13,10 +13,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import android.util.Log;
 
 public class ServiceHelper {
 
@@ -25,6 +21,7 @@ public class ServiceHelper {
 	
 	public static String post(String apiUrl, String params) {
 		try {
+			MyLog.log("POST apiUrl=" + apiUrl + "; params=" + params);
 			URL url = new URL(apiUrl);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
@@ -38,17 +35,18 @@ public class ServiceHelper {
 			String response = IOUtils.toString(connection.getInputStream());
 			
 			MyLog.log("POST RESPONSE=" + response);
-			
 			return response;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "";
+			MyLog.log("POST ERRORxxx=" + apiUrl);
+			return e.getMessage();
 		}
 	}	
 	
 	public static String get(String url) {
 		try {
+			MyLog.log("GET apiUrl=" + url);
 			HttpParams params = new BasicHttpParams();
 			HttpConnectionParams.setConnectionTimeout(params, TIMEOUT_CONNECTION);
 			HttpConnectionParams.setSoTimeout(params, TIMEOUT_SOCKET);
@@ -63,6 +61,7 @@ public class ServiceHelper {
 			inputStream.close();
 			response.getEntity().consumeContent();
 			
+			MyLog.log("GET RESPONSE=" + responseString);
 			return responseString;
 		} catch (Exception e) {
 			// TODO: handle exception

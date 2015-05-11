@@ -11,18 +11,48 @@
         android:id="@+id/btn_test" 
         android:text="Test"
         />
-        <com.example.testandroid.SemiCircleProgressBarView
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
+    
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_get_camera" 
+        android:text="Get Camera"
         />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_take_picture" 
+        android:text="Take Picture"
+        />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_increase_volume" 
+        android:text="++ Volume"
+        />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_decrease_volume" 
+        android:text="-- Volume"
+        />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_dispatch_take_picture" 
+        android:text="Dispatch Take Picture"
+        />           
         
-        
-        
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="test" 
-            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_goto_home" 
+        android:text="Go to HOME"
+        />         
+
 
 </LinearLayout>

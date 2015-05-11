@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:background="@drawable/drawer_child_bg" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="@dimen/text_size_medium" android:id="@id/tv_title_report_dialog" android:background="@color/list_bg" android:paddingLeft="@dimen/element_spacing_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/report_problem" android:drawablePadding="@dimen/element_spacing_normal" style="@style/DrawerList" />
+        <View android:background="@drawable/ab_bg" android:layout_width="fill_parent" android:layout_height="2.0dip" />
+        <RadioGroup android:id="@id/rg_report_problem" android:paddingLeft="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_doesnt_exist" android:layout_width="fill_parent" android:layout_height="wrap_content" android:checked="true" android:text="@string/rp_doesnt_exist" />
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_duplicate" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/rp_duplicate" />
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_closed" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/rp_closed" />
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_changed" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/rp_changed" />
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_misspelled" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/rp_misspelled" />
+            <RadioButton android:textColor="@color/body_text_1_inverse" android:id="@id/rb_other" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/rp_other" />
+        </RadioGroup>
+        <EditText android:gravity="top" android:id="@id/et_problem_message" android:background="@android:color/white" android:padding="@dimen/element_padding_normal" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:lines="3" android:ems="10" android:layout_weight="0.0" android:inputType="textMultiLine">
+            <requestFocus />
+        </EditText>
+        <Button android:textSize="@dimen/text_size_medium" android:textColor="@color/body_text_1" android:id="@id/btn_report_problem" android:background="@drawable/btn_bg" android:paddingLeft="@dimen/content_padding_normal" android:paddingTop="@dimen/element_padding_normal" android:paddingRight="@dimen/content_padding_normal" android:paddingBottom="@dimen/element_padding_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/element_spacing_normal" android:text="@string/report" android:onClick="onNotInList" />
+    </LinearLayout>
+</ScrollView>

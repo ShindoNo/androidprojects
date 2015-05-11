@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="direction_by_items">
+        <item>Ô tô</item>
+        <item>Đi bộ</item>
+    </string-array>
+    <string-array name="drawer_group_items">
+        <item>DANH MỤC ĐỊA ĐIỂM</item>
+        <item>LỊCH SỬ</item>
+        <item>ĐÁNH DẤU</item>
+        <item>CÀI ĐẶT</item>
+        <item>THÊM ĐỊA ĐIỂM</item>
+        <item>ENGLISH</item>
+        <item>GIỚI THIỆU</item>
+        <item>CHIA SẺ ĐỊA ĐIỂM CỦA TÔI</item>
+    </string-array>
+    <string-array name="history_tabs">
+        <item>ĐỊA ĐIỂM</item>
+        <item>TÌM KIẾM</item>
+    </string-array>
+</resources>

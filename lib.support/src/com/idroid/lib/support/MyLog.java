@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class MyLog {
 	
-	public static boolean IS_DEBUG = true;
+	public static boolean IS_DEBUG = false;
 	
 	public static void log(String message) {
 		if (IS_DEBUG) {
