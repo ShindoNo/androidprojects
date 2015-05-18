@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4a5865"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_menu_left"
+            android:id="@+id/img_menu" 
+            />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_webview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top" >
+
+        <include
+            android:id="@+id/wv_home"
+            layout="@layout/layout_webview" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#4a5865"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <include layout="@layout/item_tab" android:id="@+id/tab_home"/>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#7c858d" />
+
+        <include layout="@layout/item_tab" android:id="@+id/tab_livescore"/>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#7c858d" />
+
+        <include layout="@layout/item_tab" android:id="@+id/tab_dudoan"/>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#7c858d" />
+
+        <include layout="@layout/item_tab" android:id="@+id/tab_congdong"/>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#7c858d" />
+
+        <include layout="@layout/item_tab" android:id="@+id/tab_canhan"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -5,6 +5,15 @@
     android:orientation="vertical"
     >
     
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="70dp"
+        android:text="Hello World!"
+        android:id="@+id/tv_hello"
+        android:textColor="@color/state_text_tab"
+        />
+    
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

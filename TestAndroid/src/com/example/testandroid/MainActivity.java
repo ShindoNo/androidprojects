@@ -43,6 +43,14 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		findViewById(R.id.tv_hello).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.e("stk", "" + System.currentTimeMillis());
+			}
+		});
 
 		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
 			@Override
