@@ -18,13 +18,49 @@
             android:src="@drawable/ic_menu_left"
             android:id="@+id/img_menu" 
             />
+        
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:id="@+id/img_logo_top"
+            android:layout_centerInParent="true"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:text="@string/login_uppercase"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:id="@+id/tv_login"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:text="@string/logout_uppercase"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:id="@+id/tv_logout"
+            android:visibility="gone"
+            />        
     </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fl_webview_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_top" >
+        android:layout_below="@+id/rl_top"
+        android:layout_above="@+id/ll_bottom" 
+        >
 
         <include
             android:id="@+id/wv_home"
@@ -37,7 +73,9 @@
         android:layout_alignParentBottom="true"
         android:background="#4a5865"
         android:orientation="horizontal"
-        android:weightSum="5" >
+        android:weightSum="5"
+        android:id="@+id/ll_bottom" 
+        >
 
         <include layout="@layout/item_tab" android:id="@+id/tab_home"/>
 

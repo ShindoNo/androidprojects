@@ -9,11 +9,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import vn.vccorp.rongbay.network.MyLog;
+import vn.vccorp.rongbay.network.RequestHelper;
+import android.R.menu;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.PictureCallback;
@@ -24,12 +30,17 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.DownloadListener;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
 	int REQUEST_CODE_VOICE = 111;
 	int REQUEST_CODE_TAKE_PICTURE = 111;
@@ -44,6 +55,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		
+		
+		
+		
+		
+		
 		findViewById(R.id.tv_hello).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -52,13 +69,13 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				startVoiceRecognitionActivity();
-			}
-		});
+//		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				startVoiceRecognitionActivity();
+//			}
+//		});
 
 		findViewById(R.id.btn_get_camera).setOnClickListener(new OnClickListener() {
 			@Override
@@ -124,6 +141,117 @@ public class MainActivity extends Activity {
 		});
 		
 		test();
+		
+		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				testHandler((Button)v);
+			}
+		});
+		
+		initWebview();
+	}
+	
+	
+	@SuppressLint("SetJavaScriptEnabled")
+	public void initWebview() {
+		WebView mWebView = (WebView) findViewById(R.id.webview);
+		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		mWebView.setWebViewClient(new WebViewClient() {
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				// TODO Auto-generated method stub
+				Log.e("stk", "shouldOverrideUrlLoading url=" + url);
+				return false;
+			}
+			
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				// TODO Auto-generated method stub
+				super.onPageStarted(view, url, favicon);
+				Log.e("stk", "onPageStarted url=" + url);
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				// TODO Auto-generated method stub
+				super.onPageFinished(view, url);
+				Log.e("stk", "onPageFinished url=" + url);
+			}
+		});
+		
+		mWebView.setDownloadListener(new DownloadListener() {
+			@SuppressLint("NewApi")
+			@Override
+			public void onDownloadStart(String url,
+					String userAgent,
+					String contentDisposition,
+					String mimetype,
+					long contentLength) {
+				// TODO Auto-generated method stub
+				MyLog.log("onDownloadStart url=" + url);
+				MyLog.log("onDownloadStart userAgent=" + userAgent);
+				MyLog.log("onDownloadStart contentDisposition=" + contentDisposition);
+				MyLog.log("onDownloadStart mimetype=" + mimetype);
+				MyLog.log("onDownloadStart contentLength=" + contentLength);
+				
+				Request request = new Request(Uri.parse(url));
+			    request.allowScanningByMediaScanner();
+			    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+			    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "download");
+			    DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+			    dm.enqueue(request);				
+			}
+		});
+		
+		mWebView.loadUrl("https://stocksnap.io/photo/CVJ5PEX72G");
+		
+//		url=https://stocksnap.io/download-photo/CVJ5PEX72G
+		
+		testDownload();
+
+	}
+	
+	public void testDownload() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				String apiUrl = "https://stocksnap.io/download-photo/CVJ5PEX72G";
+				String params = "dl_token=f73b1200557fa4ff8f92085ce5ffafc3";
+				String response = RequestHelper.post(apiUrl, params);
+				MyLog.log("testDownload() response=" + response);
+			}
+		}).start();
+	}
+	
+	int count = 0;
+	
+	public void testHandler(final Button button) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				for (int i = 0; i < 10; i++) {
+					try {
+						Thread.sleep(1000);
+						count++;
+						button.post(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								button.setText(count + "");
+							}
+						});
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 	}
 	
 	public void test() {

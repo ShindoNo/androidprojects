@@ -5,6 +5,19 @@
     android:orientation="vertical"
     >
     
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:id="@+id/webview"
+        />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:id="@+id/btn_test" 
+        />
+    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,12 +27,7 @@
         android:textColor="@color/state_text_tab"
         />
     
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_test" 
-        android:text="Test"
-        />
+    
     
     <Button
         android:layout_width="match_parent"

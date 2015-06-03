@@ -30,6 +30,7 @@ public class PushTools {
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
+					
 					GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context.getApplicationContext());
 					String regId = gcm.register(SENDER_ID);
 					

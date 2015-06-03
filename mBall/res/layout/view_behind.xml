@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#4a5865" 
+    android:id="@+id/ll_menu_container"
     >
     
 

@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.ironsource.mobilcore.CallbackResponse;
 import com.ironsource.mobilcore.MobileCore;
 import com.ironsource.mobilcore.MobileCore.LOG_TYPE;
@@ -99,19 +99,17 @@ public class ReadConfig {
 								// setup GA
 								// setup GA
 								// setup GA
-								String gaAll = config.getString(ConfigService.ga_all);
-								Tracker trackerAll = GoogleAnalytics.getInstance(mActivity).getTracker(gaAll);
-								
-								
-								trackerAll.send(MapBuilder.createAppView()
-										.set(Fields.SCREEN_NAME, mActivity.getPackageName())
-										.build());
-
-								String gaApp = config.getString(ConfigService.ga_app);
-								Tracker trackerApp = GoogleAnalytics.getInstance(mActivity).getTracker(gaApp);
-								trackerApp.send(MapBuilder.createAppView()
-										.set(Fields.SCREEN_NAME, mActivity.getPackageName())
-										.build());
+//								String gaAll = config.getString(ConfigService.ga_all);
+//								Tracker trackerAll = GoogleAnalytics.getInstance(mActivity).getTracker(gaAll);								
+//								trackerAll.send(MapBuilder.createAppView()
+//										.set(Fields.SCREEN_NAME, mActivity.getPackageName())
+//										.build());
+//
+//								String gaApp = config.getString(ConfigService.ga_app);
+//								Tracker trackerApp = GoogleAnalytics.getInstance(mActivity).getTracker(gaApp);
+//								trackerApp.send(MapBuilder.createAppView()
+//										.set(Fields.SCREEN_NAME, mActivity.getPackageName())
+//										.build());
 
 								// setup adview
 								// setup adview

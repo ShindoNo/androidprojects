@@ -95,12 +95,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int ptrSubHeaderTextAppearance=0x7f01000b;
     }
     public static final class dimen {
-        public static int header_footer_internal_padding=0x7f060005;
-        public static int header_footer_left_right_padding=0x7f060003;
-        public static int header_footer_top_bottom_padding=0x7f060004;
-        public static int indicator_corner_radius=0x7f060001;
-        public static int indicator_internal_padding=0x7f060002;
-        public static int indicator_right_padding=0x7f060000;
+        public static int header_footer_internal_padding=0x7f050005;
+        public static int header_footer_left_right_padding=0x7f050003;
+        public static int header_footer_top_bottom_padding=0x7f050004;
+        public static int indicator_corner_radius=0x7f050001;
+        public static int indicator_internal_padding=0x7f050002;
+        public static int indicator_right_padding=0x7f050000;
     }
     public static final class drawable {
         public static int arrow_down=0x7f020000;
@@ -112,19 +112,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int indicator_bg_top=0x7f020006;
     }
     public static final class id {
-        public static int both=0x7f050003;
-        public static int disabled=0x7f050000;
-        public static int flip=0x7f050005;
-        public static int gridview=0x7f050006;
-        public static int pullDownFromTop=0x7f050001;
-        public static int pullUpFromBottom=0x7f050002;
-        public static int pull_to_refresh_image=0x7f050009;
-        public static int pull_to_refresh_progress=0x7f05000a;
-        public static int pull_to_refresh_sub_text=0x7f05000c;
-        public static int pull_to_refresh_text=0x7f05000b;
-        public static int rotate=0x7f050004;
-        public static int scrollview=0x7f050008;
-        public static int webview=0x7f050007;
+        public static int both=0x7f060003;
+        public static int disabled=0x7f060004;
+        public static int flip=0x7f060007;
+        public static int gridview=0x7f060000;
+        public static int pullDownFromTop=0x7f060005;
+        public static int pullUpFromBottom=0x7f060006;
+        public static int pull_to_refresh_image=0x7f060009;
+        public static int pull_to_refresh_progress=0x7f06000a;
+        public static int pull_to_refresh_sub_text=0x7f06000c;
+        public static int pull_to_refresh_text=0x7f06000b;
+        public static int rotate=0x7f060008;
+        public static int scrollview=0x7f060002;
+        public static int webview=0x7f060001;
     }
     public static final class layout {
         public static int pull_to_refresh_header=0x7f030000;
@@ -191,7 +191,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrAdapterViewBackground
         */
-        public static final int PullToRefresh_ptrAdapterViewBackground = 0;
+        public static int PullToRefresh_ptrAdapterViewBackground = 0;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrAnimationStyle}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -208,7 +208,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 </table>
           @attr name com.handmark.pulltorefresh.library:ptrAnimationStyle
         */
-        public static final int PullToRefresh_ptrAnimationStyle = 12;
+        public static int PullToRefresh_ptrAnimationStyle = 12;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrDrawable}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -218,7 +218,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrDrawable
         */
-        public static final int PullToRefresh_ptrDrawable = 6;
+        public static int PullToRefresh_ptrDrawable = 6;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrDrawableBottom}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -228,7 +228,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrDrawableBottom
         */
-        public static final int PullToRefresh_ptrDrawableBottom = 8;
+        public static int PullToRefresh_ptrDrawableBottom = 8;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrDrawableTop}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -238,7 +238,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrDrawableTop
         */
-        public static final int PullToRefresh_ptrDrawableTop = 7;
+        public static int PullToRefresh_ptrDrawableTop = 7;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrHeaderBackground}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -250,7 +250,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrHeaderBackground
         */
-        public static final int PullToRefresh_ptrHeaderBackground = 1;
+        public static int PullToRefresh_ptrHeaderBackground = 1;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrHeaderSubTextColor}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -262,7 +262,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrHeaderSubTextColor
         */
-        public static final int PullToRefresh_ptrHeaderSubTextColor = 3;
+        public static int PullToRefresh_ptrHeaderSubTextColor = 3;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrHeaderTextAppearance}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -272,7 +272,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrHeaderTextAppearance
         */
-        public static final int PullToRefresh_ptrHeaderTextAppearance = 10;
+        public static int PullToRefresh_ptrHeaderTextAppearance = 10;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrHeaderTextColor}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -284,7 +284,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrHeaderTextColor
         */
-        public static final int PullToRefresh_ptrHeaderTextColor = 2;
+        public static int PullToRefresh_ptrHeaderTextColor = 2;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrMode}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -303,7 +303,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 </table>
           @attr name com.handmark.pulltorefresh.library:ptrMode
         */
-        public static final int PullToRefresh_ptrMode = 4;
+        public static int PullToRefresh_ptrMode = 4;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrOverScroll}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -314,7 +314,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           @attr name com.handmark.pulltorefresh.library:ptrOverScroll
         */
-        public static final int PullToRefresh_ptrOverScroll = 9;
+        public static int PullToRefresh_ptrOverScroll = 9;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrShowIndicator}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -325,7 +325,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           @attr name com.handmark.pulltorefresh.library:ptrShowIndicator
         */
-        public static final int PullToRefresh_ptrShowIndicator = 5;
+        public static int PullToRefresh_ptrShowIndicator = 5;
         /**
           <p>This symbol is the offset where the {@link com.handmark.pulltorefresh.library.R.attr#ptrSubHeaderTextAppearance}
           attribute's value can be found in the {@link #PullToRefresh} array.
@@ -335,6 +335,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.handmark.pulltorefresh.library:ptrSubHeaderTextAppearance
         */
-        public static final int PullToRefresh_ptrSubHeaderTextAppearance = 11;
+        public static int PullToRefresh_ptrSubHeaderTextAppearance = 11;
     };
 }
