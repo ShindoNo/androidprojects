@@ -16,7 +16,7 @@ public class Utils {
 	}
 	
 	// add session param to specific url
-	public static String addSession(Context context, String url) {
+	public static String addSession(String url) {
 		// if user not log in yet
 		if (User.getInstance() == null) {
 			return url;

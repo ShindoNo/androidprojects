@@ -11,19 +11,20 @@ public class Utils {
 		if (response == null) {
 			Message msg = new Message();
 			msg.what = ErrorCode.FAIL;
-			msg.obj = ErrorCode.MSG_NO_INTERNET;
+			msg.obj = ErrorCode.MSG_NO_RESPONSE;
 			handler.sendMessage(msg);
 			return false;
 		} else {
 			try {
 				JSONObject responseJSON = new JSONObject(response);
 				int status = responseJSON.getInt("status");
-				if (status == 200) {
+				if (status == 1) {
 					return true;
 				} else {
 					Message msg = new Message();
 					msg.what = ErrorCode.FAIL;
 					msg.obj = responseJSON.getString("mess");
+					handler.sendMessage(msg);
 					return false;
 				}
 			} catch (Exception e) {

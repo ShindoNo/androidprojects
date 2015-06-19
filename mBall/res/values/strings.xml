@@ -18,5 +18,19 @@
     
     <string name="please_fillup_data">Vui lòng nhập đủ thông tin</string>
     <string name="login_successful">Đăng nhập thành công</string>
+    <string name="logout_successful">Thoát thành công</string>
+    
+    <string name="view_more">Xem thêm</string>
+    <string name="news">Tin tức</string>
+    <string name="news_others">Tin tức khác</string>
+    
+    <string name="view_rate">xem tỉ lệ</string>
+    <string name="view_clip">xem clip</string>
+    <string name="view_report">tường thuật</string>
+    
+    <string name="match_news">Tin tức</string>
+    <string name="match_data">Dữ liệu</string>
+    <string name="match_rate">Tỉ lệ</string>
+    <string name="match_report">Tường thuật</string>
 
 </resources>

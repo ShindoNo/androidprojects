@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity {
     }	
     
     public void initFragment() {
-    	mFragmentMain = FragmentMain.getInstance(this);
+    	mFragmentMain = FragmentMain.getInstance();
     	getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragmentMain).commit();
     }
 	
@@ -57,8 +57,13 @@ public class MainActivity extends FragmentActivity {
     		return;
     	}
     	super.onBackPressed();
-    	
-    	
+    }
+    
+    @Override
+    protected void onPause() {
+    	// TODO Auto-generated method stub
+    	super.onPause();
+    	overridePendingTransition(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out);
     }
 
 	

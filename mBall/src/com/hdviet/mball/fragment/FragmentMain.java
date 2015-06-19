@@ -1,5 +1,7 @@
 package com.hdviet.mball.fragment;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,11 +10,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +30,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hdviet.mball.R;
+import com.hdviet.mball.datacontrollers.ConfigController;
 import com.hdviet.mball.datacontrollers.ErrorCode;
+import com.hdviet.mball.datacontrollers.UserController;
+import com.hdviet.mball.entity.Config;
+import com.hdviet.mball.entity.FooterBar;
+import com.hdviet.mball.entity.MenuCategory;
+import com.hdviet.mball.entity.MenuItem;
+import com.hdviet.mball.entity.TopBar;
 import com.hdviet.mball.entity.User;
 import com.hdviet.mball.network.RequestHelper;
 import com.hdviet.mball.util.MyLog;
@@ -37,16 +49,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class FragmentMain extends Fragment {
 
-	Activity mActivity;
+	int[] mTabIds = new int[] { R.id.tab_home, R.id.tab_livescore, R.id.tab_dudoan, R.id.tab_congdong, R.id.tab_canhan };
 
-	int[] mTabIds = new int[] { R.id.tab_home, R.id.tab_livescore, 
-								R.id.tab_dudoan, R.id.tab_congdong, R.id.tab_canhan };
-	
 	int[] mTabTextIds = new int[] { R.string.tab_home, R.string.tab_livescore, R.string.tab_dudoan,
-									R.string.tab_congdong, R.string.tab_canhan };
-	
-	int[] mTabIcons = new int[] {R.drawable.ic_tab_home, R.drawable.ic_tab_livescore, R.drawable.ic_tab_dudoan, 
-							     R.drawable.ic_tab_congdong, R.drawable.ic_tab_canhan};
+			R.string.tab_congdong, R.string.tab_canhan };
+
+	int[] mTabIcons = new int[] { R.drawable.ic_tab_home, R.drawable.ic_tab_livescore, R.drawable.ic_tab_dudoan,
+			R.drawable.ic_tab_congdong, R.drawable.ic_tab_canhan };
 
 	int mCurrentTabPosition;
 	SlidingMenu mSlidingMenu;
@@ -55,19 +64,32 @@ public class FragmentMain extends Fragment {
 	ProgressDialog mProgressDialog;
 
 	// for test
-	WebView mWebView;
-	
+	FragmentWebView mFragmentWebView;
+	FragmentHome mFragmentHome;
+	FragmentLiveScore mFragmentLiveScore;
+//	FragmentVideoDetails mFragmentVideoDetails;
+//	FragmentNewsDetails mFragmentNewsDetails;
+
+	Fragment mCurrentShowingFragment;
+
 	// login/logout
 	DialogLogin mDialogLogin;
 
-	public static FragmentMain getInstance(Activity activity) {
+	public static FragmentMain getInstance() {
 		FragmentMain fragmentMain = new FragmentMain();
-		fragmentMain.init(activity);
+		fragmentMain.init();
 		return fragmentMain;
 	}
 
-	public void init(Activity activity) {
-		mActivity = activity;
+	public void init() {
+
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		MyLog.log("FragmentMain onCreate()");
 	}
 
 	@Override
@@ -81,48 +103,17 @@ public class FragmentMain extends Fragment {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		initUI();
+		initFragment();
+		downloadConfig();		
 	}
 
 	@SuppressLint("SetJavaScriptEnabled")
 	public void initUI() {
-		mProgressDialog = new ProgressDialog(mActivity);
+		mProgressDialog = new ProgressDialog(getActivity());
 		mProgressDialog.setMessage("Loading...");
 
 		// init sliding menu
 		mSlidingMenu = (SlidingMenu) getView().findViewById(R.id.slidingmenu);
-
-		// initWebview
-		mWebView = (WebView) getView().findViewById(R.id.webview);
-		mWebView.getSettings().setJavaScriptEnabled(true);
-		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-		mWebView.setWebViewClient(new WebViewClient() {			
-			@Override
-			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-				// TODO Auto-generated method stub
-				super.onPageStarted(view, url, favicon);
-				MyLog.log("onPageStarted url=" + url);
-				getView().findViewById(R.id.pb_loading).setVisibility(View.VISIBLE);
-			}
-			
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				// TODO Auto-generated method stub
-				if (url.contains("session_id"))
-					return super.shouldOverrideUrlLoading(view, url);
-				else {
-					view.loadUrl(Utils.addSession(mActivity, url));
-					return true;
-				}
-			}
-
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				// TODO Auto-generated method stub
-				super.onPageFinished(view, url);
-				MyLog.log("onPageFinished url=" + url);
-				getView().findViewById(R.id.pb_loading).setVisibility(View.GONE);
-			}
-		});
 
 		// init tabs
 		for (int i = 0; i < mTabIds.length; i++) {
@@ -140,166 +131,218 @@ public class FragmentMain extends Fragment {
 			}
 		});
 
-		
-		downloadConfig(true);
-		
 		// init login/logout
 		if (User.getInstance() != null) {
 			getView().findViewById(R.id.tv_login).setVisibility(View.GONE);
 			getView().findViewById(R.id.tv_logout).setVisibility(View.VISIBLE);
 		} else {
 			getView().findViewById(R.id.tv_login).setVisibility(View.VISIBLE);
-			getView().findViewById(R.id.tv_logout).setVisibility(View.GONE);			
+			getView().findViewById(R.id.tv_logout).setVisibility(View.GONE);
 		}
-		
+
 		getView().findViewById(R.id.tv_login).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				mDialogLogin = new DialogLogin(mActivity, mLoginHandler);
+				mDialogLogin = new DialogLogin(getActivity(), mLoginHandler);
 				mDialogLogin.show();
 			}
 		});
-		
+
 		getView().findViewById(R.id.tv_logout).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Handler handler = new Handler() {
+					@Override
+					public void handleMessage(Message msg) {
+						// TODO Auto-generated method stub
+						super.handleMessage(msg);
+						mProgressDialog.dismiss();
+						if (msg.what == ErrorCode.FAIL) {
+							Toast.makeText(getActivity(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+						} else if (msg.what == ErrorCode.SUCCESS) {
+							Toast.makeText(getActivity(), getString(R.string.logout_successful), Toast.LENGTH_SHORT)
+									.show();
+						}
+					}
+				};
+				mProgressDialog.show();
+				UserController.logout(handler);
+				mFragmentWebView.loadUrl("javascript:logout(1)");
 				User.setInstance(null);
 				getView().findViewById(R.id.tv_login).setVisibility(View.VISIBLE);
 				getView().findViewById(R.id.tv_logout).setVisibility(View.GONE);
-				mWebView.loadUrl("javascript:logout(1)");
 			}
 		});
 
-	}
-
-	public void initMenuAndTab() {
-		// init UI here
-		try {
-			LayoutInflater inflater = LayoutInflater.from(mActivity);
-			LinearLayout menuContainer = (LinearLayout) getView().findViewById(R.id.ll_menu_container);
-
-			JSONObject configJSON = new JSONObject(Utils.getString(mActivity, NameSpace.SHARED_PREF_CONFIG));
-			JSONArray menuLeftJSON = configJSON.getJSONArray("data");
-			for (int i = 0; i < menuLeftJSON.length(); i++) {
-				JSONObject groupJSON = menuLeftJSON.getJSONObject(i);
-				String groupTitle = groupJSON.getString("title");
-				View rowTitle = inflater.inflate(R.layout.row_menuleft_title, null);
-				((TextView) rowTitle.findViewById(R.id.tv_title)).setText(groupTitle);
-				menuContainer.addView(rowTitle);
-
-				JSONArray groupList = groupJSON.getJSONArray("list");
-				for (int k = 0; k < groupList.length(); k++) {
-					JSONObject item = groupList.getJSONObject(k);
-					View rowItem = inflater.inflate(R.layout.row_menuleft_list, null);
-					((TextView) rowItem.findViewById(R.id.tv_menuleft)).setText(item.getString("name"));
-					ImageLoader.getInstance().displayImage(item.getString("logo"),
-							(ImageView) rowItem.findViewById(R.id.img_menuleft));
-					menuContainer.addView(rowItem);
-					rowItem.setTag(R.id.tag_url, item.getString("url"));
-					rowItem.setOnClickListener(mOnClickMenuLeftListener);
-				}
-			}
-
-			getView().findViewById(R.id.tab_home).setTag(R.id.tag_url,
-					configJSON.getJSONObject("footer").getString("home"));
-			getView().findViewById(R.id.tab_livescore).setTag(R.id.tag_url,
-					configJSON.getJSONObject("footer").getString("live"));
-			getView().findViewById(R.id.tab_dudoan).setTag(R.id.tag_url,
-					configJSON.getJSONObject("footer").getString("betting"));
-			getView().findViewById(R.id.tab_congdong).setTag(R.id.tag_url,
-					configJSON.getJSONObject("footer").getString("social"));
-			getView().findViewById(R.id.tab_canhan).setTag(R.id.tag_url,
-					configJSON.getJSONObject("footer").getString("profile"));
-			
-			ImageLoader.getInstance().displayImage(configJSON.getJSONObject("topbar").getString("logo"), (ImageView)getView().findViewById(R.id.img_logo_top));
-			getView().findViewById(R.id.img_logo_top).setTag(R.id.tag_url, configJSON.getJSONObject("topbar").getString("url"));
-			getView().findViewById(R.id.img_logo_top).setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					String url = v.getTag(R.id.tag_url).toString();
-					mWebView.loadUrl(Utils.addSession(mActivity, url));
-//					mWebView.loadUrl(url);
-				}
-			});
-			
-			mCurrentTabPosition = 0;
-			onSelectTab(0);			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 
 	}
 
-	public void downloadConfig(final boolean pendingConfig) {
-		if (pendingConfig) {
-			mProgressDialog.show();
-			mProgressDialog.setCancelable(false);
-		}
+	public void initFragment() {
+		// add fragment webview
+		mFragmentWebView = FragmentWebView.getInstance();
+		getFragmentManager().beginTransaction()
+				.add(R.id.fragment_content_container, mFragmentWebView)
+				.hide(mFragmentWebView)
+				.commit();
 
-		new Thread(new Runnable() {
+		mFragmentHome = FragmentHome.getInstance(mFragmentHomeCallback);
+		getFragmentManager().beginTransaction()
+							.add(R.id.fragment_content_container, mFragmentHome)
+							.commit();
+		mCurrentShowingFragment = mFragmentHome;
+
+//		mFragmentVideoDetails = FragmentVideoDetails.getInstance();
+//		getFragmentManager().beginTransaction()
+//				.add(R.id.fragment_content_container, mFragmentVideoDetails)
+//				.hide(mFragmentVideoDetails)
+//				.commit();
+
+//		mFragmentNewsDetails = FragmentNewsDetails.getInstance();
+//		getFragmentManager().beginTransaction()
+//				.add(R.id.fragment_content_container, mFragmentNewsDetails)
+//				.hide(mFragmentNewsDetails)
+//				.commit();
+		
+		mFragmentLiveScore = FragmentLiveScore.getIntance();
+		getFragmentManager().beginTransaction()
+							.add(R.id.fragment_content_container, mFragmentLiveScore)
+							.hide(mFragmentLiveScore)
+							.commit();
+		
+
+		getFragmentManager().addOnBackStackChangedListener(mOnBackStackChangedListener);
+	}
+
+	public void downloadConfig() {
+		Handler handler = new Handler() {
 			@Override
-			public void run() {
+			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
-				final String response = RequestHelper.get(NameSpace.API_CONFIG);
-				mActivity.runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						mProgressDialog.dismiss();
-						if (response == null) {
-							if (pendingConfig == false) {
-								return;
-							}
+				super.handleMessage(msg);
+				mProgressDialog.dismiss();
 
-							AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-							builder.setMessage("Can not download config data");
-							builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									dialog.dismiss();
-									downloadConfig(pendingConfig);
-								}
-							});
-							builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									dialog.dismiss();
-									mActivity.finish();
-								}
-							});
-							builder.setCancelable(false);
-							builder.show();
-						} else {
-							Utils.saveString(mActivity, NameSpace.SHARED_PREF_CONFIG, response);
-							if (pendingConfig) {
-								initMenuAndTab();
-							}
+				if (msg.what == ErrorCode.FAIL) {
+					Toast.makeText(getActivity(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+
+					AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+					builder.setMessage("Can not download config data");
+					builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.dismiss();
+							downloadConfig();
 						}
-					}
-				});
+					});
+					builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.dismiss();
+							getActivity().finish();
+						}
+					});
+					builder.setCancelable(false);
+					builder.show();
+
+				} else if (msg.what == ErrorCode.SUCCESS) {
+					initMenuAndTab((Config) msg.obj);
+				}
 			}
-		}).start();
+		};
+
+		mProgressDialog.show();
+		mProgressDialog.setCancelable(false);
+		ConfigController.getConfig(handler);
+	}
+
+	public void initMenuAndTab(Config config) {
+		LayoutInflater inflater = LayoutInflater.from(getActivity());
+		LinearLayout menuContainer = (LinearLayout) getView().findViewById(R.id.ll_menu_container);
+
+		// setup MenuLeft UI
+		ArrayList<MenuCategory> menuLeft = config.getMenuleft();
+		for (int i = 0; i < menuLeft.size(); i++) {
+			MenuCategory menuCategory = menuLeft.get(i);
+			View rowTitle = inflater.inflate(R.layout.row_menuleft_title, null);
+			((TextView) rowTitle.findViewById(R.id.tv_title)).setText(menuCategory.getTitle());
+			menuContainer.addView(rowTitle);
+
+			for (int k = 0; k < menuCategory.getListMenuItem().size(); k++) {
+				MenuItem menuItem = menuCategory.getListMenuItem().get(k);
+				View rowItem = inflater.inflate(R.layout.row_menuleft_list, null);
+				((TextView) rowItem.findViewById(R.id.tv_menuleft)).setText(menuItem.getName());
+				ImageLoader.getInstance().displayImage(menuItem.getLogo(),
+						(ImageView) rowItem.findViewById(R.id.img_menuleft));
+				rowItem.setTag(R.id.tag_url, menuItem.getUrl());
+				rowItem.setOnClickListener(mOnClickMenuLeftListener);
+
+				menuContainer.addView(rowItem);
+			}
+		}
+
+		// setup FooterBar UI
+		FooterBar footerBar = config.getFooterBar();
+
+		getView().findViewById(R.id.tab_home).setTag(R.id.tag_url, footerBar.getHome());
+		getView().findViewById(R.id.tab_livescore).setTag(R.id.tag_url, footerBar.getLive());
+		getView().findViewById(R.id.tab_dudoan).setTag(R.id.tag_url, footerBar.getBetting());
+		getView().findViewById(R.id.tab_congdong).setTag(R.id.tag_url, footerBar.getSocial());
+		getView().findViewById(R.id.tab_canhan).setTag(R.id.tag_url, footerBar.getProfile());
+
+		// setup TopBar UI
+		TopBar topBar = config.getTopBar();
+		ImageLoader.getInstance().displayImage(topBar.getLogo(), (ImageView) getView().findViewById(R.id.img_logo_top));
+		getView().findViewById(R.id.img_logo_top).setTag(R.id.tag_url, topBar.getUrl());
+		getView().findViewById(R.id.img_logo_top).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String url = v.getTag(R.id.tag_url).toString();
+				mFragmentWebView.loadUrl(Utils.addSession(url));
+				getFragmentManager().beginTransaction().show(mFragmentHome).hide(mFragmentWebView).commit();
+			}
+		});
+
+		mCurrentTabPosition = 0;
+		onSelectTab(0);
+
 	}
 
 	public void onSelectTab(int tabPosition) {		
+		if (tabPosition == -1) {
+			getView().findViewById(mTabIds[mCurrentTabPosition]).setSelected(false);
+			getView().findViewById(mTabIds[mCurrentTabPosition]).setBackgroundColor(
+					getResources().getColor(R.color.bg_tab_normal));
+			return;
+		}
+		
 		getView().findViewById(mTabIds[mCurrentTabPosition]).setSelected(false);
-		getView().findViewById(mTabIds[mCurrentTabPosition]).setBackgroundColor(getResources().getColor(R.color.bg_tab_normal));
+		getView().findViewById(mTabIds[mCurrentTabPosition]).setBackgroundColor(
+				getResources().getColor(R.color.bg_tab_normal));
 
 		mCurrentTabPosition = tabPosition;
-		
+
 		getView().findViewById(mTabIds[mCurrentTabPosition]).setSelected(true);
-		getView().findViewById(mTabIds[mCurrentTabPosition]).setBackgroundColor(getResources().getColor(R.color.bg_tab_active));
+		getView().findViewById(mTabIds[mCurrentTabPosition]).setBackgroundColor(
+				getResources().getColor(R.color.bg_tab_active));
 
-		
-		String url = getView().findViewById(mTabIds[mCurrentTabPosition]).getTag(R.id.tag_url).toString();
-
-		mWebView.loadUrl(Utils.addSession(mActivity, url));
+		if (tabPosition == 0) {
+			getFragmentManager().beginTransaction().hide(mCurrentShowingFragment).show(mFragmentHome).commit();
+			mCurrentShowingFragment = mFragmentHome;
+			mFragmentHome.checkInitData();
+		} else if (tabPosition == 1) {
+			getFragmentManager().beginTransaction().hide(mCurrentShowingFragment).show(mFragmentLiveScore).commit();
+			mCurrentShowingFragment = mFragmentLiveScore;
+			mFragmentLiveScore.checkInitData();			
+		} else {
+			getFragmentManager().beginTransaction().hide(mCurrentShowingFragment).show(mFragmentWebView).commit();
+			mCurrentShowingFragment = mFragmentWebView;
+			String url = getView().findViewById(mTabIds[mCurrentTabPosition]).getTag(R.id.tag_url).toString();
+			mFragmentWebView.loadUrl(Utils.addSession(url));
+		}
 
 	}
 
@@ -309,9 +352,9 @@ public class FragmentMain extends Fragment {
 			// TODO Auto-generated method stub
 			for (int i = 0; i < mTabIds.length; i++) {
 				if (mTabIds[i] == v.getId()) {
-					if (mCurrentTabPosition != i) {
+//					if (mCurrentTabPosition != i) {
 						onSelectTab(i);
-					}
+//					}
 					break;
 				}
 			}
@@ -324,7 +367,10 @@ public class FragmentMain extends Fragment {
 			// TODO Auto-generated method stub
 			mSlidingMenu.showContent();
 			String url = v.getTag(R.id.tag_url).toString();
-			mWebView.loadUrl(Utils.addSession(mActivity, url));
+			mFragmentWebView.loadUrl(Utils.addSession(url));
+			getFragmentManager().beginTransaction().hide(mCurrentShowingFragment).show(mFragmentWebView).commit();
+			mCurrentShowingFragment = mFragmentWebView;
+			onSelectTab(-1);
 		}
 	};
 
@@ -332,24 +378,87 @@ public class FragmentMain extends Fragment {
 		public void handleMessage(Message msg) {
 			if (msg.what == ErrorCode.SUCCESS) {
 				mDialogLogin.dismiss();
-				User.setInstance((User)msg.obj);
+				User.setInstance((User) msg.obj);
 				getView().findViewById(R.id.tv_login).setVisibility(View.GONE);
 				getView().findViewById(R.id.tv_logout).setVisibility(View.VISIBLE);
-				mWebView.loadUrl(Utils.addSession(mActivity, mWebView.getUrl()));				
+
+				if (mFragmentWebView.getCurrenturl() != null) {
+					mFragmentWebView.loadUrl(Utils.addSession(mFragmentWebView.getCurrenturl()));
+				}
+
 			} else if (msg.what == ErrorCode.FAIL) {
-				Toast.makeText(getActivity(), (String)msg.obj, Toast.LENGTH_SHORT).show();
-			}			
+				Toast.makeText(getActivity(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+			}
 		};
 	};
-	
-	public boolean canGoBack() {
-		if (mWebView.canGoBack()) {
-			mWebView.goBack();
-			return true;
-		} else {
-			return false;
+
+	Handler mFragmentHomeCallback = new Handler() {
+		public void handleMessage(Message msg) {
+
+//			if (msg.what == FragmentHome.ACTION_VIDEO_DETAILS) {
+//				String videoId = (String) msg.obj;
+//				mFragmentVideoDetails.loadData(videoId);
+//				getFragmentManager().beginTransaction()
+//						.setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out,
+//						R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
+//						.show(mFragmentVideoDetails)
+//						.hide(mCurrentShowingFragment)
+//						.addToBackStack(null)
+//						.commit();
+//				mCurrentShowingFragment = mFragmentVideoDetails;
+//
+//			}
+			
+//			else if (msg.what == FragmentHome.ACTION_NEWS_DETAILS) {
+//				String newsId = (String) msg.obj;
+//				mFragmentNewsDetails.loadNews(newsId);
+//				getFragmentManager().beginTransaction()
+//						.setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out,
+//						 R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
+//						.show(mFragmentNewsDetails)
+//						.hide(mCurrentShowingFragment)
+//						.addToBackStack(null)
+//						.commit();
+//				mCurrentShowingFragment = mFragmentNewsDetails;
+//
+//			}
+
+		};
+	};
+
+	OnBackStackChangedListener mOnBackStackChangedListener = new OnBackStackChangedListener() {
+		@Override
+		public void onBackStackChanged() {
+			// TODO Auto-generated method stub
+			if (mFragmentHome.isVisible()) {
+				mCurrentShowingFragment = mFragmentHome;
+			} else if (mFragmentWebView.isVisible()) {
+				mCurrentShowingFragment = mFragmentWebView;
+			}
+			
+//			} else if (mFragmentVideoDetails.isVisible()) {
+//			mCurrentShowingFragment = mFragmentVideoDetails;			
+//			else if (mFragmentNewsDetails.isVisible()) {
+//				mCurrentShowingFragment = mFragmentNewsDetails;
+//			}
 		}
+	};
+
+	public boolean canGoBack() {
+		
+//		if (mFragmentWebView.isVisible()) {
+//			if (mFragmentWebView.getCurrenturl().equals(urlFragmentHomeCallback)) {
+//				getFragmentManager().beginTransaction().show(mFragmentHome).hide(mFragmentWebView).commit();
+//				return true;
+//			} else if (mFragmentWebView.canGoBack()) {
+//				mFragmentWebView.goBack();
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		}
+
+		return false;
 	}
-	
 
 }

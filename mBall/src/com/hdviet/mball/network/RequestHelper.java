@@ -60,7 +60,7 @@ public class RequestHelper {
 			InputStream inputStream = connection.getInputStream();
 			String response = readInputStream(inputStream);
 			
-			MyLog.log("GET response=" + response);
+//			MyLog.log("GET response=" + response);
 			return response;
 		} catch (Exception e) {
 			// TODO: handle exception

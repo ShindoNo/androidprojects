@@ -5,7 +5,8 @@
     
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     
 
     <uses-sdk
@@ -14,14 +15,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_app"
+        android:icon="@drawable/ic_app_2"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" 
+        >
         
         <activity
             android:name="com.hdviet.mball.MainActivity" 
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait" >
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" 
+            >
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,6 +34,24 @@
             
             
         </activity>
+        
+        <activity
+            android:name="com.hdviet.mball.NewsDetailsActivity" 
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity
+            android:name="com.hdviet.mball.VideoDetailsActivity" 
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity
+            android:name="com.hdviet.mball.MatchDetailsActivity" 
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" >
+        </activity>        
         
     </application>
 

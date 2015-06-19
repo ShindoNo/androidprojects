@@ -55,16 +55,12 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/fl_webview_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_top"
-        android:layout_above="@+id/ll_bottom" 
+        android:layout_above="@+id/ll_bottom"
+        android:id="@+id/fragment_content_container" 
         >
-
-        <include
-            android:id="@+id/wv_home"
-            layout="@layout/layout_webview" />
     </FrameLayout>
 
     <LinearLayout

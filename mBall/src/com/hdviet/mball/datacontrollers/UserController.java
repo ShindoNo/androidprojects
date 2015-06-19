@@ -19,7 +19,7 @@ public class UserController {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				String apiUrl = "http://wap.mball.vn/api/login.html?is_app=1&username=" + username + "&password=" + password;
+				String apiUrl = NameSpace.API_LOGIN + "username=" + username + "&password=" + password;
 				final String response = RequestHelper.get(apiUrl);
 				
 				if (Utils.checkResponse(handler, response)) {
@@ -27,7 +27,7 @@ public class UserController {
 						JSONObject responseJSON = new JSONObject(response);
 						Message msg = new Message();
 						msg.what = ErrorCode.SUCCESS;
-						msg.obj = parseUser(handler, responseJSON.getJSONObject("data"));
+						msg.obj = parseUser(responseJSON.getJSONObject("data"));
 						handler.sendMessage(msg);
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -42,12 +42,31 @@ public class UserController {
 		}).start();
 	}
 	
-	public static User parseUser(Handler handler, JSONObject dataJSONObject) throws JSONException {
+	public static User parseUser(JSONObject data) throws JSONException {
 		User user = new User();
-		user.setUserId(dataJSONObject.getString("user_id"));
-		user.setUsername(dataJSONObject.getString("username"));
-		user.setSession(dataJSONObject.getString("session_id"));
+		user.setUserId(data.getString("user_id"));
+		user.setUsername(data.getString("username"));
+		user.setSession(data.getString("session_id"));
 		return user;
+	}
+	
+	public static void saveUser(JSONObject data) {
+		
+	}
+	
+	public static void logout(final Handler handler) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				String apiUrl = NameSpace.API_LOGOUT + "session_id=" + User.getInstance().getSession()
+													 + "&user_id=" + User.getInstance().getUserId();
+				String response = RequestHelper.get(apiUrl);
+				if (Utils.checkResponse(handler, response)) {
+					handler.sendEmptyMessage(ErrorCode.SUCCESS);
+				}
+			}
+		}).start();
 	}
 	
 	

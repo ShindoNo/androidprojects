@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="libs/smack/jxmpp-core-0.4.2-beta1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/jxmpp-util-cache-0.4.2-beta1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/minidns-0.1.7.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-android-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-android-extensions-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-core-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-extensions-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-im-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-resolver-minidns-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-sasl-provided-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/smack/smack-tcp-4.1.1.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>

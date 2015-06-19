@@ -1,54 +1,35 @@
 package com.example.testandroid;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import vn.vccorp.rongbay.network.MyLog;
-import vn.vccorp.rongbay.network.RequestHelper;
-import android.R.menu;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.DownloadManager;
-import android.app.DownloadManager.Request;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.hardware.Camera.CameraInfo;
-import android.hardware.Camera.PictureCallback;
-import android.media.AudioManager;
-import android.net.Uri;
+import org.jivesoftware.smack.ConnectionListener;
+import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.SmackException.NotConnectedException;
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.chat.Chat;
+import org.jivesoftware.smack.chat.ChatManager;
+import org.jivesoftware.smack.chat.ChatManagerListener;
+import org.jivesoftware.smack.chat.ChatMessageListener;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.tcp.XMPPTCPConnection;
+import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.speech.RecognizerIntent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.DownloadListener;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
 	int REQUEST_CODE_VOICE = 111;
 	int REQUEST_CODE_TAKE_PICTURE = 111;
 
-	private Camera camera;
-	private int cameraId = 0;
+	XMPPTCPConnection mConnection;
 
-	@SuppressLint("NewApi")
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -56,378 +37,127 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		
+		connect();
 		
-		
-		
-		
-		
-		findViewById(R.id.tv_hello).setOnClickListener(new OnClickListener() {
+		findViewById(R.id.btn_chat).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.e("stk", "" + System.currentTimeMillis());
-			}
-		});
-
-//		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				startVoiceRecognitionActivity();
-//			}
-//		});
-
-		findViewById(R.id.btn_get_camera).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				getCamera();
-			}
-		});
-
-		findViewById(R.id.btn_take_picture).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				takePicture();
-			}
-		});
-
-		findViewById(R.id.btn_increase_volume).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				((AudioManager) getSystemService(AUDIO_SERVICE)).adjustStreamVolume(AudioManager.STREAM_SYSTEM,
-						AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
-			}
-		});
-
-		findViewById(R.id.btn_decrease_volume).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				((AudioManager) getSystemService(AUDIO_SERVICE)).adjustStreamVolume(AudioManager.STREAM_SYSTEM,
-						AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);				
-
+				sendMessage();
 			}
 		});
 		
-		findViewById(R.id.btn_dispatch_take_picture).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dispatchTakePictureIntent();
-				new Handler().postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						
-						((AudioManager) getSystemService(AUDIO_SERVICE)).adjustStreamVolume(AudioManager.STREAM_SYSTEM,
-								AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
-					}
-				}, 3000);				
-			}
-		});
 		
-		findViewById(R.id.btn_goto_home).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(Intent.ACTION_MAIN);
-				intent.addCategory(Intent.CATEGORY_HOME);
-				startActivity(intent);
-			}
-		});
-		
-		test();
-		
-		findViewById(R.id.btn_test).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				testHandler((Button)v);
-			}
-		});
-		
-		initWebview();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		mConnection.disconnect();
+	}
 	
-	@SuppressLint("SetJavaScriptEnabled")
-	public void initWebview() {
-		WebView mWebView = (WebView) findViewById(R.id.webview);
-		mWebView.getSettings().setJavaScriptEnabled(true);
-		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-		mWebView.setWebViewClient(new WebViewClient() {
+	public void connect() {
+		new Thread(new Runnable() {
 			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			public void run() {
 				// TODO Auto-generated method stub
-				Log.e("stk", "shouldOverrideUrlLoading url=" + url);
-				return false;
-			}
-			
-			@Override
-			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-				// TODO Auto-generated method stub
-				super.onPageStarted(view, url, favicon);
-				Log.e("stk", "onPageStarted url=" + url);
-			}
-
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				// TODO Auto-generated method stub
-				super.onPageFinished(view, url);
-				Log.e("stk", "onPageFinished url=" + url);
-			}
-		});
-		
-		mWebView.setDownloadListener(new DownloadListener() {
-			@SuppressLint("NewApi")
-			@Override
-			public void onDownloadStart(String url,
-					String userAgent,
-					String contentDisposition,
-					String mimetype,
-					long contentLength) {
-				// TODO Auto-generated method stub
-				MyLog.log("onDownloadStart url=" + url);
-				MyLog.log("onDownloadStart userAgent=" + userAgent);
-				MyLog.log("onDownloadStart contentDisposition=" + contentDisposition);
-				MyLog.log("onDownloadStart mimetype=" + mimetype);
-				MyLog.log("onDownloadStart contentLength=" + contentLength);
+				XMPPTCPConnectionConfiguration configuration = XMPPTCPConnectionConfiguration.builder()
+                        .setUsernameAndPassword("test1", "123456")
+                        .setServiceName("anhs-macbook-pro-2.local")
+                        .setHost("192.168.65.255")
+                        .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
+                        .setPort(5222)
+                        .build();               
 				
-				Request request = new Request(Uri.parse(url));
-			    request.allowScanningByMediaScanner();
-			    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-			    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "download");
-			    DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-			    dm.enqueue(request);				
-			}
-		});
-		
-		mWebView.loadUrl("https://stocksnap.io/photo/CVJ5PEX72G");
-		
-//		url=https://stocksnap.io/download-photo/CVJ5PEX72G
-		
-		testDownload();
-
-	}
-	
-	public void testDownload() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				String apiUrl = "https://stocksnap.io/download-photo/CVJ5PEX72G";
-				String params = "dl_token=f73b1200557fa4ff8f92085ce5ffafc3";
-				String response = RequestHelper.post(apiUrl, params);
-				MyLog.log("testDownload() response=" + response);
-			}
-		}).start();
-	}
-	
-	int count = 0;
-	
-	public void testHandler(final Button button) {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				for (int i = 0; i < 10; i++) {
-					try {
-						Thread.sleep(1000);
-						count++;
-						button.post(new Runnable() {
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								button.setText(count + "");
-							}
-						});
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				mConnection = new XMPPTCPConnection(configuration);
+				mConnection.addConnectionListener(mConnectionListener);
+				try {
+					mConnection.connect().login();
+				} catch (XMPPException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SmackException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}).start();
 	}
 	
-	public void test() {
-        HashMap hashmap = new HashMap();
-        hashmap.put("appid", "explorer-app");
-        hashmap.put("app_type", "android");
-        hashmap.put("version", "1.3.3");
-        hashmap.put("user_id", "358240054338207");
-        
-//      &signature=0a9bb879972539ca7ec87a85d1df59578b03e3ac28bad64a5ca4ed209c2302e4        
-//        hashmap.put("borders", "21.003606934463633,105.80871529877186,21.013652946505303,105.81617955118418");
-        hashmap.put("fe_category", "6");
-        hashmap.put("mlr", "1");
-        hashmap.put("observ", "45.0");
-        hashmap.put("of", "json");
-        hashmap.put("offset", "0");
-        hashmap.put("radius", "5.0");
-        hashmap.put("result_cnt", "250");
-        hashmap.put("user_gps", "20.985556,105.841051");
-        
-        try {
-			Log.e("stk", GenerateSignature.cookPOIURL(hashmap));
-		} catch (Exception e) {
+	public void sendMessage() {
+		try {
+			ChatManager.getInstanceFor(mConnection).createChat("test5@anhs-macbook-pro-2.local").sendMessage("Hello Test 5");
+		} catch (NotConnectedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
-		
 	}
-
-	public void startVoiceRecognitionActivity() {
-		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
-		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-		startActivityForResult(intent, REQUEST_CODE_VOICE);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (requestCode == REQUEST_CODE_VOICE && resultCode == RESULT_OK) {
-			ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-			for (int i = 0; i < matches.size(); i++) {
-				Log.e("stk", "maches[" + i + "]=" + matches.get(i));
+	
+	public void addListener() {
+		ChatManager.getInstanceFor(mConnection).addChatListener(new ChatManagerListener() {
+			@Override
+			public void chatCreated(Chat chat, boolean createdLocally) {
+				// TODO Auto-generated method stub
+				Log.e("stk", "chatCreated() createdLocally=" + createdLocally);
+				if (!createdLocally) {
+					chat.addMessageListener(mChatMessageListener);
+				}
 			}
-		}
-	}
-
-	public void getCamera() {
-		// do we have a camera?
-		if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-			Toast.makeText(this, "No camera on this device", Toast.LENGTH_LONG).show();
-		} else {
-			cameraId = findFrontFacingCamera();
-			if (cameraId < 0) {
-				Toast.makeText(this, "No front facing camera found.", Toast.LENGTH_LONG).show();
-			} else {
-				camera = Camera.open(cameraId);
-			}
-		}
-	}
-
-	private int findFrontFacingCamera() {
-		int cameraId = -1;
-		// Search for the front facing camera
-		int numberOfCameras = Camera.getNumberOfCameras();
-		for (int i = 0; i < numberOfCameras; i++) {
-			CameraInfo info = new CameraInfo();
-			Camera.getCameraInfo(i, info);
-			if (info.facing == CameraInfo.CAMERA_FACING_FRONT) {
-				Log.e("stk", "Camera found");
-				cameraId = i;
-				break;
-			}
-		}
-		return cameraId;
-	}
-
-	public void takePicture() {
-		camera.takePicture(null, null, new PhotoHandler(getApplicationContext()));
-	}
-
-	@Override
-	protected void onPause() {
-		Log.e("stk", "onPause");
-		if (camera != null) {
-			camera.release();
-			camera = null;
-		}
-		super.onPause();
-	}
-
-	public class PhotoHandler implements PictureCallback {
-
-		private final Context context;
-
-		public PhotoHandler(Context context) {
-			this.context = context;
-		}
-
+		});		
+	}	
+	
+	ChatMessageListener mChatMessageListener = new ChatMessageListener() {
 		@Override
-		public void onPictureTaken(byte[] data, Camera camera) {
-
-			File pictureFileDir = getDir();
-
-			if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {
-
-				Log.e("stk", "Can't create directory to save image.");
-				Toast.makeText(context, "Can't create directory to save image.", Toast.LENGTH_LONG).show();
-				return;
-
-			}
-
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
-			String date = dateFormat.format(new Date());
-			String photoFile = "Picture_" + date + ".jpg";
-
-			String filename = pictureFileDir.getPath() + File.separator + photoFile;
-
-			File pictureFile = new File(filename);
-
-			try {
-				FileOutputStream fos = new FileOutputStream(pictureFile);
-				fos.write(data);
-				fos.close();
-				Toast.makeText(context, "New Image saved:" + photoFile, Toast.LENGTH_LONG).show();
-			} catch (Exception error) {
-				Log.e("stk", "File" + filename + "not saved: " + error.getMessage());
-				Toast.makeText(context, "Image could not be saved.", Toast.LENGTH_LONG).show();
-			}
+		public void processMessage(Chat chat, Message message) {
+			// TODO Auto-generated method stub
+			Log.e("stk", "processMessage() message=" + message.getBody());
 		}
+	};
+	
+	
+	ConnectionListener mConnectionListener = new ConnectionListener() {
+        @Override
+        public void connected(XMPPConnection connection) {
+            Log.e("stk", "connected");
+            addListener();
+        }
 
-		private File getDir() {
-			File sdDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-			return new File(sdDir, "CameraAPIDemo");
-		}
-	}
+        @Override
+        public void authenticated(XMPPConnection connection, boolean resumed) {
+            Log.e("stk", "authenticated");
 
-	static final int REQUEST_TAKE_PHOTO = 1;
+        }
 
-	private void dispatchTakePictureIntent() {
-		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		// Ensure that there's a camera activity to handle the intent
-		if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-			// Create the File where the photo should go
-			File photoFile = null;
-			try {
-				photoFile = createImageFile();
-			} catch (IOException ex) {
-				// Error occurred while creating the File
-				ex.printStackTrace();
-			}
-			// Continue only if the File was successfully created
-			if (photoFile != null) {
-				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-				startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-			}
-		}
-	}
+        @Override
+        public void connectionClosed() {
+            Log.e("stk", "connectionClosed");
+        }
 
-	String mCurrentPhotoPath;
+        @Override
+        public void connectionClosedOnError(Exception e) {
+            Log.e("stk", "connectionClosedOnError");
+        }
 
-	private File createImageFile() throws IOException {
-		// Create an image file name
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "JPEG_" + timeStamp + "_";
-		File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-		File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        @Override
+        public void reconnectionSuccessful() {
+            Log.e("stk", "reconnectionSuccessful");
+        }
 
-		// Save a file: path for use with ACTION_VIEW intents
-		mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-		return image;
-	}
+        @Override
+        public void reconnectingIn(int seconds) {
+            Log.e("stk", "reconnectingIn");
+        }
+
+        @Override
+        public void reconnectionFailed(Exception e) {
+            Log.e("stk", "reconnectionFailed");
+        }
+    };
+    
+    
 
 }
