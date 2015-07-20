@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="bg_tab_active">#30404e</color>
-    <color name="bg_tab_normal">#0030404e</color>
-    <color name="text_tab_active">#ffffff</color>
-    <color name="text_tab_normal">#b7bcc1</color>
-    
-</resources>
