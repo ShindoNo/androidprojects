@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">BarclaysDemoApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_top_home">BARCLAYS DEMO APP</string>
+
+    <!--fragment screen 1-->
+    <string name="account_balance">Account Balance</string>
+    <string name="sar">SAR</string>
+    <string name="daily_limit_left">Daily limit left: SAR</string>
+    <string name="monthly_limit_left">Monthly limit left: SAR</string>
+    <string name="air_time_amount">Air time amount :</string>
+    <string name="receiver_number">Receiver Number :</string>
+    <string name="account_number">Account Number:</string>
+
+    <!--contact picker dialog-->
+    <string name="pick_contact">Please select receiver phone number:</string>
+
+    <!--fragment screen 2-->
+    <string name="account_holder_name">Account Holder Name</string>
+    <string name="number_topped_up">Number Topped Up:</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="buy">Buy</string>
+    <string name="confirm">Confirm</string>
+
+</resources>
