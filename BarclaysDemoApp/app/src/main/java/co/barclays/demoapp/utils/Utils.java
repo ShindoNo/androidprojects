@@ -4,16 +4,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import co.barclays.demoapp.R;
+import co.barclays.demoapp.object.Contact;
 
 public class Utils {
-
 	/**
 	 * Save a string to shared preferences
 	 * @param context application context
@@ -111,6 +114,71 @@ public class Utils {
         builder.setPositiveButton(positive, onClickListener);
         builder.setNegativeButton(negative, onClickListener);
         builder.show();
+    }
+
+    /**
+     * Show dialog message
+     * @param context application context
+     * @param message content of message
+     * @param positive content of positive button
+     */
+    public static void showMessageDialog(Context context, String message, String positive) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message);
+        builder.setPositiveButton(positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    /**
+     * Show dialog message
+     * @param context application context
+     * @param message content of message
+     */
+    public static void showMessageDialog(Context context, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message);
+        builder.setPositiveButton(context.getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    /**
+     * Get contacts from phone
+     * @param context application context
+     * @return list of phone contacts
+     */
+    public static ArrayList<Contact> getContacts(Context context) {
+        Cursor cursor = null;
+        ArrayList<Contact> contactList = new ArrayList<Contact>();
+        try {
+            String sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC";
+            cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, sortOrder);
+            cursor.moveToFirst();
+            do {
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                Contact contact = new Contact(id, name, phone);
+                contactList.add(contact);
+            } while (cursor.moveToNext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            return contactList;
+        }
     }
 
 }

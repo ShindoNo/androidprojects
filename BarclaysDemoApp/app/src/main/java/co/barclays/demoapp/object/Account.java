@@ -9,13 +9,16 @@ public class Account {
     String number;
     String name;
     String currencyCode;
-
     int availableBalance;
-    int dailyLimit;
-    int monthlyLimit;
 
     public Account() {
+        // init default values
+        type = "";
+        number = "";
+        name = "";
+        currencyCode = "";
 
+        availableBalance = 0;
     }
 
     public String getType() {
@@ -56,21 +59,5 @@ public class Account {
 
     public void setAvailableBalance(int availableBalance) {
         this.availableBalance = availableBalance;
-    }
-
-    public int getDailyLimit() {
-        return dailyLimit;
-    }
-
-    public void setDailyLimit(int dailyLimit) {
-        this.dailyLimit = dailyLimit;
-    }
-
-    public int getMonthlyLimit() {
-        return monthlyLimit;
-    }
-
-    public void setMonthlyLimit(int monthlyLimit) {
-        this.monthlyLimit = monthlyLimit;
     }
 }

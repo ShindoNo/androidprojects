@@ -18,8 +18,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Jonh Corner"
+        android:text="-"
         android:textStyle="bold"
+        android:id="@+id/tv_destination_account_name"
         />
 
     <LinearLayout
@@ -52,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:id="@+id/tv_air_time_amount"
-                android:text="123,456"
+                android:text="-"
+                android:textStyle="bold"
                 />
 
         </LinearLayout>
@@ -78,8 +80,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:id="@+id/tv_account_number"
-            android:text="123456"
+            android:id="@+id/tv_number_topped_up"
+            android:text="-"
+            android:textStyle="bold"
             />
 
     </LinearLayout>
@@ -98,6 +101,7 @@
             android:layout_weight="1"
             android:text="@string/cancel"
             android:layout_marginRight="5dp"
+            android:id="@+id/btn_cancel"
             />
 
         <Button
@@ -106,6 +110,7 @@
             android:layout_weight="1"
             android:text="@string/confirm"
             android:layout_marginLeft="5dp"
+            android:id="@+id/btn_confirm"
             />
 
 

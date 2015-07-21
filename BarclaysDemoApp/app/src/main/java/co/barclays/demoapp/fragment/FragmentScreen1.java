@@ -15,13 +15,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 import co.barclays.demoapp.R;
 import co.barclays.demoapp.datacontroller.ErrorCode;
+import co.barclays.demoapp.datacontroller.PaymentController;
 import co.barclays.demoapp.datacontroller.UserController;
 import co.barclays.demoapp.dialog.DialogContactPicker;
 import co.barclays.demoapp.object.Account;
 import co.barclays.demoapp.object.Contact;
+import co.barclays.demoapp.object.Limit;
+import co.barclays.demoapp.object.Payment;
 import co.barclays.demoapp.utils.MyLog;
 import co.barclays.demoapp.utils.Utils;
 
@@ -32,9 +38,15 @@ public class FragmentScreen1 extends Fragment {
 
     ProgressDialog mProgressDialog;
     EditText etAirTimeAmount;
+
     Account mAccount;
+    Limit mLimit;
+
+    Contact pickedContact;
 
     boolean isDownloading;
+
+    Payment mPayment;
 
     public static FragmentScreen1 getInstance() {
         FragmentScreen1 fragmentScreen1 = new FragmentScreen1();
@@ -62,6 +74,7 @@ public class FragmentScreen1 extends Fragment {
 
     public void initUI() {
         mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setCancelable(false);
         mProgressDialog.setMessage(getString(R.string.loading));
 
         etAirTimeAmount = (EditText) getView().findViewById(R.id.et_air_time_amount);
@@ -119,8 +132,8 @@ public class FragmentScreen1 extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == ErrorCode.SUCCESSFUL) {
-                Contact contact = (Contact)msg.obj;
-                ((EditText)getView().findViewById(R.id.et_receiver_number)).setText(contact.getPhone());
+                pickedContact = (Contact)msg.obj;
+                ((EditText)getView().findViewById(R.id.et_receiver_number)).setText(pickedContact.getPhone());
             }
         }
     };
@@ -135,12 +148,7 @@ public class FragmentScreen1 extends Fragment {
     View.OnClickListener mOnClickBuy = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            getFragmentManager().beginTransaction()
-                    .setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out,
-                                         R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
-                    .replace(R.id.fragment_container, FragmentScreen2.getInstance())
-                    .addToBackStack(null)
-                    .commit();
+            initPayment();
         }
     };
 
@@ -167,7 +175,9 @@ public class FragmentScreen1 extends Fragment {
                     String errorMsg = (String)msg.obj;
                     showError(errorMsg);
                 } else if (msg.what == ErrorCode.SUCCESSFUL) {
-                    mAccount = (Account)msg.obj;
+                    HashMap<String, Object> hashMap = (HashMap<String, Object>) msg.obj;
+                    mAccount = (Account)hashMap.get("account");
+                    mLimit = (Limit)hashMap.get("limit");
                     displayData();
                 }
             }
@@ -197,8 +207,73 @@ public class FragmentScreen1 extends Fragment {
 
     public void displayData() {
         ((TextView)getView().findViewById(R.id.tv_balance)).setText(Utils.formatNumber(mAccount.getAvailableBalance()));
-        ((TextView)getView().findViewById(R.id.tv_daily_limit)).setText(Utils.formatNumber(mAccount.getDailyLimit()));
-        ((TextView)getView().findViewById(R.id.tv_monthly_limit)).setText(Utils.formatNumber(mAccount.getMonthlyLimit()));
+        ((TextView)getView().findViewById(R.id.tv_daily_limit)).setText(Utils.formatNumber(mLimit.getDailyLimit()));
+        ((TextView)getView().findViewById(R.id.tv_monthly_limit)).setText(Utils.formatNumber(mLimit.getMonthlyLimit()));
+    }
+
+    public void initPayment() {
+        // check input validation
+        final String airTimeAmount = ((EditText)getView().findViewById(R.id.et_air_time_amount)).getText().toString().trim();
+        String receiverNumber = ((EditText)getView().findViewById(R.id.et_receiver_number)).getText().toString().trim();
+        final String accountNumber = ((EditText)getView().findViewById(R.id.et_account_number)).getText().toString().trim();
+
+        if (airTimeAmount.equals("")) {
+            ((EditText)getView().findViewById(R.id.et_air_time_amount)).requestFocus();
+            Toast.makeText(getActivity(), R.string.please_enter_air_time_amount, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (receiverNumber.equals("")) {
+            ((EditText)getView().findViewById(R.id.et_receiver_number)).requestFocus();
+            Toast.makeText(getActivity(), R.string.please_enter_receiver_number, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (accountNumber.equals("")) {
+            ((EditText)getView().findViewById(R.id.et_account_number)).requestFocus();
+            Toast.makeText(getActivity(), R.string.please_enter_account_number, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                mProgressDialog.dismiss();
+
+                if (msg.what == ErrorCode.FAILED) {
+                    String message = (String)msg.obj;
+                    Utils.showMessageDialog(getActivity(), message);
+                } else if (msg.what == ErrorCode.SUCCESSFUL) {
+                    mPayment = (Payment)msg.obj;
+                    displayPayment(airTimeAmount, accountNumber);
+                }
+            }
+        };
+
+        // create destination account
+        Account destinationAccount = new Account();
+        destinationAccount.setType("Phone Number");
+        destinationAccount.setName(pickedContact.getName());
+        destinationAccount.setNumber(accountNumber);
+
+
+        // convert air time amount from string to integer
+        int amount = Integer.parseInt(airTimeAmount.replaceAll(",", ""));
+
+        mProgressDialog.show();
+        PaymentController.initPayment(handler, destinationAccount, amount);
+    }
+
+    public void displayPayment(String airTimeAmount, String accountNumber) {
+        int amount = Integer.parseInt(airTimeAmount.replaceAll(",", ""));
+
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out,
+                        R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
+                .replace(R.id.fragment_container, FragmentScreen2.getInstance(mPayment.getDestinationAccount(), amount, accountNumber))
+                .addToBackStack(null)
+                .commit();
     }
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BarclaysDemoApp</string>
+    <string name="app_name">Barclays Demo App</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -17,6 +17,7 @@
 
     <!--contact picker dialog-->
     <string name="pick_contact">Please select receiver phone number:</string>
+    <string name="no_contact_found">No contact found</string>
 
     <!--fragment screen 2-->
     <string name="account_holder_name">Account Holder Name</string>
@@ -30,6 +31,11 @@
     <string name="loading">Loading...</string>
     <string name="exit_app">Exit application?</string>
     <string name="ok">OK</string>
+    <string name="close">Close</string>
     <string name="try_again">Try again</string>
+
+    <string name="please_enter_air_time_amount">Please enter air time amount</string>
+    <string name="please_enter_receiver_number">Please enter receiver number</string>
+    <string name="please_enter_account_number">Please enter account number</string>
 
 </resources>

@@ -16,7 +16,6 @@ import co.barclays.demoapp.apdapter.ContactAdapter;
 import co.barclays.demoapp.database.ContactDAO;
 import co.barclays.demoapp.datacontroller.ErrorCode;
 import co.barclays.demoapp.object.Contact;
-import co.barclays.demoapp.utils.MyLog;
 
 /**
  * Created by leanh215 on 7/20/15.
@@ -32,7 +31,11 @@ public class DialogContactPicker {
 
     ContactDAO mContactDAO;
 
-
+    /**
+     * Open dialog which show contact list
+     * @param context activity context
+     * @param callbackHandler return picked {@link Contact} in message
+     */
     public DialogContactPicker(Context context, android.os.Handler callbackHandler) {
         mContext = context;
         mCallbackHandler = callbackHandler;
@@ -53,8 +56,12 @@ public class DialogContactPicker {
 
         // get list contacts from db and set for adapter
         ArrayList<Contact> contactList = mContactDAO.getContactAll();
-        MyLog.log("contact list size=" + contactList.size());
         mAdapter.setContactList(contactList);
+
+        if (contactList.size() == 0) {
+            mDialog.findViewById(R.id.tv_pick_contact).setVisibility(View.GONE);
+            mDialog.findViewById(R.id.tv_no_contact_found).setVisibility(View.VISIBLE);
+        }
 
         mDialog.show();
         mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
