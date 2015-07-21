@@ -1,5 +1,7 @@
 package co.barclays.demoapp.fragment;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,11 +14,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import co.barclays.demoapp.R;
 import co.barclays.demoapp.datacontroller.ErrorCode;
+import co.barclays.demoapp.datacontroller.UserController;
 import co.barclays.demoapp.dialog.DialogContactPicker;
+import co.barclays.demoapp.object.Account;
 import co.barclays.demoapp.object.Contact;
 import co.barclays.demoapp.utils.MyLog;
 import co.barclays.demoapp.utils.Utils;
@@ -26,7 +30,11 @@ import co.barclays.demoapp.utils.Utils;
  */
 public class FragmentScreen1 extends Fragment {
 
+    ProgressDialog mProgressDialog;
     EditText etAirTimeAmount;
+    Account mAccount;
+
+    boolean isDownloading;
 
     public static FragmentScreen1 getInstance() {
         FragmentScreen1 fragmentScreen1 = new FragmentScreen1();
@@ -48,9 +56,14 @@ public class FragmentScreen1 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initUI();
+        downloadData();
+        MyLog.log("onViewCreated()");
     }
 
     public void initUI() {
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage(getString(R.string.loading));
+
         etAirTimeAmount = (EditText) getView().findViewById(R.id.et_air_time_amount);
         etAirTimeAmount.addTextChangedListener(mAirTimeAmountWatcher);
 
@@ -115,7 +128,7 @@ public class FragmentScreen1 extends Fragment {
     View.OnClickListener mOnClickCancel = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(), "Click cancel", Toast.LENGTH_SHORT).show();
+            Utils.showExitDialog(getActivity());
         }
     };
 
@@ -130,5 +143,63 @@ public class FragmentScreen1 extends Fragment {
                     .commit();
         }
     };
+
+    public void downloadData() {
+        // check if data is downloading
+        if (isDownloading) {
+            return;
+        }
+
+        // check if data is downloaded
+        if (mAccount != null) {
+            displayData();
+            return;
+        }
+
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                mProgressDialog.dismiss();
+                isDownloading = false;
+
+                if (msg.what == ErrorCode.FAILED) {
+                    String errorMsg = (String)msg.obj;
+                    showError(errorMsg);
+                } else if (msg.what == ErrorCode.SUCCESSFUL) {
+                    mAccount = (Account)msg.obj;
+                    displayData();
+                }
+            }
+        };
+
+        mProgressDialog.show();
+        isDownloading = true;
+        UserController.getAccountInfo(handler);
+    }
+
+    public void showError(String message) {
+        String positive = getString(R.string.try_again);
+        String negative = getString(R.string.cancel);
+
+        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                if (which == -1) {
+                    downloadData();
+                }
+            }
+        };
+
+        Utils.showMessageDialog(getActivity(), message, positive, negative, onClickListener);
+    }
+
+    public void displayData() {
+        ((TextView)getView().findViewById(R.id.tv_balance)).setText(Utils.formatNumber(mAccount.getAvailableBalance()));
+        ((TextView)getView().findViewById(R.id.tv_daily_limit)).setText(Utils.formatNumber(mAccount.getDailyLimit()));
+        ((TextView)getView().findViewById(R.id.tv_monthly_limit)).setText(Utils.formatNumber(mAccount.getMonthlyLimit()));
+    }
+
 
 }

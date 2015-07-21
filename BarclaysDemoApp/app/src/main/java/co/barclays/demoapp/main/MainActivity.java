@@ -11,6 +11,7 @@ import co.barclays.demoapp.R;
 import co.barclays.demoapp.database.ContactDAO;
 import co.barclays.demoapp.fragment.FragmentScreen1;
 import co.barclays.demoapp.object.Contact;
+import co.barclays.demoapp.utils.Utils;
 
 
 public class MainActivity extends FragmentActivity {
@@ -89,4 +90,12 @@ public class MainActivity extends FragmentActivity {
         mContactDAO.close();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            super.onBackPressed();
+        } else {
+            Utils.showExitDialog(this);
+        }
+    }
 }

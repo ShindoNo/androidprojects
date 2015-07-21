@@ -26,4 +26,10 @@
     <string name="buy">Buy</string>
     <string name="confirm">Confirm</string>
 
+    <!--other strings-->
+    <string name="loading">Loading...</string>
+    <string name="exit_app">Exit application?</string>
+    <string name="ok">OK</string>
+    <string name="try_again">Try again</string>
+
 </resources>

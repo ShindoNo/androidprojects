@@ -1,10 +1,7 @@
 package co.barclays.demoapp.network;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import android.os.Handler;
+import android.os.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +11,19 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import co.barclays.demoapp.datacontroller.ErrorCode;
 import co.barclays.demoapp.utils.MyLog;
 
 public class RequestHelper {
 
-	public static String post(String apiUrl, String params) {
+    /**
+     * Send HTTP POST request to given API URL with given params
+     * @param callback callback for request state
+     * @param apiUrl api of request
+     * @param params params of request
+     * @return response if successful, null otherwise
+     */
+	public static String post(Handler callback, String apiUrl, String params) {
 		HttpURLConnection connection = null;
 		try {
 			MyLog.log("POST apiUrl=" + apiUrl + "; params=" + params);
@@ -27,22 +32,24 @@ public class RequestHelper {
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+			connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
 
 			OutputStream outputStream = connection.getOutputStream();
 			outputStream.write(params.getBytes());
 			outputStream.close();
-
 			InputStream inputStream = connection.getInputStream();
 			String response = readInputStream(inputStream);
-
 			MyLog.log("POST response=" + response);
 			return response;
-		} catch (Exception e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			MyLog.log("POST error apiUrl=" + apiUrl);
-			return null;
+            // send message for callback
+            Message msg = new Message();
+            msg.what = ErrorCode.FAILED;
+            msg.obj = ErrorCode.MSG_BAD_REQUEST;
+            callback.sendMessage(msg);
+            return null;
 		} finally {
 			if (connection != null) {
 				connection.disconnect();
@@ -62,11 +69,6 @@ public class RequestHelper {
 
 			MyLog.log("GET response=" + response);
 
-
-
-
-
-
 			return response;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -80,28 +82,6 @@ public class RequestHelper {
 		}
 	}
 
-	public static String post(String apiUrl, MultipartEntityBuilder multipartEntityBuilder) {
-		try {
-			MyLog.log("POST apiUrl=" + apiUrl);
-			HttpPost httpPost = new HttpPost(apiUrl);
-			httpPost.setEntity(multipartEntityBuilder.build());
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpResponse httpResponse = httpClient.execute(httpPost);
-
-			InputStream inputStream = httpResponse.getEntity().getContent();
-			String response = readInputStream(inputStream);
-			inputStream.close();
-			httpResponse.getEntity().consumeContent();
-
-			MyLog.log("POST response=" + response);
-			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			MyLog.log("POST error; apiUrl=" + apiUrl);
-			return null;
-		}
-
-	}
 	
     public static String readInputStream(InputStream is) {
         try {

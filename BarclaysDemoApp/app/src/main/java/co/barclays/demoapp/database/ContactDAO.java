@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import co.barclays.demoapp.object.Contact;
-import co.barclays.demoapp.utils.MyLog;
 
 /**
  * Created by leanh215 on 7/20/15.
@@ -96,7 +95,6 @@ public class ContactDAO {
      */
     public void insertContact(Contact contact) {
         if (checkContactExist(contact.getId())) {
-            MyLog.log("contact existed, contact=" + contact.toString());
             return;
         }
 
@@ -104,9 +102,14 @@ public class ContactDAO {
         contentValues.put(ContactDBHelper.COLUMN_ID, contact.getId());
         contentValues.put(ContactDBHelper.COLUMN_NAME, contact.getName());
         contentValues.put(ContactDBHelper.COLUMN_PHONE, contact.getPhone());
-        long rowId = mDatabase.insert(ContactDBHelper.TABLE_CONTACTS, null, contentValues);
+        mDatabase.insert(ContactDBHelper.TABLE_CONTACTS, null, contentValues);
     }
 
+    /**
+     * Check account existed in database or not
+     * @param contactId id of contact
+     * @return true if existed, false otherwise
+     */
     public boolean checkContactExist(String contactId) {
         Cursor cursor = mDatabase.query(ContactDBHelper.TABLE_CONTACTS, ContactDBHelper.ALL_COLUMNS,
                                         ContactDBHelper.COLUMN_ID  + " = " + contactId, null, null, null, null);
