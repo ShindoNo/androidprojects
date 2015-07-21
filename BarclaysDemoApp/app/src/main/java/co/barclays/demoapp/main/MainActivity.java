@@ -23,7 +23,6 @@ public class MainActivity extends FragmentActivity {
 
         importContact();
         initFragment();
-
     }
 
     public void initFragment() {
@@ -36,7 +35,8 @@ public class MainActivity extends FragmentActivity {
 
 
     /**
-     * Import contacts from phone to app database
+     * Import contacts from phone to app database <br>
+     * Because this task takes long time to finish, it needs to run in a background thread
      */
     public void importContact() {
         mContactDAO = new ContactDAO(getApplicationContext());
@@ -51,31 +51,6 @@ public class MainActivity extends FragmentActivity {
             }
         }).start();
     }
-
-//    public ArrayList<Contact> getContacts() {
-//        Cursor cursor = null;
-//        ArrayList<Contact> contactList = new ArrayList<Contact>();
-//        try {
-//            String sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC";
-//            cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, sortOrder);
-//            cursor.moveToFirst();
-//            do {
-//                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
-//                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//                String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//
-//                Contact contact = new Contact(id, name, phone);
-//                contactList.add(contact);
-//            } while (cursor.moveToNext());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close();
-//            }
-//            return contactList;
-//        }
-//    }
 
     @Override
     protected void onDestroy() {

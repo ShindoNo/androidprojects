@@ -1,7 +1,8 @@
 package co.barclays.demoapp.object;
 
 /**
- * Created by leanh215 on 7/21/15.
+ * Created by leanh215 on 7/21/15.<br>
+ * Hold payment information
  */
 public class Payment {
 

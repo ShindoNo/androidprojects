@@ -14,7 +14,7 @@ public class Utils {
      * Check response status and return error message if request failed
      * @param handler handle response status
      * @param data response in JSON Object type
-     * @return true if status equals to "000000" , false otherwise
+     * @return true if status equals to "000000" , false otherwise and send error message to handler
      */
     public static boolean checkStatus(Handler handler, JSONObject data) {
         try {

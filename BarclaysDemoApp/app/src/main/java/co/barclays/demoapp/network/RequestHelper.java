@@ -18,10 +18,10 @@ public class RequestHelper {
 
     /**
      * Send HTTP POST request to given API URL with given params
-     * @param callback callback for request state
+     * @param callback handle bad request
      * @param apiUrl api of request
      * @param params params of request
-     * @return response if successful, null otherwise
+     * @return string response if successful, null otherwise
      */
 	public static String post(Handler callback, String apiUrl, String params) {
 		HttpURLConnection connection = null;
@@ -44,11 +44,12 @@ public class RequestHelper {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-            // send message for callback
+            // send error message to callback
             Message msg = new Message();
             msg.what = ErrorCode.FAILED;
             msg.obj = ErrorCode.MSG_BAD_REQUEST;
             callback.sendMessage(msg);
+            MyLog.log("POTST error apiUrl=" + apiUrl);
             return null;
 		} finally {
 			if (connection != null) {
@@ -57,7 +58,13 @@ public class RequestHelper {
 		}
 	}
 
-	public static String get(String apiUrl) {
+    /**
+     * Send HTTP GET request with given API Url
+     * @param callback handle bad request
+     * @param apiUrl api of request
+     * @return string response if successful, null otherwise
+     */
+	public static String get(Handler callback, String apiUrl) {
 		HttpURLConnection connection = null;
 		try {
 			MyLog.log("GET apiUrl=" + apiUrl);
@@ -68,11 +75,15 @@ public class RequestHelper {
 			String response = readInputStream(inputStream);
 
 			MyLog.log("GET response=" + response);
-
 			return response;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+            // send error message to callback
+            Message msg = new Message();
+            msg.what = ErrorCode.FAILED;
+            msg.obj = ErrorCode.MSG_BAD_REQUEST;
+            callback.sendMessage(msg);
 			MyLog.log("GET error apiUrl=" + apiUrl);
 			return null;
 		} finally {
@@ -82,7 +93,11 @@ public class RequestHelper {
 		}
 	}
 
-	
+	/**
+	 * Read input stream and return string
+	 * @param is input stream
+	 * @return string from input stream
+	 */
     public static String readInputStream(InputStream is) {
         try {
             StringBuilder text = new StringBuilder();

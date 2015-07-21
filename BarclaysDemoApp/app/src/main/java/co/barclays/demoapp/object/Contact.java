@@ -1,7 +1,8 @@
 package co.barclays.demoapp.object;
 
 /**
- * Created by leanh215 on 7/20/15.
+ * Created by leanh215 on 7/20/15.<br>
+ * Hold contact information
  */
 public class Contact {
 

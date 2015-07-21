@@ -51,6 +51,10 @@ public class ContactDAO {
         }
     }
 
+    /**
+     * Get all contacts stored in database
+     * @return an array list of {@link Contact}
+     */
     public ArrayList<Contact> getContactAll() {
         ArrayList<Contact> contactList = new ArrayList<Contact>();
 
@@ -89,7 +93,7 @@ public class ContactDAO {
     }
 
     /**
-     * Insert @link{Contact} into database, do nothing if contact already existed in database
+     * Insert {@link Contact} into database, do nothing if contact already existed in database
      * @param contact inserted contact
      * @return
      */
