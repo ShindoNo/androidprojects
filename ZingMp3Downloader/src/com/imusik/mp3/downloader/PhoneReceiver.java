@@ -1,5 +1,7 @@
 package com.imusik.mp3.downloader;
 
+import com.idroid.lib.support.MyLog;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +25,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 			}
 			
 			context.startService(playServiceIntent);
+			MyLog.log("startService 7");
 		}		 
 	}
 

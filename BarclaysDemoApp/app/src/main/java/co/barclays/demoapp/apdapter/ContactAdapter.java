@@ -26,6 +26,10 @@ public class ContactAdapter extends BaseAdapter{
 
     }
 
+    /**
+     * Set list of contact for adapter and refresh
+     * @param contactList
+     */
     public void setContactList(ArrayList<Contact> contactList) {
         mContactList = contactList;
         notifyDataSetChanged();

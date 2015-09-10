@@ -1,7 +1,5 @@
 package com.imusik.mp3.downloader;
 
-import com.idroid.lib.support.MyLog;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,7 +13,8 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+
+import com.idroid.lib.support.MyLog;
 
 public class PlayerService extends Service {
 	
@@ -61,7 +60,6 @@ public class PlayerService extends Service {
 	
 	String lastPlayState;
 	MediaPlayer mMediaPlayer;
-	Handler mHandler;
 	
 	String id;
 	String name;
@@ -84,8 +82,7 @@ public class PlayerService extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-
-		mHandler = new Handler();
+		MyLog.log("PlayerService onCreate()");
 		initMediaPlayer();
 	}
 
@@ -93,7 +90,7 @@ public class PlayerService extends Service {
 	public int onStartCommand(final Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
 		if (intent == null) {
-			MyLog.log("onstartCommand intent = nullllllllllllllllllllllllllll");
+			MyLog.log("PlayerService onstartCommand intent = null");
 			return super.onStartCommand(intent, flags, startId);
 		}
 		
@@ -302,7 +299,7 @@ public class PlayerService extends Service {
 			mMediaPlayer.stop();
 		}
 		
-		
+		MyLog.log("PlayerService onDestroy()");
 	}
 	
 	public void showNotify() {

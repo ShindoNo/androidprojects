@@ -54,7 +54,7 @@ public class FragmentScreen2 extends Fragment{
         getView().findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "No Action", Toast.LENGTH_SHORT).show();
+                getFragmentManager().popBackStack();
             }
         });
 

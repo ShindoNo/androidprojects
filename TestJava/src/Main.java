@@ -7,8 +7,20 @@ public class Main {
 	public static Object lock = new Object();
 
 	public static void main(String args[]) {
-		function111();
-		function222();
+//		function111();
+//		function222();
+		
+		String s = "xxx";
+		
+		
+		Integer intObject = new Integer(10);
+		int intPrimitive = 10;
+		
+		Object object = new Object();
+		
+		
+		System.out.println(intObject);
+		System.out.println(intPrimitive);
 	}
 
 	public static void function111() {

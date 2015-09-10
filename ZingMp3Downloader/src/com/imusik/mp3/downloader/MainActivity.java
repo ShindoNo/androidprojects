@@ -60,6 +60,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.idroid.lib.support.MyLog;
 import com.idroid.lib.support.PushTools;
 import com.idroid.lib.support.ReadConfig;
 import com.idroid.lib.support.SupportTools;
@@ -282,6 +283,7 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent(getApplicationContext(), PlayerService.class);
 				intent.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_NOWPLAYING);
 				startService(intent);
+				MyLog.log("startService 1");
 			}
 		});
 		
@@ -339,6 +341,7 @@ public class MainActivity extends Activity {
 						intent.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_SEEK_TO);
 						intent.putExtra(PlayerService.EXTRA_SEEK_TO, seekBar.getProgress());
 						startService(intent);
+						MyLog.log("startService 2");
 						return true;
 					}
 				}
@@ -494,6 +497,7 @@ public class MainActivity extends Activity {
 		intentPlayService.setAction(PlayerService.ACTION_PLAYERSERVICE);
 		intentPlayService.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_STOP_SERVICE);
 		startService(intentPlayService);
+		MyLog.log("startService 3");
 		unregisterReceiver(mReceiver);
 	}
 
@@ -552,7 +556,8 @@ public class MainActivity extends Activity {
 		intent.putExtra(PlayerService.EXTRA_ID, zingSongInfo.getId());
 		intent.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_PLAY_NEW);
 		
-		startService(intent);		
+		startService(intent);	
+		MyLog.log("startService 4");
 	}
 	
 	
@@ -600,6 +605,7 @@ public class MainActivity extends Activity {
 							intentRepeat.putExtra(PlayerService.EXTRA_COMMAND, PlayerService.COMMAND_NOWPLAYING);
 							intentRepeat.putExtra(PlayerService.EXTRA_REPEAT_ONE, "");
 							startService(intentRepeat);
+							MyLog.log("startService 5");
 						} else {
 							String[] listCurrentPlaySong = ZingTools.getIdsFromPlaylist(getApplicationContext(), currentPlaylist);
 
@@ -1334,6 +1340,7 @@ public class MainActivity extends Activity {
 			intent.putExtra(PlayerService.EXTRA_COUNTDOWN_VALUE, countdownValue);
 			
 			startService(intent);
+			MyLog.log("startService 6");
 		}
 	};
 
